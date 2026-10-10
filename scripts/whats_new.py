@@ -4,9 +4,12 @@ The text comes straight from review/论文审阅表.html (the human-curated sour
 and meetings/*.md. Nothing is summarized or rewritten.
 
 Usage:
-  python scripts/whats_new.py            # the latest CHANGELOG entry
-  python scripts/whats_new.py --last 3   # the last 3 CHANGELOG entries
-  python scripts/whats_new.py --all      # every paper in the review table
+  python scripts/whats_new.py                          # the latest CHANGELOG entry
+  python scripts/whats_new.py --last 3                 # the last 3 CHANGELOG entries
+  python scripts/whats_new.py --all                    # every paper in the review table
+  python scripts/whats_new.py --module "VLM1 + VLM2"   # only one category
+  python scripts/whats_new.py --paper Spotter          # only one paper
+  (--module / --paper can be combined with --last or --all)
 """
 import argparse
 import re
@@ -17,6 +20,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 FIELDS = ["问题", "方法", "仿真结果", "真机结果", "团队"]
+NOTICE = "> 以下内容逐字取自人工审核的审阅表和会议纪要，未经 AI 改写。"
 
 
 class ReviewTable(HTMLParser):
@@ -30,19 +34,17 @@ class ReviewTable(HTMLParser):
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if tag == "tr":
-            self.row = {"cells": [], "module": None, "href": None}
+            self.row = {"cells": [], "href": None}
         elif tag == "td" and self.row is not None:
-            self.cell = {"cls": a.get("class", ""), "lines": [""], "in_li": False}
+            self.cell = {"cls": a.get("class", ""), "lines": [""]}
         elif self.cell is None:
             return
         elif tag == "a" and "arxiv.org" in a.get("href", "") and self.row["href"] is None:
             self.row["href"] = a["href"]
-        elif tag == "br":
+        elif tag in ("br", "p"):
             self.cell["lines"].append("")
         elif tag == "li":
             self.cell["lines"].append("- ")
-        elif tag == "p":
-            self.cell["lines"].append("")
 
     def handle_endtag(self, tag):
         if tag == "td" and self.cell is not None:
@@ -92,38 +94,61 @@ def print_paper(r):
         lines = r.get(f) or ["-"]
         if len(lines) == 1:
             print(f"- {f}：{lines[0]}")
-        else:
-            print(f"- {f}：")
-            for ln in lines:
-                print(f"    {ln}")
+            continue
+        print(f"- {f}：")
+        for ln in lines:
+            # "- item" lines nest under the preceding heading line; other lines are headings
+            print(f"        {ln}" if ln.startswith("- ") else f"    - {ln}")
     print()
+
+
+def matches(r, module, paper):
+    if module and module.lower() not in r["module"].lower():
+        return False
+    if paper and paper.lower() not in r["paper"][0].lower():
+        return False
+    return True
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--last", type=int, default=1)
-    ap.add_argument("--all", action="store_true")
+    ap.add_argument("--last", type=int, default=1, help="最近 N 次更新")
+    ap.add_argument("--all", action="store_true", help="审阅表里的全部论文")
+    ap.add_argument("--module", help='只看某个类别，如 "VLM1 + VLM2"')
+    ap.add_argument("--paper", help="只看某篇论文，如 Spotter")
     args = ap.parse_args()
     review = load_review()
+    filtered = bool(args.module or args.paper)
+    scope = "（筛选：" + " ".join(x for x in (args.module, args.paper) if x) + "）" if filtered else ""
+    categories = "；".join(sorted({r["module"] for r in review.values()}))
 
-    print("> 以下内容逐字取自人工审核的审阅表和会议纪要，未经 AI 改写。\n")
+    print(NOTICE + "\n")
     if args.all:
-        for r in review.values():
+        hits = [r for r in review.values() if matches(r, args.module, args.paper)]
+        print(f"## 审阅表全部论文{scope}：共 {len(hits)} 篇\n")
+        for r in hits:
             print_paper(r)
+        if not hits:
+            print("没有找到匹配的论文。现有类别：" + categories)
         return
+
     for entry in changelog_entries(args.last):
-        print(entry.splitlines()[0].replace("## ", "## 更新：", 1))
-        print()
-        for meeting in dict.fromkeys(re.findall(r"\((meetings/[^)]+\.md)\)", entry)):
-            print(f"### 会议纪要：{meeting}\n")
-            print((ROOT / meeting).read_text(encoding="utf-8").strip())
-            print()
-        for card in dict.fromkeys(re.findall(r"\((papers/[^)]+\.md)\)", entry)):
-            aid = arxiv_of(card)
-            if aid in review:
-                print_paper(review[aid])
-            else:
-                print(f"### {card}\n- 审阅表里没有这篇论文（arXiv {aid}），请人工确认。\n")
+        cards = list(dict.fromkeys(re.findall(r"\((papers/[^)]+\.md)\)", entry)))
+        hits = [review[a] for a in map(arxiv_of, cards) if a in review]
+        shown = [r for r in hits if matches(r, args.module, args.paper)]
+        print(entry.splitlines()[0].replace("## ", "## 更新：", 1) + "\n")
+        print(f"本次共新增 / 修改 {len(hits)} 篇论文，下面列出 {len(shown)} 篇{scope}。\n")
+        if not filtered:
+            for meeting in dict.fromkeys(re.findall(r"\((meetings/[^)]+\.md)\)", entry)):
+                print(f"### 会议纪要：{meeting}\n")
+                print((ROOT / meeting).read_text(encoding="utf-8").strip() + "\n")
+        for r in shown:
+            print_paper(r)
+        if filtered and not shown:
+            print("这次更新里没有匹配的论文，可加 --all 查看全部。现有类别：" + categories + "\n")
+        for c in cards:
+            if arxiv_of(c) not in review:
+                print(f"### {c}\n- 审阅表里没有这篇论文（arXiv {arxiv_of(c)}），请人工确认。\n")
 
 
 if __name__ == "__main__":

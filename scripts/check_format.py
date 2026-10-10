@@ -10,8 +10,12 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 # Header cells are padded with non-breaking spaces so every category table has the same column widths on GitHub.
-PADDING = [("Paper", 22), ("Venue", 4), ("Method", 14), ("Result", 13),
-           ("Team", 4), ("Code", 0), ("Website", 0)]
+PADDING = [("Paper", 33), ("Venue", 4), ("Method", 16), ("Result", 15), ("Team", 5)]
+PAPER_CELL = re.compile(
+    r"\*\*[^*]+\*\*: [^<\[\]]+<br>"
+    r"\\\[\[Paper\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)\\\]"
+    r"( \\\[\[Code\]\(https://github\.com/[^)]+\)\\\])?"
+    r"( \\\[\[Website\]\(https?://[^)]+\)\\\])?")
 WIDTHS = PADDING
 HEADER = "| " + " | ".join("&nbsp;" * k + n + "&nbsp;" * k for n, k in PADDING) + " |"
 SEPARATOR = "|" + ":---:|" * len(WIDTHS)
@@ -21,7 +25,7 @@ readme = (ROOT / "README.md").read_text(encoding="utf-8")
 review = (ROOT / "review" / "论文审阅表.html").read_text(encoding="utf-8")
 
 for heading in ("当前主线", "Contents"):
-    if not re.search(rf"^## {heading}", readme, re.M):
+    if not re.search(rf"^## (?:\S+ )?{heading}", readme, re.M):
         errors.append(f"README 缺少「## {heading}」一节")
 
 lines = readme.splitlines()
@@ -43,14 +47,13 @@ for i, line in enumerate(lines):
         if len(cells) != len(WIDTHS):
             errors.append(f"README 第 {n} 行应有 {len(WIDTHS)} 列，实际 {len(cells)} 列")
             continue
-        paper, venue, method, result, team, code, website = cells
-        pm = re.fullmatch(r"\*\*[^*]+\*\*: (\[[^\]]+\]\(https://arxiv\.org/abs/\d{4}\.\d{4,5}\))", paper)
+        paper, venue, method, result, team = cells
+        pm = PAPER_CELL.fullmatch(paper)
         if not pm:
-            errors.append(f"README 第 {n} 行 Paper 应为 **简称**: [标题](https://arxiv.org/abs/<id>)")
+            errors.append(f"README 第 {n} 行 Paper 应为 **简称**: 标题<br>\\[[Paper](arXiv)\\] \\[[Code](GitHub)\\] \\[[Website](主页)\\]，"
+                          "顺序固定，没有的 Code / Website 省略")
             continue
-        title = pm.group(1)
-        for label, val in (("Paper", paper), ("Venue", venue), ("Method", method),
-                           ("Result", result), ("Team", team), ("Code", code), ("Website", website)):
+        for label, val in (("Venue", venue), ("Method", method), ("Result", result), ("Team", team)):
             if not val:
                 errors.append(f"README 第 {n} 行 {label} 不能为空")
         if not re.search(r"[一-鿿]", method):
@@ -66,16 +69,8 @@ for i, line in enumerate(lines):
             errors.append(f"README 第 {n} 行 Team 不要用 /，多个单位用 <br> 分行")
         if not re.search(r"(arXiv|\d{4})", venue):
             errors.append(f"README 第 {n} 行 Venue 应写会议和年份，如 ICML 2026 / arXiv 2026.09")
-        m = re.fullmatch(r"\[[^\]]+\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)", title)
-        if not m:
-            errors.append(f"README 第 {n} 行 Paper 必须写成 [标题](https://arxiv.org/abs/<id>)")
-            continue
-        if code != "-" and not re.fullmatch(r"\[Code\]\(https://github\.com/[^)]+\)", code):
-            errors.append(f"README 第 {n} 行 Code 应为 [Code](GitHub 链接)，没有写 -")
-        if website != "-" and not re.fullmatch(r"\[Website\]\(https?://[^)]+\)", website):
-            errors.append(f"README 第 {n} 行 Website 应为 [Website](链接)，没有写 -")
-        if m.group(1) not in review:
-            errors.append(f"README 第 {n} 行论文 {m.group(1)} 不在审阅表里，必须先进审阅表")
+        if pm.group(1) not in review:
+            errors.append(f"README 第 {n} 行论文 {pm.group(1)} 不在审阅表里，必须先进审阅表")
 
 stats = re.search(r"<sub>(\d+) Papers? · (\d+) Meetings? · Updated \d{4}\.\d{2}\.\d{2}</sub>", readme)
 meetings = len(list((ROOT / "meetings").glob("*.md")))
