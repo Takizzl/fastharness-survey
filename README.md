@@ -1,8 +1,22 @@
 # FastHarness Survey
 
+## 当前主线
+
+> 更新于 [第一次会议](meetings/01-第一次会议.md)
+
+**阶段 1**
+1. **VLM1 + VLM2**：调研 GPT + VLM 的结合方式，怎么外挂 VLM；Qwen 等 VLM 尽量做选择题
+2. **Code + Policy**：调研 Code + VLA 怎么结合，策略如何组织（定位到源码分析）；有没有 WAM
+
+**要求**：兼容多个 LLM 和下游 policy
+
+**阶段 2**：Memory（浩然），从 LLM 的角度迁移
+
+## 论文
+
 | Module | Year | Venue | Paper Title | Repository | Method | Result | Team | Website |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **1. LLM + VLM** | 2026 | `arXiv` | [Spotter:&nbsp;Let&nbsp;the&nbsp;Embodied&nbsp;Model<br>Lead,&nbsp;and&nbsp;the&nbsp;VLM&nbsp;Reflect&nbsp;for&nbsp;It](https://arxiv.org/pdf/2609.36808) | [![GitHub stars](https://img.shields.io/github/stars/zqc3117/Spotter.svg?style=social)](https://github.com/zqc3117/Spotter) | VLA 主导执行，VLM 监控出错后接管修复 | 真机 53% → 83% | Griffith / 清华 | --- |
+| **1. VLM1 + VLM2** | 2026 | `arXiv` | [Spotter:&nbsp;Let&nbsp;the&nbsp;Embodied&nbsp;Model<br>Lead,&nbsp;and&nbsp;the&nbsp;VLM&nbsp;Reflect&nbsp;for&nbsp;It](https://arxiv.org/pdf/2609.36808) | [![GitHub stars](https://img.shields.io/github/stars/zqc3117/Spotter.svg?style=social)](https://github.com/zqc3117/Spotter) | VLA 主导执行，VLM 监控出错后接管修复 | 真机 53% → 83% | Griffith / 清华 | --- |
 | **2. Code + Policy** | 2026 | `ICML` | [CaP-X:&nbsp;A&nbsp;Framework&nbsp;for&nbsp;Benchmarking&nbsp;and<br>Improving&nbsp;Coding&nbsp;Agents&nbsp;for&nbsp;Robot&nbsp;Manipulation](https://arxiv.org/pdf/2603.22435) | [![GitHub stars](https://img.shields.io/github/stars/capgym/cap-x.svg?style=social)](https://github.com/capgym/cap-x) | 低级原语 + 多轮反馈写代码控制机器人 | 真机 24% → 84% | NVIDIA / Berkeley | [website](https://capgym.github.io) |
 | | 2026 | `arXiv` | [Harness&nbsp;VLA:&nbsp;Steering&nbsp;Frozen&nbsp;VLAs&nbsp;into&nbsp;Reliable<br>Manipulation&nbsp;Primitives&nbsp;via&nbsp;Memory-Guided&nbsp;Agents](https://arxiv.org/pdf/2607.08448) | [![GitHub stars](https://img.shields.io/github/stars/RLinf/RPent.svg?style=social)](https://github.com/RLinf/RPent) | 冻结 VLA 只做接触动作，其余交给 Agent | LIBERO-Pro 82.4% | 清华 | [website](https://harnessvla.github.io/) |
 | | 2026 | `arXiv` | [Fewer&nbsp;Tokens,&nbsp;Better&nbsp;Action:&nbsp;GPT-6&nbsp;Astra&nbsp;Robot&nbsp;Agents<br>with&nbsp;14%&nbsp;Higher&nbsp;Success&nbsp;Rate&nbsp;but&nbsp;65%&nbsp;Fewer&nbsp;Tokens](https://arxiv.org/pdf/2610.01939) | [![GitHub stars](https://img.shields.io/github/stars/DAGroup-PKU/PyRUA-Lean.svg?style=social)](https://github.com/DAGroup-PKU/PyRUA-Lean) | 用 Python 代码块代替逐步工具调用 | 成功率 +8.6，token −65% | 北大 | [website](https://dagroup-pku.github.io/PyRUA-Lean/) |
