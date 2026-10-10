@@ -49,6 +49,12 @@ for i, line in enumerate(lines):
                            ("Result", result), ("Team", team)):
             if not val:
                 errors.append(f"README 第 {n} 行 {label} 不能为空")
+        if not re.search(r"[一-鿿]", method):
+            errors.append(f"README 第 {n} 行 Method 要用中文")
+        if "→" not in result or result.count("<br>") != 1:
+            errors.append(f"README 第 {n} 行 Result 要写两行：比的是什么<br>对比对象 X → 本方法 Y")
+        if "/" in team:
+            errors.append(f"README 第 {n} 行 Team 不要用 /，多个单位用 <br> 分行")
         if not re.search(r"(arXiv|\d{4})", venue):
             errors.append(f"README 第 {n} 行 Venue 应写会议和年份，如 ICML 2026 / arXiv 2026.09")
         m = re.match(r"\[Paper\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)", links)
