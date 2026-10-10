@@ -31,7 +31,7 @@
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp;&nbsp; | Code | Website |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Spotter**<br>[Let the Embodied Model Lead, and the VLM Reflect for It](https://arxiv.org/abs/2609.36808) | arXiv 2026.09 | VLA 主导执行，VLM 监控，出错才接管修复 | 真机成功率从 53% 提到 83% | Griffith Univ.<br>Tsinghua | [Code](https://github.com/zqc3117/Spotter) | [Website](https://zqc3117.github.io/Spotter/) |
+| **Spotter**: [Let the Embodied Model Lead, and the VLM Reflect for It](https://arxiv.org/abs/2609.36808) | arXiv 2026.09 | VLA 主导执行，VLM 监控，出错才接管修复 | 真机成功率从 53% 提到 83% | Griffith Univ.<br>Tsinghua | [Code](https://github.com/zqc3117/Spotter) | [Website](https://zqc3117.github.io/Spotter/) |
 
 <a id="code-policy"></a>
 
@@ -39,11 +39,11 @@
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp;&nbsp; | Code | Website |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **CaP-X**<br>[A Framework for Benchmarking and Improving Coding Agents for Robot Manipulation](https://arxiv.org/abs/2603.22435) | ICML 2026 | 只给低级原语，Agent 多轮写代码、看反馈再改 | RL 后真机成功率从 24% 提到 84% | NVIDIA<br>UC Berkeley | [Code](https://github.com/capgym/cap-x) | [Website](https://capgym.github.io) |
-| **Harness VLA**<br>[Steering Frozen VLAs into Reliable Manipulation Primitives via Memory-Guided Agents](https://arxiv.org/abs/2607.08448) | arXiv 2026.07 | 冻结 VLA 只做接触动作，其余由 Agent 完成 | LIBERO-Pro 82.4%，最强基线 43.8% | Tsinghua | [Code](https://github.com/RLinf/RPent) | [Website](https://harnessvla.github.io/) |
-| **PyRUA-Lean**<br>[Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens](https://arxiv.org/abs/2610.01939) | arXiv 2026.10 | 用 Python 代码块代替逐步工具调用 | 成功率提到 71.7%，token 少 65% | PKU | [Code](https://github.com/DAGroup-PKU/PyRUA-Lean) | [Website](https://dagroup-pku.github.io/PyRUA-Lean/) |
-| **Show-Harness**<br>[Just a VLM Agent Can Play Robots](https://arxiv.org/abs/2609.10522) | arXiv 2026.09 | VLM 每步输出一个语义小动作控制机器人 | 真机 89%，π0.5 只有 39% | NUS | [Code](https://github.com/showlab/Show-Harness) | [Website](https://showlab.github.io/Show-Harness) |
-| **RoboHarness**<br>[Memory-Driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning](https://arxiv.org/abs/2607.18060) | ECCV 2026 Workshop<br>**Best Paper** | 按能力给子任务分配策略，交接前对齐状态 | LIBERO-LoHo 95.2%，最强基线 64.8% | Huawei Noah's Ark | - | [Website](https://robo-harness.com) |
+| **CaP-X**: [A Framework for Benchmarking and Improving Coding Agents for Robot Manipulation](https://arxiv.org/abs/2603.22435) | ICML 2026 | 只给低级原语，Agent 多轮写代码、看反馈再改 | RL 后真机成功率从 24% 提到 84% | NVIDIA<br>UC Berkeley | [Code](https://github.com/capgym/cap-x) | [Website](https://capgym.github.io) |
+| **Harness VLA**: [Steering Frozen VLAs into Reliable Manipulation Primitives via Memory-Guided Agents](https://arxiv.org/abs/2607.08448) | arXiv 2026.07 | 冻结 VLA 只做接触动作，其余由 Agent 完成 | LIBERO-Pro 82.4%，最强基线 43.8% | Tsinghua | [Code](https://github.com/RLinf/RPent) | [Website](https://harnessvla.github.io/) |
+| **PyRUA-Lean**: [Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens](https://arxiv.org/abs/2610.01939) | arXiv 2026.10 | 用 Python 代码块代替逐步工具调用 | 成功率提到 71.7%，token 少 65% | PKU | [Code](https://github.com/DAGroup-PKU/PyRUA-Lean) | [Website](https://dagroup-pku.github.io/PyRUA-Lean/) |
+| **Show-Harness**: [Just a VLM Agent Can Play Robots](https://arxiv.org/abs/2609.10522) | arXiv 2026.09 | VLM 每步输出一个语义小动作控制机器人 | 真机 89%，π0.5 只有 39% | NUS | [Code](https://github.com/showlab/Show-Harness) | [Website](https://showlab.github.io/Show-Harness) |
+| **RoboHarness**: [Memory-Driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning](https://arxiv.org/abs/2607.18060) | ECCV 2026 Workshop<br>**Best Paper** | 按能力给子任务分配策略，交接前对齐状态 | LIBERO-LoHo 95.2%，最强基线 64.8% | Huawei Noah's Ark | - | [Website](https://robo-harness.com) |
 
 <a id="memory"></a>
 
@@ -57,7 +57,7 @@ TBD.
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp;&nbsp; | Code | Website |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **ASPIRE**<br>[Agentic /Skills Discovery for Robotics](https://arxiv.org/abs/2607.00272) | arXiv 2026.07 | 按调用记录修补失败，经验存进技能库 | LIBERO-Pro 从 18% 提到 72% | NVIDIA | [Code](https://github.com/NVlabs/ASPIRE) | [Website](https://research.nvidia.com/labs/gear/aspire/) |
+| **ASPIRE**: [Agentic /Skills Discovery for Robotics](https://arxiv.org/abs/2607.00272) | arXiv 2026.07 | 按调用记录修补失败，经验存进技能库 | LIBERO-Pro 从 18% 提到 72% | NVIDIA | [Code](https://github.com/NVlabs/ASPIRE) | [Website](https://research.nvidia.com/labs/gear/aspire/) |
 
 <a id="real-robot"></a>
 
@@ -65,7 +65,7 @@ TBD.
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp;&nbsp; | Code | Website |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **ENPIRE**<br>[Agentic Robot Policy Self-Improvement in the Real World](https://arxiv.org/abs/2606.19980) | arXiv 2026.06 | 先搭自动复位和判成败，再在真机上自己改训练代码 | 真机插销从约 55% 练到 99% | NVIDIA<br>CMU | [Code](https://github.com/NVlabs/ENPIRE) | [Website](https://research.nvidia.com/labs/gear/enpire/) |
+| **ENPIRE**: [Agentic Robot Policy Self-Improvement in the Real World](https://arxiv.org/abs/2606.19980) | arXiv 2026.06 | 先搭自动复位和判成败，再在真机上自己改训练代码 | 真机插销从约 55% 练到 99% | NVIDIA<br>CMU | [Code](https://github.com/NVlabs/ENPIRE) | [Website](https://research.nvidia.com/labs/gear/enpire/) |
 
 <a id="boundary"></a>
 
@@ -73,4 +73,4 @@ TBD.
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp;&nbsp; | Code | Website |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **RRSI**<br>[Regularized Recursive Self-Improvement of Agent Harnesses](https://arxiv.org/abs/2609.24972) | arXiv 2026.09 | 约束改动的提出和保留，防止过拟合评测集 | 未见任务得分从 39.7 提到 43.6 | Google | [Code](https://github.com/google-research/rrsi) | [Website](https://regularized-rsi.com) |
+| **RRSI**: [Regularized Recursive Self-Improvement of Agent Harnesses](https://arxiv.org/abs/2609.24972) | arXiv 2026.09 | 约束改动的提出和保留，防止过拟合评测集 | 未见任务得分从 39.7 提到 43.6 | Google | [Code](https://github.com/google-research/rrsi) | [Website](https://regularized-rsi.com) |

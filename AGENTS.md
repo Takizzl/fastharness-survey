@@ -49,7 +49,7 @@
 
 **没有得到用户明确的「审核通过」，不能改 README。** 通过后：
 
-1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、8 列 Name | Paper | Venue | Method | Result | Team | Code | Website 居中，Paper 标题本身链到 arXiv，所有字段必填，没有的写 -、Method、Result 各浓缩成一句中文、不换行，Team 用 <br> 分行）；新类别要新建 `## 类别名` 和整张表
+1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、7 列 Paper | Venue | Method | Result | Team | Code | Website 居中，Paper 写成「**简称**: [标题](arXiv)」，所有字段必填，没有的写 -、Method、Result 各浓缩成一句中文、不换行，Team 用 <br> 分行）；新类别要新建 `## 类别名` 和整张表
 2. `papers/<简称>.md`：按 [`templates/paper.md`](templates/paper.md) 写详情
 3. `CHANGELOG.md`：最上面加一条，写明日期、新增 / 修改了什么
 4. README 标题下统计行（论文数、更新日期）和 Contents 目录表里的论文数同步更新；README 里「当前主线」、Method、Result 用中文，其余用英文

@@ -44,9 +44,9 @@ for i, line in enumerate(lines):
             errors.append(f"README 第 {n} 行应有 {len(WIDTHS)} 列，实际 {len(cells)} 列")
             continue
         paper, venue, method, result, team, code, website = cells
-        pm = re.fullmatch(r"\*\*[^*]+\*\*<br>(\[[^\]]+\]\(https://arxiv\.org/abs/\d{4}\.\d{4,5}\))", paper)
+        pm = re.fullmatch(r"\*\*[^*]+\*\*: (\[[^\]]+\]\(https://arxiv\.org/abs/\d{4}\.\d{4,5}\))", paper)
         if not pm:
-            errors.append(f"README 第 {n} 行 Paper 应为 **简称**<br>[标题](https://arxiv.org/abs/<id>)")
+            errors.append(f"README 第 {n} 行 Paper 应为 **简称**: [标题](https://arxiv.org/abs/<id>)")
             continue
         title = pm.group(1)
         for label, val in (("Paper", paper), ("Venue", venue), ("Method", method),
