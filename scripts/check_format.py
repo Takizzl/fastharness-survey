@@ -19,8 +19,17 @@ errors = []
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
 review = (ROOT / "review" / "论文审阅表.html").read_text(encoding="utf-8")
 
-if "## 当前主线" not in readme:
-    errors.append("README 缺少「## 当前主线」")
+for heading in ("当前主线", "最近更新", "目录"):
+    if not re.search(rf"^## \S* ?{heading}$", readme, re.M):
+        errors.append(f"README 缺少「{heading}」一节")
+paper_rows = len(re.findall(r"^\| \d{4} \|", readme, re.M))
+badge = re.search(r"badge/Papers-(\d+)-", readme)
+if not badge or int(badge.group(1)) != paper_rows:
+    errors.append(f"README 顶部 Papers 徽章应为 {paper_rows}（表格里实际的论文数）")
+meetings = len(list((ROOT / "meetings").glob("*.md")))
+mbadge = re.search(r"badge/Meetings-(\d+)-", readme)
+if not mbadge or int(mbadge.group(1)) != meetings:
+    errors.append(f"README 顶部 Meetings 徽章应为 {meetings}（meetings/ 里的纪要数）")
 
 lines = readme.splitlines()
 if "## 论文" in readme:
