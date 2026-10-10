@@ -16,7 +16,7 @@
 | 完整标题、Year | arXiv 页面 |
 | Venue | arXiv 的 Comments / Journal-ref，会议官网录用名单；查不到就写 `arXiv`；Workshop 奖必须注明 Workshop |
 | 团队 | PDF 首页的作者单位，标出通讯作者单位 |
-| Repository / Website | 论文摘要、项目主页里的链接；逐个打开确认存在；没有就写 `---` |
+| Code / Website | 论文摘要、项目主页里的链接；逐个打开确认存在；没有就省略 |
 | 问题、方法 | 读正文。问题一句话；方法写机制流程，关键动作加粗，术语保留英文 |
 | 仿真结果 | **读完实验部分的表格和图**，写基准名、规模（任务数 × 次数）、本方法与对比对象的数字 |
 | 真机结果 | 同上，写机器人型号、任务数 × 次数、逐任务结果；只有演示视频就写「只有演示，没报成功率」；没做就写「没做」 |
@@ -33,10 +33,10 @@
 
 **没有得到用户明确的「审核通过」，不能改 README。** 通过后：
 
-1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、8 列居中、长标题用 `<br>` 断成两行、Method 一句话、Result 一个数字）；新类别要新建 `## 类别名` 和整张表
+1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、7 列 Name | Paper | Venue | Method | Result | Team | Links 居中、Method 一句话、Result 一个数字）；新类别要新建 `## 类别名` 和整张表
 2. `papers/<简称>.md`：按 [`templates/paper.md`](templates/paper.md) 写详情
 3. `CHANGELOG.md`：最上面加一条，写明日期、新增 / 修改了什么
-4. README 顶部徽章（Papers、Updated）和 Contents 表里的论文数同步更新；README 一律用英文（Method、Result、Team 都写英文）
+4. README 顶部徽章（Papers、Updated）和 Contents 一行里的论文数同步更新；README 除「当前主线」外一律用英文
 5. 审阅表里该论文的状态改成 `<span class="st ok">已入库</span>`
 6. 新建分支、提交、开 Pull Request，PR 描述按模板填写
 
@@ -44,7 +44,7 @@
 
 用户给出新的会议内容时：
 1. 按 [`templates/meeting.md`](templates/meeting.md) 在 `meetings/` 新建纪要，编号顺延
-2. 用英文替换 README 的「Current Focus」为本次会议的新主线，标题里的会议链接改成新纪要
+2. 替换 README 的「当前主线」（中文，照会议原话精简）为本次会议的新主线，标题里的会议链接改成新纪要
 3. README 的 Meetings、Updated 徽章同步更新
 4. CHANGELOG 加一条
 
