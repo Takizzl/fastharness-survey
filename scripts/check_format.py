@@ -57,13 +57,14 @@ for i, line in enumerate(lines):
             errors.append(f"README 第 {n} 行 Team 不要用 /，多个单位用 <br> 分行")
         if not re.search(r"(arXiv|\d{4})", venue):
             errors.append(f"README 第 {n} 行 Venue 应写会议和年份，如 ICML 2026 / arXiv 2026.09")
-        m = re.match(r"\[Paper\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)", links)
+        m = re.fullmatch(r"\[[^\]]+\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)", title)
         if not m:
-            errors.append(f"README 第 {n} 行 Links 必须以 [Paper](https://arxiv.org/abs/<id>) 开头")
+            errors.append(f"README 第 {n} 行 Paper 必须写成 [标题](https://arxiv.org/abs/<id>)")
             continue
-        for part in links.split(" · ")[1:]:
-            if not re.fullmatch(r"\[(Code|Website)\]\(https?://[^)]+\)", part):
-                errors.append(f"README 第 {n} 行 Links 只能是 [Paper] · [Code] · [Website]，用 · 分隔")
+        if links != "---":
+            for part in links.split(" · "):
+                if not re.fullmatch(r"\[(Code|Website)\]\(https?://[^)]+\)", part):
+                    errors.append(f"README 第 {n} 行 Links 只能是 [Code] · [Website]，用 · 分隔；都没有写 ---")
         if m.group(1) not in review:
             errors.append(f"README 第 {n} 行论文 {m.group(1)} 不在审阅表里，必须先进审阅表")
 

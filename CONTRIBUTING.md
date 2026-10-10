@@ -39,10 +39,10 @@
 - 列固定为：Name | Paper | Venue | Method | Result | Team | Links，全部居中（`:---:`）
 - 新论文插在对应类别表格的最后一行之后
 - **Name**：加粗简称，如 `**Spotter**`
-- **Paper**：标题去掉简称前缀后的部分（标题没有简称前缀就写完整标题），自然换行，不加 `<br>`
+- **Paper**：标题去掉简称前缀后的部分（标题没有简称前缀就写完整标题），写成 arXiv 链接 `[标题](https://arxiv.org/abs/<id>)`，自然换行，不加 `<br>`
 - **Venue**：会议 + 年份，如 `ICML 2026`；只在 arXiv 就写 `arXiv 2026.09`（年月取 arXiv 编号）；获奖写 `ECCV 2026 Workshop<br>**Best Paper**`，Workshop 必须注明
 - **Method**：中文，一句话核心思想
 - **Result**：中文，固定两行：第一行写比的是什么（如「真机成功率」「LIBERO-Pro 成功率」），第二行写「对比对象 X% → 本方法 Y%」，中间用 `<br>`
 - **Team**：主要单位，最多两个，每个单位一行，用 `<br>` 分行，不要用 `/`
-- **Links**：`[Paper](https://arxiv.org/abs/<id>) · [Code](GitHub 链接) · [Website](主页)`，没有的项省略
+- **Links**：`[Code](GitHub 链接) · [Website](主页)`，没有的项省略；两个都没有写 `---`
 - 数字必须能在论文里找到；从图上读的标「约」
