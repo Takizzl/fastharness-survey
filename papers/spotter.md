@@ -2,10 +2,11 @@
 
 | 项目 | 内容 |
 |---|---|
-| 模块 | 1. LLM + VLM |
+| 模块 | 1. VLM1 + VLM2 |
 | Year / Venue | 2026 / `arXiv` |
 | Paper | https://arxiv.org/abs/2609.36808 |
 | Code | https://github.com/zqc3117/Spotter |
+| Website | https://zqc3117.github.io/Spotter/ |
 | Team | Griffith University（通讯作者）、清华交叉信息院（共同一作）、复旦、腾讯、同济 |
 | Review | ⏳ 待审核 |
 

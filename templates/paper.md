@@ -3,10 +3,10 @@
 | 项目 | 内容 |
 |---|---|
 | 模块 | 例如：2. Code + Policy |
-| Year / Venue | 例如：2026 / `ICML`；获奖写 🏆 并注明是否 Workshop |
+| Year / Venue | 例如：2026 / `ICML`；获奖注明 Best Paper 等，并注明是否 Workshop |
 | Paper | arXiv 链接 |
-| Code | GitHub 链接；没有写「未公开」 |
-| Website | 项目主页；没有可删去这一行 |
+| Code | GitHub 链接；没有写 - |
+| Website | 项目主页；没有写 - |
 | Team | 第一单位 / 通讯单位（知名组） |
 | Review | ⏳ 待审核 |
 

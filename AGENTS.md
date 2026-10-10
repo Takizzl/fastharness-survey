@@ -16,7 +16,7 @@
 | 完整标题、Year | arXiv 页面 |
 | Venue | arXiv 的 Comments / Journal-ref，会议官网录用名单；查不到就写 `arXiv`；Workshop 奖必须注明 Workshop |
 | 团队 | PDF 首页的作者单位，标出通讯作者单位 |
-| Code / Website | 论文摘要、项目主页里的链接；逐个打开确认存在；没有就省略 |
+| Code / Website | 论文摘要、arXiv 页、GitHub 仓库 README 和侧栏、作者主页里的链接；逐个打开确认存在；都找不到才写 `-` |
 | 问题、方法 | 读正文。问题一句话；方法写机制流程，关键动作加粗，术语保留英文 |
 | 仿真结果 | **读完实验部分的表格和图**，写基准名、规模（任务数 × 次数）、本方法与对比对象的数字 |
 | 真机结果 | 同上，写机器人型号、任务数 × 次数、逐任务结果；只有演示视频就写「只有演示，没报成功率」；没做就写「没做」 |
@@ -33,7 +33,7 @@
 
 **没有得到用户明确的「审核通过」，不能改 README。** 通过后：
 
-1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、7 列 Name | Paper | Venue | Method | Result | Team | Links 居中，Paper 标题本身链到 arXiv，Links 只放 Code · Website、Method 中文一句话、Result 中文两行「比什么<br>对比对象 → 本方法」、Team 用 <br> 分行）；新类别要新建 `## 类别名` 和整张表
+1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、8 列 Name | Paper | Venue | Method | Result | Team | Code | Website 居中，Paper 标题本身链到 arXiv，所有字段必填，没有的写 -、Method 中文一句话、Result 中文两行「比什么<br>对比对象 → 本方法」、Team 用 <br> 分行）；新类别要新建 `## 类别名` 和整张表
 2. `papers/<简称>.md`：按 [`templates/paper.md`](templates/paper.md) 写详情
 3. `CHANGELOG.md`：最上面加一条，写明日期、新增 / 修改了什么
 4. README 标题下统计行（论文数、更新日期）和 Contents 目录表里的论文数同步更新；README 里「当前主线」、Method、Result 用中文，其余用英文

@@ -9,8 +9,8 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
-WIDTHS = [("Name", 90), ("Paper", 250), ("Venue", 95), ("Method", 250),
-          ("Result", 130), ("Team", 100), ("Links", 115)]
+WIDTHS = [("Name", 90), ("Paper", 245), ("Venue", 95), ("Method", 240),
+          ("Result", 135), ("Team", 100), ("Code", 55), ("Website", 70)]
 HEADER = "| " + " | ".join(
     f'{n}<br><img src="assets/spacer.png" width="{w}" height="1">' for n, w in WIDTHS) + " |"
 SEPARATOR = "|" + ":---:|" * len(WIDTHS)
@@ -42,11 +42,11 @@ for i, line in enumerate(lines):
         if len(cells) != len(WIDTHS):
             errors.append(f"README 第 {n} 行应有 {len(WIDTHS)} 列，实际 {len(cells)} 列")
             continue
-        name, title, venue, method, result, team, links = cells
+        name, title, venue, method, result, team, code, website = cells
         if not re.fullmatch(r"\*\*[^*]+\*\*", name):
             errors.append(f"README 第 {n} 行 Name 应为加粗简称，如 **Spotter**")
         for label, val in (("Paper", title), ("Venue", venue), ("Method", method),
-                           ("Result", result), ("Team", team)):
+                           ("Result", result), ("Team", team), ("Code", code), ("Website", website)):
             if not val:
                 errors.append(f"README 第 {n} 行 {label} 不能为空")
         if not re.search(r"[一-鿿]", method):
@@ -61,10 +61,10 @@ for i, line in enumerate(lines):
         if not m:
             errors.append(f"README 第 {n} 行 Paper 必须写成 [标题](https://arxiv.org/abs/<id>)")
             continue
-        if links != "---":
-            for part in links.split(" · "):
-                if not re.fullmatch(r"\[(Code|Website)\]\(https?://[^)]+\)", part):
-                    errors.append(f"README 第 {n} 行 Links 只能是 [Code] · [Website]，用 · 分隔；都没有写 ---")
+        if code != "-" and not re.fullmatch(r"\[Code\]\(https://github\.com/[^)]+\)", code):
+            errors.append(f"README 第 {n} 行 Code 应为 [Code](GitHub 链接)，没有写 -")
+        if website != "-" and not re.fullmatch(r"\[Website\]\(https?://[^)]+\)", website):
+            errors.append(f"README 第 {n} 行 Website 应为 [Website](链接)，没有写 -")
         if m.group(1) not in review:
             errors.append(f"README 第 {n} 行论文 {m.group(1)} 不在审阅表里，必须先进审阅表")
 
@@ -77,6 +77,19 @@ else:
         errors.append(f"README 统计行的论文数应为 {paper_rows}（表格里实际的论文数）")
     if int(stats.group(2)) != meetings:
         errors.append(f"README 统计行的会议数应为 {meetings}（meetings/ 里的纪要数）")
+
+CARD_ROWS = ("模块", "Year / Venue", "Paper", "Code", "Website", "Team")
+CARD_SECTIONS = ("一句话", "问题", "方法", "真机结果")
+for card in sorted((ROOT / "papers").glob("*.md")):
+    text = card.read_text(encoding="utf-8")
+    for row in CARD_ROWS:
+        m = re.search(rf"^\| {re.escape(row)} \| (.*?) \|$", text, re.M)
+        if not m or not m.group(1).strip():
+            errors.append(f"{card.name} 缺少「{row}」或为空（没有的写 -）")
+    for sec in CARD_SECTIONS + ("仿真结果|实验结果",):
+        m = re.search(rf"^## (?:{sec})[^\n]*\n(.*?)(?=^## |\Z)", text, re.M | re.S)
+        if not m or not m.group(1).strip():
+            errors.append(f"{card.name} 缺少「{sec.split('|')[0]}」一节或内容为空")
 
 if errors:
     print("格式检查未通过：")
