@@ -84,9 +84,23 @@ def arxiv_of(card):
     return m.group(1) if m else None
 
 
+def card_info(href):
+    """Full title, Code and Website from papers/*.md, matched by arXiv id."""
+    aid = re.search(r"(\d{4}\.\d{4,5})", href).group(1)
+    for card in (ROOT / "papers").glob("*.md"):
+        text = card.read_text(encoding="utf-8")
+        if aid in text:
+            title = text.splitlines()[0].lstrip("# ").strip()
+            get = lambda k: (re.search(rf"^\| {k} \| (\S+)", text, re.M) or [None, "-"])[1]
+            return title, get("Code"), get("Website")
+    return None, "-", "-"
+
+
 def print_paper(r):
-    print(f"### {r['paper'][0]}（{r['module']}）")
-    print(f"- 论文链接：{r['href']}")
+    title, code, web = card_info(r["href"])
+    print(f"### {title or r['paper'][0]}（{r['module']}）")
+    links = [f"[Paper]({r['href']})"] + [f"[{k}]({u})" for k, u in (("Code", code), ("Website", web)) if u != "-"]
+    print("- " + " ".join(links))
     for extra in r["paper"][1:]:
         label = "状态" if extra in ("已入库", "待审核") else "发表"
         print(f"- {label}：{extra.strip('（）')}")
