@@ -13,4 +13,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python scripts/check_format.py
+      - name: Format check
+        run: python scripts/check_format.py
+      - name: Link check (Paper / Code / Website must open)
+        run: python scripts/check_links.py

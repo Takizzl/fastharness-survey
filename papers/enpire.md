@@ -3,7 +3,7 @@
 | 项目 | 内容 |
 |---|---|
 | 模块 | 5. 真机迭代恢复 |
-| Year / Venue | 2026 / `arXiv`（arXiv 备注写 CoRL 2026，录用待确认） |
+| Year / Venue | 2026 / `CoRL`（依据：arXiv v2 备注「2026 Conference on Robot Learning」；UT Austin RPL、CMU LeCAR 论文列表均列为 CoRL 2026） |
 | Paper | https://arxiv.org/abs/2606.19980 |
 | Code | https://github.com/NVlabs/ENPIRE |
 | Website | https://research.nvidia.com/labs/gear/enpire/ |

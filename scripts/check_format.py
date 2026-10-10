@@ -14,8 +14,8 @@ PADDING = [("Paper", 17), ("Venue", 3), ("Method", 19), ("Result", 10), ("Team",
 PAPER_CELL = re.compile(
     r"\*\*[^*]+\*\*: [^<\[\]]+<br>"
     r"\\\[\[Paper\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)\\\]"
-    r"( \\\[\[Code\]\(https://github\.com/[^)]+\)\\\])?"
-    r"( \\\[\[Website\]\(https?://[^)]+\)\\\])?")
+    r" \\\[\[Code\]\(https://github\.com/[^)]+\)\\\]"
+    r" \\\[\[Website\]\(https?://[^)]+\)\\\]")
 WIDTHS = PADDING
 HEADER = "| " + " | ".join("&nbsp;" * k + n + "&nbsp;" * k for n, k in PADDING) + " |"
 # Vague wording not allowed in Method / Result: use concrete names and exact numbers instead.
@@ -53,7 +53,7 @@ for i, line in enumerate(lines):
         pm = PAPER_CELL.fullmatch(paper)
         if not pm:
             errors.append(f"README 第 {n} 行 Paper 应为 **简称**: 标题<br>\\[[Paper](arXiv)\\] \\[[Code](GitHub)\\] \\[[Website](主页)\\]，"
-                          "顺序固定，没有的 Code / Website 省略")
+                          "三个链接都必须有，顺序固定")
             continue
         for label, val in (("Venue", venue), ("Method", method), ("Result", result), ("Team", team)):
             if not val:
@@ -77,16 +77,6 @@ for i, line in enumerate(lines):
             errors.append(f"README 第 {n} 行 Venue 应写会议和年份，如 ICML 2026 / arXiv 2026.09")
         if pm.group(1) not in review:
             errors.append(f"README 第 {n} 行论文 {pm.group(1)} 不在审阅表里，必须先进审阅表")
-
-stats = re.search(r"<sub>(\d+) Papers? · (\d+) Meetings? · Updated \d{4}\.\d{2}\.\d{2}</sub>", readme)
-meetings = len(list((ROOT / "meetings").glob("*.md")))
-if not stats:
-    errors.append("README 标题下缺少统计行：<sub>N Papers · M Meetings · Updated YYYY.MM.DD</sub>")
-else:
-    if int(stats.group(1)) != paper_rows:
-        errors.append(f"README 统计行的论文数应为 {paper_rows}（表格里实际的论文数）")
-    if int(stats.group(2)) != meetings:
-        errors.append(f"README 统计行的会议数应为 {meetings}（meetings/ 里的纪要数）")
 
 CARD_ROWS = ("模块", "Year / Venue", "Paper", "Code", "Website", "Team")
 CARD_SECTIONS = ("一句话", "问题", "方法", "真机结果")

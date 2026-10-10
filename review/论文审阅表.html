@@ -120,7 +120,7 @@ p{margin:0}
 
 <tr>
 <td class="m">5. 真机迭代恢复</td>
-<td class="p"><a href="https://arxiv.org/abs/2606.19980">ENPIRE</a><br><b>（CoRL 2026，待确认）</b><br><span class="st ok">已入库</span></td>
+<td class="p"><a href="https://arxiv.org/abs/2606.19980">ENPIRE</a><br><b>（CoRL 2026）</b><br><span class="st ok">已入库</span></td>
 <td class="c">真机策略训练依赖人做复位、判成败和调参</td>
 <td><b>阶段一</b>：Agent 在人反馈下写好<b>安全边界、自动复位和二值成功判定</b>（用成功 / 失败示教测准确率），之后固定为<b>不可修改的 Gym 接口</b>；<b>阶段二</b>：Agent <b>自己查文献、提假设、改训练代码</b>（BC、RL、启发式、Code-as-Policy），上真机 rollout，按成功率决定留不留；多台机器各配一个 Agent，<b>通过 Git 共享和合并</b>有效改动。</td>
 <td><p><b>Gym-PushT</b></p><ul><li>约 2 小时到 95%</li></ul>

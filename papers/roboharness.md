@@ -5,7 +5,7 @@
 | 模块 | 2. Code + Policy |
 | Year / Venue | 2026 / `ECCV Workshop` Best Paper（Agent in the World Workshop，非主会） |
 | Paper | https://arxiv.org/abs/2607.18060 |
-| Code | - |
+| Code | https://github.com/markli1hoshipu/RoboHarness（官方仓库，2026-10 时只有项目说明，尚无源码） |
 | Website | https://robo-harness.com |
 | Team | 华为诺亚方舟实验室 |
 | Review | ⏳ 待审核 |
