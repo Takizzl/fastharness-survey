@@ -1,33 +1,5 @@
 # FastHarness Survey
 
-FastHarness 小组的会议记录与论文调研。**所有内容经人工阅读原文、核对数据后才合入 `main`**，不收录自动生成、未经审核的内容。
-
-- 每次会议讨论了什么 → [`meetings/`](meetings/)
-- 最近新增 / 修改了哪些论文 → [`CHANGELOG.md`](CHANGELOG.md)
-- 单篇论文的完整问题、方法、实验结果 → 点下表 **Method** 列的「详情」
-- 如何新增论文、提交审核 → [`CONTRIBUTING.md`](CONTRIBUTING.md)
-
-## 当前主线（阶段 1）
-
-> 来自 [第一次会议](meetings/01-第一次会议.md)
-
-1. **LLM + VLM**：GPT 怎么外挂 VLM；Qwen 等 VLM 尽量只做选择题
-2. **Code + Policy**：代码怎么调用 VLA、策略怎么组织（读到源码）；有没有 WAM
-3. **Memory**（阶段 2）：从 LLM 的 memory 做法迁移
-
-**要求**：兼容多个 LLM 和下游 policy
-
-## 字段说明
-
-| 字段 | 含义 |
-|---|---|
-| Venue | 发表会议 / 期刊；🏆 表示获奖；`arXiv` 表示尚未查到录用信息 |
-| Method | **一句话核心思想**，点「详情」看完整内容 |
-| Key Result | 最能说明问题的一个结果，注明仿真 / 真机 |
-| Real Robot | ✅ 有真机实验并报了成功率；🎬 只有演示视频；❌ 没做 |
-| Team | 第一单位 / 通讯单位及知名组 |
-| Review | ✅ 已人工审核；⏳ 待审核（初稿，数据未复核） |
-
 ## 目录
 
 - [1. LLM + VLM](#1-llm--vlm)
