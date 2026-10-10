@@ -9,8 +9,11 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
-HEADER = "| Module | Year | Venue | Paper Title | Repository | Method | Result | Team | Website |"
-SEPARATOR = "|" + ":---:|" * 9
+WIDTHS = [("Year", 50), ("Venue", 130), ("Paper Title", 440), ("Repository", 110),
+          ("Method", 230), ("Result", 160), ("Team", 120), ("Website", 70)]
+HEADER = "| " + " | ".join(
+    f'{n}<br><img src="assets/spacer.png" width="{w}" height="1">' for n, w in WIDTHS) + " |"
+SEPARATOR = "|" + ":---:|" * 8
 
 errors = []
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
@@ -20,24 +23,27 @@ if "## 当前主线" not in readme:
     errors.append("README 缺少「## 当前主线」")
 
 lines = readme.splitlines()
+if "## 论文" in readme:
+    errors.append("README 不要「## 论文」总表，每个类别单独一张表")
 if HEADER not in lines:
-    errors.append("README 论文表头不对，应为：" + HEADER)
-else:
-    i = lines.index(HEADER)
+    errors.append("README 没有找到标准表头，见 CONTRIBUTING.md")
+for i, line in enumerate(lines):
+    if line.startswith("| Year") and line != HEADER:
+        errors.append(f"README 第 {i + 1} 行表头和标准表头不一致（列宽占位图也要一致）")
+    if line != HEADER:
+        continue
+    if not lines[i - 2].startswith("## "):
+        errors.append(f"README 第 {i + 1} 行的表格上方要有「## 类别名」标题")
     if lines[i + 1].strip() != SEPARATOR:
-        errors.append("README 表格分隔行必须是 9 列居中：" + SEPARATOR)
-    if readme.count(HEADER) > 1:
-        errors.append("README 只能有一张论文表")
+        errors.append(f"README 第 {i + 2} 行分隔行必须是 8 列居中：" + SEPARATOR)
     for n, row in enumerate(lines[i + 2:], start=i + 3):
         if not row.startswith("|"):
             break
         cells = [c.strip() for c in row.strip().strip("|").split("|")]
-        if len(cells) != 9:
-            errors.append(f"README 第 {n} 行应有 9 列，实际 {len(cells)} 列")
+        if len(cells) != 8:
+            errors.append(f"README 第 {n} 行应有 8 列，实际 {len(cells)} 列")
             continue
-        _, year, _, title, repo, method, result, team, website = cells
-        if title == "待补":
-            continue
+        year, _, title, repo, method, result, team, website = cells
         m = re.match(r"\[(.+)\]\((https://arxiv\.org/[^)]+)\)", title)
         if not m:
             errors.append(f"README 第 {n} 行 Paper Title 必须是 [完整标题](arXiv 链接)")

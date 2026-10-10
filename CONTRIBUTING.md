@@ -26,9 +26,10 @@
 
 ## README 论文表格写法
 
-- **只有一张表**，所有模块共用，保证列宽一致
-- 列固定为：Module | Year | Venue | Paper Title | Repository | Method | Result | Team | Website，全部居中（`:---:`）
-- Module 只写在该模块第一行，同模块其他行留空；新论文插在对应模块的最后一行之后
+- **每个类别单独一张表**，表格上方是 `## 类别名`；还没有论文的类别写「待补。」
+- 每张表的表头完全相同（复制已有的表头，里面的 `assets/spacer.png` 占位图用来固定列宽，不要改宽度）
+- 列固定为：Year | Venue | Paper Title | Repository | Method | Result | Team | Website，全部居中（`:---:`）
+- 新论文插在对应类别表格的最后一行之后
 - Paper Title 写完整标题；超过 40 个字符的用 `<br>` 从中间断成两行，每行内的空格写成 `&nbsp;`
 - Repository：GitHub 星数徽章 `[![GitHub stars](https://img.shields.io/github/stars/<owner>/<repo>.svg?style=social)](https://github.com/<owner>/<repo>)`，没有代码写 `---`
 - Method：一句话核心思想

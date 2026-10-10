@@ -33,7 +33,7 @@
 
 **没有得到用户明确的「审核通过」，不能改 README。** 通过后：
 
-1. `README.md` 论文总表：在对应模块的最后一行之后插入一行，格式严格按 CONTRIBUTING.md（单表、9 列、居中、长标题用 `<br>` 断成两行、Method 一句话、Result 一个数字）
+1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、8 列居中、长标题用 `<br>` 断成两行、Method 一句话、Result 一个数字）；新类别要新建 `## 类别名` 和整张表
 2. `papers/<简称>.md`：按 [`templates/paper.md`](templates/paper.md) 写详情
 3. `CHANGELOG.md`：最上面加一条，写明日期、新增 / 修改了什么
 4. 审阅表里该论文的状态改成 `<span class="st ok">已入库</span>`
