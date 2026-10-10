@@ -2,9 +2,7 @@
 
 # FastHarness Survey
 
-![Papers](https://img.shields.io/badge/Papers-9-blue?style=flat-square)
-![Meetings](https://img.shields.io/badge/Meetings-1-orange?style=flat-square)
-![Updated](https://img.shields.io/badge/Updated-2026.10.10-green?style=flat-square)
+<sub>9 Papers · 1 Meeting · Updated 2026.10.10</sub>
 
 </div>
 
@@ -12,7 +10,7 @@
 
 1. 调研 GPT + VLM 的结合方式相关方法，怎么外挂 VLM，Qwen 等 VLM 尽量做选择题
 2. 调研 Code + VLA 怎么结合起来的，策略如何组织（定位到源码分析）（有没有 WAM）
-3. 浩然可能考虑阶段 2 的事，专注 Memory 怎么去做，从 LLM 的角度迁移
+3. 考虑阶段 2 的事，专注 Memory 怎么去做，从 LLM 的角度迁移
 
 **要求：** 需要兼容多个 LLM 和下游 policy
 

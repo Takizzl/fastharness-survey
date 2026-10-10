@@ -67,13 +67,15 @@ for i, line in enumerate(lines):
         if m.group(1) not in review:
             errors.append(f"README 第 {n} 行论文 {m.group(1)} 不在审阅表里，必须先进审阅表")
 
-badge = re.search(r"badge/Papers-(\d+)-", readme)
-if not badge or int(badge.group(1)) != paper_rows:
-    errors.append(f"README 顶部 Papers 徽章应为 {paper_rows}（表格里实际的论文数）")
+stats = re.search(r"<sub>(\d+) Papers? · (\d+) Meetings? · Updated \d{4}\.\d{2}\.\d{2}</sub>", readme)
 meetings = len(list((ROOT / "meetings").glob("*.md")))
-mbadge = re.search(r"badge/Meetings-(\d+)-", readme)
-if not mbadge or int(mbadge.group(1)) != meetings:
-    errors.append(f"README 顶部 Meetings 徽章应为 {meetings}（meetings/ 里的纪要数）")
+if not stats:
+    errors.append("README 标题下缺少统计行：<sub>N Papers · M Meetings · Updated YYYY.MM.DD</sub>")
+else:
+    if int(stats.group(1)) != paper_rows:
+        errors.append(f"README 统计行的论文数应为 {paper_rows}（表格里实际的论文数）")
+    if int(stats.group(2)) != meetings:
+        errors.append(f"README 统计行的会议数应为 {meetings}（meetings/ 里的纪要数）")
 
 if errors:
     print("格式检查未通过：")
