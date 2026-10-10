@@ -10,13 +10,14 @@
 
 ## 新增论文
 
-1. **先进 HTML 审阅表**：新论文先写进审阅表，包含问题、方法、仿真结果、真机结果、团队。
-2. **人工审核**：对照原文逐条核对。
+1. **先进 HTML 审阅表**：新论文先写进 [`review/论文审阅表.html`](review/论文审阅表.html)，状态标「待审核」，包含问题、方法、仿真结果、真机结果、团队。提交者没给的信息要从原文补齐（规则见 [`AGENTS.md`](AGENTS.md)）。
+2. **人工审核**：审核人下载审阅表用浏览器打开，对照原文逐条核对。
 3. **再进仓库**：
    - `README.md` 论文表格对应模块下加一行
    - `papers/<简称>.md` 写详情（复制 [`templates/paper.md`](templates/paper.md)）
    - `CHANGELOG.md` 最上面写明本次新增 / 修改了什么
-4. 提交 Pull Request，按模板勾选核对项。
+   - 审阅表里该论文状态改成「已入库」
+4. 提交 Pull Request，按模板勾选核对项。PR 会自动运行格式检查（`scripts/check_format.py`），不通过不能合并；本地可先运行 `python scripts/check_format.py`。
 
 ## 收录标准
 

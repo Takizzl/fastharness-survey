@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>FastHarness 论文审阅表</title>
+<style>
+body{font-family:"Microsoft YaHei",Arial,sans-serif;margin:16px auto;max-width:1500px;color:#1f2329}
+h3{font-size:15px;margin:0 0 8px}
+table{border-collapse:collapse;font-size:12px;width:100%;table-layout:fixed}
+th,td{border:1px solid #c9ccd1;padding:4px 6px;vertical-align:middle;line-height:1.45;word-break:break-word}
+th{background:#f2f3f5;font-weight:600;text-align:center;font-size:12.5px}
+th:nth-child(1){width:7%}th:nth-child(2){width:8%}th:nth-child(3){width:11%}
+th:nth-child(4){width:25%}th:nth-child(5){width:21%}th:nth-child(6){width:17%}th:nth-child(7){width:11%}
+td{text-align:left}
+td.m{font-weight:600;text-align:center}
+td.p{text-align:center}
+td.c{text-align:center}
+ul{margin:0 0 2px;padding-left:14px}
+li{margin:0}
+p{margin:0}
+.st{display:inline-block;margin-top:3px;padding:0 6px;border-radius:8px;font-size:11px}
+.ok{background:#e3f4e1;color:#2f7d32}
+.wait{background:#fdf0dc;color:#b26a00}
+.note{font-size:12px;color:#646a73;margin:0 0 8px}
+</style></head><body>
+<h3>FastHarness 论文审阅表</h3>
+<p class="note">新论文先加在这里（标 <span class="st wait">待审核</span>），审核人对照原文核对通过后，再同步到 README，并把状态改成 <span class="st ok">已入库</span>。</p>
+<table>
+<tr><th>模块</th><th>论文</th><th>问题</th><th>方法</th><th>仿真结果</th><th>真机结果</th><th>团队</th></tr>
+
+<tr>
+<td class="m">1. VLM1 + VLM2</td>
+<td class="p"><a href="https://arxiv.org/abs/2609.36808">Spotter</a><br><span class="st ok">已入库</span></td>
+<td class="c">VLA 策略执行，恢复能力较差</td>
+<td>VLA Policy 正常执行；本地 VLM（Qwen3.8-27B）<b>监控</b>，根据执行历史（视觉观测、Action Chunk、Robot State）输出异常风险评分（Failure Risk Score，0–10 分），连续检测到异常后<b>触发恢复</b>；高级 VLM（Astra）接收失败状态与历史信息，进行失败诊断与修复规划，通过固定<b>Primitive Skill 与 VLA Policy 完成恢复</b>，并验证恢复结果后交还控制权。</td>
+<td><p><b>RoboCasa（24 个任务 × 50 次）</b></p><ul><li>π0.5：64.3% → 71.8%</li><li>Cosmos Policy：67.9% → 73.5%</li></ul>
+<p><b>RoboTwin 2.0 Hard（50 个任务 × 10 次）</b></p><ul><li>π0.5：47.2% → 57.0%</li></ul>
+<p><b>补充分析：</b></p><ul><li>失败恢复分析</li><li>动作评分评估</li><li>效率评估</li><li>消融实验</li></ul></td>
+<td><p><b>Franka（3 个任务 × 10 次）</b></p><ul><li>π0.5：53% → 83%</li></ul>
+<p><b>任务结果：</b></p><ul><li>叠杯：6/10 → 8/10</li><li>方块放置：7/10 → 10/10</li><li>两段任务：3/10 → 7/10</li></ul></td>
+<td class="c">Griffith University（通讯作者）、清华交叉信息院（共同一作）、复旦、腾讯、同济</td>
+</tr>
+
+<tr>
+<td class="m" rowspan="5">2. Code + Policy</td>
+<td class="p"><a href="https://arxiv.org/abs/2603.22435">CaP-X</a><br><b>（ICML 2026）</b><br><span class="st ok">已入库</span></td>
+<td class="c">Code-as-Policy 依赖人写的高层 API，看不出模型本身能力</td>
+<td>Coding Agent 只拿 <b>Low-level Primitive</b>（SAM3 分割、IK 求解、Motion Planning），<b>多轮写代码</b>：每轮执行后读取 stdout / 报错，以及 VDM（把前后图像变化转成文字），据此改代码；CaP-Agent0 再加入从成功代码中<b>自动提炼的 Skill Library</b>，并<b>多模型并行生成、合成一份代码</b>执行；CaP-RL 用 <b>GRPO</b>、以仿真成功为奖励训练 Qwen2.5-Coder-7B。</td>
+<td><p><b>CaP-Bench（Robosuite 7 个任务 × 100 次，Gemini-3-Pro）</b></p><ul><li>高级 API 单轮：39%</li><li>低级原语单轮：24%</li><li>低级原语多轮：54%</li></ul>
+<p><b>CaP-Agent0</b></p><ul><li>平均 68%，4/7 个任务追平人类专家代码</li></ul>
+<p><b>CaP-RL（Qwen2.5-Coder-7B）</b></p><ul><li>Cube Lift：25% → 80%</li><li>Cube Stack：4% → 44%</li><li>Spill Wipe：30% → 93%</li></ul>
+<p><b>补充分析：</b></p><ul><li>12 个模型的接口层级对比</li><li>直接回传图像反而降低成功率</li><li>CaP-Agent0 消融（VDM、技能库、多模型并行）</li><li>LIBERO-PRO、BEHAVIOR 扩展评测</li></ul></td>
+<td><p><b>Franka（2 个任务 × 25 次，CaP-RL 从仿真迁移）</b></p><ul><li>Cube Lift：24% → 84%</li><li>Cube Stack：12% → 76%</li></ul>
+<p><b>零样本演示：</b></p><ul><li>Franka、AgiBot G1 上找杯下物体、解算式、按电梯等，没报成功率</li></ul></td>
+<td class="c">NVIDIA、UC Berkeley、Stanford、CMU（Ken Goldberg、Jim Fan 组）</td>
+</tr>
+
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2607.08448">Harness VLA / RPent</a><br><span class="st ok">已入库</span></td>
+<td class="c">VLA 泛化差，换目标、换位置就失败</td>
+<td>VLA Policy <b>冻结</b>，封装成 <b>vla_act 原语</b>，只负责抓取、放置等接触动作；Agent（Codex / Claude Code）读取 RGB-D 与 Robot State，用固定 <b>Analytic Primitive</b>（move_to、rotate、set_gripper、release、navigate）完成定位、移动与释放，接触失败时<b>重新摆位后再调 VLA</b>；参考种子上的成功调用序列存为 <b>Task Memory</b>，通用规则和失败模式存为 <b>Global Memory</b>，新场景中<b>按当前观测重新定位后复用</b>。</td>
+<td><p><b>LIBERO-Pro（8 种扰动 × 100 次）</b></p><ul><li>Harness VLA：82.4%</li><li>原 VLA（π0.5）：50.0%</li><li>最强基线 RATS：43.8%</li></ul>
+<p><b>RoboCasa365（50 个任务 × 5 次）</b></p><ul><li>Harness VLA：57.2%</li><li>RLDX-1：30.0%</li></ul>
+<p><b>RoboTwin C2R（50 个任务 × 5 次）</b></p><ul><li>Harness VLA：58.4%</li><li>原 VLA（LingBot-VLA）：50.4%</li></ul>
+<p><b>补充分析：</b></p><ul><li>不用记忆的零样本对比</li><li>VLA 调用次数上限分析</li><li>Flash Mode（不在线规划）：72.6%</li><li>换 GPT-6 Astra 规划：LIBERO-Pro 92.6%</li></ul></td>
+<td><p><b>双 Franka</b></p><ul><li>只有演示：换目标、按标记分拣、抓空后重试、倒珠子、擦盘子</li><li>没报成功率</li></ul></td>
+<td class="c">清华（于超、丁文伯组）、港科大、中科院自动化所等</td>
+</tr>
+
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2610.01939">PyRUA-Lean</a><br><span class="st ok">已入库</span></td>
+<td class="c">Tool Calling 每步调一次 VLM，token 开销大</td>
+<td>把原语和 VLA Policy 封装成 Python 对象 robo，VLM <b>一次写一个代码块</b>，在块内<b>串联多个原语、做条件判断和本地重试</b>，变量跨代码块保留；只有代码中<b>主动请求</b>的图像和打印信息才回传给 VLM。</td>
+<td><p><b>LIBERO-PRO + RoboTwin 2.0 + RoboCasa365（共 700 个实例，同用 GPT-6 Astra）</b></p><ul><li>总体：63.1% → 71.7%</li><li>LIBERO-PRO：83.0% → 94.0%</li><li>RoboTwin 2.0：60.0% → 69.2%</li><li>RoboCasa365 原子任务：78.9% → 86.7%</li><li>RoboCasa365 组合任务：34.4% → 39.4%</li></ul>
+<p><b>效率（两边都做成的任务）</b></p><ul><li>LLM 调用次数少 49%，输入 token 少 65%</li></ul>
+<p><b>补充分析：</b></p><ul><li>token 节省来源分解</li><li>只按需回图的消融</li><li>去掉 VLA / 操作指南的消融</li><li>RoboDojo 3 个任务小试：3.4% → 26.7%</li></ul></td>
+<td>没做（论文写明）</td>
+<td class="c">北大（周大权组）、NUS、NVIDIA</td>
+</tr>
+
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2609.10522">Show-Harness</a><br><span class="st ok">已入库</span></td>
+<td class="c">VLM 难以直接控制细粒度动作</td>
+<td>定义一组 <b>Semantic Action Unit</b>（MV_FWD / BACK / LEFT / RIGHT / UP / DOWN、ROTATE、GRASP、RELEASE、DONE），VLM 每步根据多视角图像、Proprioception 和动作历史<b>选一个动作单元</b>；<b>Interpreter</b> 按机器人本体转成固定步长的末端位移（远处 4 cm、近处 2 cm）；配合 Subtask Planning、Failure Recovery 等插件；支持 <b>Gemini 零样本</b>与 <b>Qwen3.5-2B LoRA 微调</b>两种模式。</td>
+<td>没做仿真基准，仿真数据只用于训练后迁移到真机</td>
+<td><p><b>Franka（10 个抓放任务 × 10 次）</b></p><ul><li>零样本：89%</li><li>微调 2B：86%</li><li>π0.5：39%</li><li>最好的基线 RATS：57%</li></ul>
+<p><b>换环境（背景、光照、视角、干扰物）</b></p><ul><li>零样本：100%</li><li>π0.5：40%</li></ul>
+<p><b>跨本体（Franka + AgileX）</b></p><ul><li>零样本：93%</li><li>π0.5：41%</li></ul>
+<p><b>补充分析：</b></p><ul><li>精细控制、旋转外推、双臂协同</li><li>推理任务、视频示范学习</li><li>不同 VLM 与思考强度对比</li><li>插件消融</li></ul></td>
+<td class="c">NUS Show Lab（Mike Shou 组）</td>
+</tr>
+
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2607.18060">RoboHarness</a><br><b>（ECCV 2026 Workshop 最佳论文）</b><br><span class="st ok">已入库</span></td>
+<td class="c">长任务单一策略做不完，多策略接力时交接容易断</td>
+<td>Coding Agent（Codex）作为<b>调度器</b>，把 VLA、RL、TAMP 封装成带 <b>Policy Card</b>（能力、接口、历史成功率）的技能；<b>Understanding Skills</b> 评估当前场景与各策略训练分布的相似度，<b>按能力分配子任务</b>；交接时 <b>Memory Bridge</b> 检索下一个策略的成功轨迹、估计其熟悉的状态区域，用运动规划把机器人<b>先挪过去再交接</b>；持续失败时 <b>Evolution Skills</b> 调整路由规则和参数。</td>
+<td><p><b>LIBERO-Plus（7 类扰动）</b></p><ul><li>RoboHarness：93.2%</li><li>π0.5：85.7%</li></ul>
+<p><b>LIBERO-LoHo（5 个长任务）</b></p><ul><li>RoboHarness：95.2%</li><li>最强基线 H-WM：64.8%</li><li>π0.5 单独：6.4%</li></ul>
+<p><b>自建 500 个长任务</b></p><ul><li>RoboHarness：86.0%</li></ul>
+<p><b>补充分析：</b></p><ul><li>不同扰动下 VLA / TAMP 调用比例</li><li>组件消融（Memory Bridge、Evolution、Understanding）</li></ul></td>
+<td><p><b>UR5e（TAMP + π0.5，135 次）</b></p><ul><li>5 种搭积木结构：67%~93%</li><li>4 种干扰：67%~87%</li><li>没和基线比</li></ul></td>
+<td class="c">华为诺亚方舟实验室</td>
+</tr>
+
+<tr>
+<td class="m">3. Memory</td>
+<td class="p">待补</td><td class="c"></td><td></td><td></td><td></td><td class="c"></td>
+</tr>
+
+<tr>
+<td class="m">4. 技能增长</td>
+<td class="p"><a href="https://arxiv.org/abs/2607.00272">ASPIRE</a><br><span class="st ok">已入库</span></td>
+<td class="c">程序失败后难定位原因，修复经验无法跨任务积累</td>
+<td><b>执行引擎</b>记录每次原语调用的输入、输出、返回状态和前后关键帧，Coding Agent（Claude Code）据此<b>定位失败的原语并只修补该部分</b>；<b>进化搜索</b>每轮生成 K 个候选程序，以前 3 名和剩余失败为参考继续改，分数更高才替换；在验证种子上有效的修复由 Coordinator <b>审核后写入 Skill Library</b>，后续任务检索使用。</td>
+<td><p><b>LIBERO-Pro（30 个任务 × 50 次，对比 CaP-Agent0）</b></p><ul><li>18% → 72%</li></ul>
+<p><b>Robosuite（7 个任务 × 100 次）</b></p><ul><li>平均：68% → 81%</li><li>双臂交接：20% → 92%</li></ul>
+<p><b>BEHAVIOR-1K（2 个家务任务 × 25 次）</b></p><ul><li>拿收音机：56% → 88%</li><li>拿汽水罐：72% → 88%</li></ul>
+<p><b>补充分析：</b></p><ul><li>执行引擎 / 进化搜索消融：14% → 62% → 72%</li><li>进化轮数分析</li><li>技能库零样本迁移：LIBERO-Pro Long 23% / 38%，基线约 4%</li></ul></td>
+<td><p><b>双臂 YAM（3 个任务 × 20 次，技能从 Franka 仿真迁移）</b></p>
+<p><b>任务结果：</b></p><ul><li>碗放盘子：20/20 → 20/20</li><li>拿汽水罐：13/20 → 19/20</li><li>开抽屉：0/20 → 11/20</li><li>token 少 2~9 倍</li></ul></td>
+<td class="c">NVIDIA GEAR（Jim Fan、朱玉可组）、UMich、UIUC、UC Berkeley、CMU</td>
+</tr>
+
+<tr>
+<td class="m">5. 真机迭代恢复</td>
+<td class="p"><a href="https://arxiv.org/abs/2606.19980">ENPIRE</a><br><b>（CoRL 2026，待确认）</b><br><span class="st ok">已入库</span></td>
+<td class="c">真机策略训练依赖人做复位、判成败和调参</td>
+<td><b>阶段一</b>：Agent 在人反馈下写好<b>安全边界、自动复位和二值成功判定</b>（用成功 / 失败示教测准确率），之后固定为<b>不可修改的 Gym 接口</b>；<b>阶段二</b>：Agent <b>自己查文献、提假设、改训练代码</b>（BC、RL、启发式、Code-as-Policy），上真机 rollout，按成功率决定留不留；多台机器各配一个 Agent，<b>通过 Git 共享和合并</b>有效改动。</td>
+<td><p><b>Gym-PushT</b></p><ul><li>约 2 小时到 95%</li></ul>
+<p><b>RoboCasa365（8 个任务 × 40 次）</b></p><ul><li>ENPIRE：约 76%</li><li>GR00T：约 53%</li><li>CaP-X：约 27%（从图上读取）</li></ul>
+<p><b>补充分析：</b></p><ul><li>1 / 4 / 8 台机器扩展</li><li>机器与 token 利用率</li><li>有无原生视觉对比</li><li>Codex / Claude Code / Kimi 对比</li></ul></td>
+<td><p><b>8 台双臂 YAM</b></p><ul><li>插销、Push-T、剪扎带：最终 99%（允许失败后重试 8 次）</li></ul>
+<p><b>任务结果：</b></p><ul><li>插销：约 55% → 95%（4 小时）</li><li>插销 8 台并行：约 40 分钟接近 100%（单台 1.5 小时以上）</li><li>Push-T：8 台并行约 2 小时达标（单台约 5 小时）</li></ul></td>
+<td class="c">NVIDIA GEAR、CMU（Guanya Shi 组）、UC Berkeley</td>
+</tr>
+
+<tr>
+<td class="m">6. Harness 迭代边界</td>
+<td class="p"><a href="https://arxiv.org/abs/2609.24972">RRSI</a><br><span class="st ok">已入库</span></td>
+<td class="c">Harness 自进化用同一批题提改动、选改动，出现自适应过拟合</td>
+<td><b>提出端</b>：每轮可改动数量随轮次递减；记录全部历史，失败过的思路作为反面证据；停滞时转向没改过的组件。<b>选择端</b>：Critic 先<b>筛掉带评测题答案的改动</b>；提升必须超过重复评测的<b>噪声带</b>；多花的 token 要和提升成比例；长期没贡献的组件<b>剪掉</b>。</td>
+<td><p><b>Agent 工作任务（在 Harvey LAB 上进化，非机器人）</b></p><ul><li>未见任务 JobBench / GDPval / APEX-Agents 平均：39.7 → 43.6</li><li>不加选择端筛选：Harvey LAB 91.5，未见任务只有 41.0</li></ul>
+<p><b>编程任务（在 Terminal-Bench 上进化）</b></p><ul><li>Terminal-Bench：74.2 → 80.2</li><li>迁到 SWE-bench Verified：82.0 → 83.8</li></ul>
+<p><b>补充分析：</b></p><ul><li>正则项消融</li><li>换 Gemini 3.5 Flash</li><li>迁移到更弱的模型</li><li>token 比无约束进化少约 30%</li></ul></td>
+<td>不涉及（不是机器人工作）</td>
+<td class="c">Google Cloud AI Research（Tomas Pfister 组）、UNC、Stanford</td>
+</tr>
+</table>
+</body></html>
