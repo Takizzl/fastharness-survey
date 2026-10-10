@@ -10,7 +10,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 # Header cells are padded with non-breaking spaces so every category table has the same column widths on GitHub.
-PADDING = [("Paper", 33), ("Venue", 4), ("Method", 16), ("Result", 15), ("Team", 5)]
+PADDING = [("Paper", 23), ("Venue", 3), ("Method", 11), ("Result", 11), ("Team", 4)]
 PAPER_CELL = re.compile(
     r"\*\*[^*]+\*\*: [^<\[\]]+<br>"
     r"\\\[\[Paper\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)\\\]"
