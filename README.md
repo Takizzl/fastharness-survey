@@ -4,13 +4,11 @@
 
 > 更新于 [第一次会议](meetings/01-第一次会议.md)
 
-**阶段 1**
-1. **VLM1 + VLM2**：调研 GPT + VLM 的结合方式，怎么外挂 VLM；Qwen 等 VLM 尽量做选择题
-2. **Code + Policy**：调研 Code + VLA 怎么结合，策略如何组织（定位到源码分析）；有没有 WAM
+1. 调研 GPT + VLM 的结合方式：怎么外挂 VLM，Qwen 等 VLM 尽量做选择题
+2. 调研 Code + VLA 的结合方式：策略如何组织（读到源码），有没有 WAM
+3. 浩然考虑阶段 2：Memory 怎么做，从 LLM 的角度迁移
 
-**要求**：兼容多个 LLM 和下游 policy
-
-**阶段 2**：Memory（浩然），从 LLM 的角度迁移
+要求：兼容多个 LLM 和下游 policy
 
 ## 论文
 
