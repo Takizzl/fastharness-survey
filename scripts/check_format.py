@@ -51,8 +51,10 @@ for i, line in enumerate(lines):
                 errors.append(f"README 第 {n} 行 {label} 不能为空")
         if not re.search(r"[一-鿿]", method):
             errors.append(f"README 第 {n} 行 Method 要用中文")
-        if "→" not in result or result.count("<br>") != 1:
-            errors.append(f"README 第 {n} 行 Result 要写两行：比的是什么<br>对比对象 X → 本方法 Y")
+        if not re.search(r"\d", result) or "<br>" in result:
+            errors.append(f"README 第 {n} 行 Result 要浓缩成一句含关键数字的话，不要换行")
+        if "<br>" in method:
+            errors.append(f"README 第 {n} 行 Method 要浓缩成一句话，不要换行")
         if "/" in team:
             errors.append(f"README 第 {n} 行 Team 不要用 /，多个单位用 <br> 分行")
         if not re.search(r"(arXiv|\d{4})", venue):

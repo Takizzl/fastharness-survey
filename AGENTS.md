@@ -1,5 +1,21 @@
 # AGENTS.md — AI 助手在本仓库的工作规则
 
+## 最重要：用户问「最近更新了什么」时
+
+用户问到最近更新了哪些论文、会议、内容（或某篇论文讲了什么）时：
+
+1. **必须运行脚本取原文**：
+   - 最近一次更新：`python scripts/whats_new.py`
+   - 最近 N 次更新：`python scripts/whats_new.py --last N`
+   - 全部论文：`python scripts/whats_new.py --all`
+2. **把脚本输出原样、完整地按点给用户**：问题、方法、仿真结果、真机结果、团队，以及会议纪要，逐字照搬。
+3. **禁止**改写、缩写、合并、重新排序、翻译、删减任何一点，也禁止用自己的知识补充或「优化」措辞。这些内容是人工逐条审核过的，改写就失去了审核的意义。
+4. 如果确实需要补充解释，放在原文之后，单独标明「以下为 AI 补充，未经人工审核」。
+5. 不要用 README 表格里的一句话摘要代替原文回答；README 只是索引。
+
+人工审核的原文来源只有两处：`review/论文审阅表.html`（论文）和 `meetings/*.md`（会议）。
+
+
 本仓库是 FastHarness 小组的会议记录与论文调研，**只收录经人工审核的内容**。任何 AI 助手（Claude Code、Codex 等）在这里新增或修改论文、会议时，必须遵守以下规则。完整格式见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 
 ## 新增论文：两步走，不能跳过
@@ -33,7 +49,7 @@
 
 **没有得到用户明确的「审核通过」，不能改 README。** 通过后：
 
-1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、8 列 Name | Paper | Venue | Method | Result | Team | Code | Website 居中，Paper 标题本身链到 arXiv，所有字段必填，没有的写 -、Method 中文一句话、Result 中文两行「比什么<br>对比对象 → 本方法」、Team 用 <br> 分行）；新类别要新建 `## 类别名` 和整张表
+1. `README.md`：在对应类别的表格最后一行之后插入一行，格式严格按 CONTRIBUTING.md（每类一张表、表头照抄、8 列 Name | Paper | Venue | Method | Result | Team | Code | Website 居中，Paper 标题本身链到 arXiv，所有字段必填，没有的写 -、Method、Result 各浓缩成一句中文、不换行，Team 用 <br> 分行）；新类别要新建 `## 类别名` 和整张表
 2. `papers/<简称>.md`：按 [`templates/paper.md`](templates/paper.md) 写详情
 3. `CHANGELOG.md`：最上面加一条，写明日期、新增 / 修改了什么
 4. README 标题下统计行（论文数、更新日期）和 Contents 目录表里的论文数同步更新；README 里「当前主线」、Method、Result 用中文，其余用英文

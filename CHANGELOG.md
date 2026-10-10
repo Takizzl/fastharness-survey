@@ -4,11 +4,11 @@
 
 ## 2026-10-10 · 仓库初始化
 
-**新增论文（9 篇，均为 ⏳ 待审核）**
+**新增论文（9 篇）**
 
 | 模块 | 论文 |
 |---|---|
-| 1. LLM + VLM | [Spotter](papers/spotter.md) |
+| 1. VLM1 + VLM2 | [Spotter](papers/spotter.md) |
 | 2. Code + Policy | [CaP-X](papers/cap-x.md)、[Harness VLA](papers/harness-vla.md)、[PyRUA-Lean](papers/pyrua-lean.md)、[Show-Harness](papers/show-harness.md)、[RoboHarness](papers/roboharness.md) |
 | 4. 技能增长 | [ASPIRE](papers/aspire.md) |
 | 5. 真机迭代恢复 | [ENPIRE](papers/enpire.md) |
