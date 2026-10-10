@@ -10,7 +10,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 # Header cells are padded with non-breaking spaces so every category table has the same column widths on GitHub.
-PADDING = [("Paper", 23), ("Venue", 3), ("Method", 11), ("Result", 11), ("Team", 4)]
+PADDING = [("Paper", 17), ("Venue", 3), ("Method", 19), ("Result", 10), ("Team", 3)]
 PAPER_CELL = re.compile(
     r"\*\*[^*]+\*\*: [^<\[\]]+<br>"
     r"\\\[\[Paper\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)\\\]"
@@ -18,6 +18,8 @@ PAPER_CELL = re.compile(
     r"( \\\[\[Website\]\(https?://[^)]+\)\\\])?")
 WIDTHS = PADDING
 HEADER = "| " + " | ".join("&nbsp;" * k + n + "&nbsp;" * k for n, k in PADDING) + " |"
+# Vague wording not allowed in Method / Result: use concrete names and exact numbers instead.
+VAGUE = ("约", "大约", "左右", "等", "多个", "一些", "若干", "大幅", "显著", "明显", "很多", "更好", "较好")
 SEPARATOR = "|" + ":---:|" * len(WIDTHS)
 
 errors = []
@@ -58,9 +60,13 @@ for i, line in enumerate(lines):
                 errors.append(f"README 第 {n} 行 {label} 不能为空")
         if not re.search(r"[一-鿿]", method):
             errors.append(f"README 第 {n} 行 Method 要用中文")
-        for label, val, limit in (("Method", method, 26), ("Result", result, 26)):
+        for label, val, limit in (("Method", method, 55), ("Result", result, 35)):
             if len(re.sub(r"[ -~]", "", val)) + len(re.findall(r"[ -~]", val)) / 2 > limit:
                 errors.append(f"README 第 {n} 行 {label} 太长，压到约 {limit} 个汉字以内")
+        for label, val in (("Method", method), ("Result", result)):
+            vague = [v for v in VAGUE if v in val]
+            if vague:
+                errors.append(f"README 第 {n} 行 {label} 有模糊说法 {vague}，改成具体的名称或数字")
         if not re.search(r"\d", result) or "<br>" in result:
             errors.append(f"README 第 {n} 行 Result 要浓缩成一句含关键数字的话，不要换行")
         if "<br>" in method:
