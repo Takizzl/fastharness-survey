@@ -10,10 +10,9 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 # Header cells are padded with non-breaking spaces so every category table has the same column widths on GitHub.
-PADDING = [("Paper", 16), ("Problem", 8), ("Method", 14), ("Result", 10), ("Team", 3)]
-# **Name** (Venue): title<br>\[[Paper](arXiv)\] \[[Code](GitHub)\] \[[Website](page)\]
+PADDING = [("Paper", 17), ("Venue", 3), ("Method", 19), ("Result", 10), ("Team", 3)]
 PAPER_CELL = re.compile(
-    r"\*\*[^*]+\*\* \(((?:arXiv \d{4}\.\d{2})|(?:[A-Za-z]+ \d{4}(?: Workshop)?(?:, Best Paper)?))\): [^<\[\]]+<br>"
+    r"\*\*[^*]+\*\*: [^<\[\]]+<br>"
     r"\\\[\[Paper\]\(https://arxiv\.org/abs/(\d{4}\.\d{4,5})\)\\\]"
     r" \\\[\[Code\]\(https://github\.com/[^)]+\)\\\]"
     r" \\\[\[Website\]\(https?://[^)]+\)\\\]")
@@ -50,13 +49,13 @@ for i, line in enumerate(lines):
         if len(cells) != len(WIDTHS):
             errors.append(f"README 第 {n} 行应有 {len(WIDTHS)} 列，实际 {len(cells)} 列")
             continue
-        paper, problem, method, result, team = cells
+        paper, venue, method, result, team = cells
         pm = PAPER_CELL.fullmatch(paper)
         if not pm:
-            errors.append(f"README 第 {n} 行 Paper 应为 **简称** (会议 年份): 标题<br>\\[[Paper](arXiv)\\] \\[[Code](GitHub)\\] \\[[Website](主页)\\]，"
-                          "会议写如 ICML 2026 / arXiv 2026.09 / ECCV 2026 Workshop, Best Paper；三个链接都必须有，顺序固定")
+            errors.append(f"README 第 {n} 行 Paper 应为 **简称**: 标题<br>\\[[Paper](arXiv)\\] \\[[Code](GitHub)\\] \\[[Website](主页)\\]，"
+                          "三个链接都必须有，顺序固定")
             continue
-        for label, val in (("Problem", problem), ("Method", method), ("Result", result), ("Team", team)):
+        for label, val in (("Venue", venue), ("Method", method), ("Result", result), ("Team", team)):
             if not val:
                 errors.append(f"README 第 {n} 行 {label} 不能为空")
         if not re.search(r"[一-鿿]", method):
@@ -74,8 +73,10 @@ for i, line in enumerate(lines):
             errors.append(f"README 第 {n} 行 Method 要浓缩成一句话，不要换行")
         if "/" in team:
             errors.append(f"README 第 {n} 行 Team 不要用 /，多个单位用 <br> 分行")
-        if pm.group(2) not in review:
-            errors.append(f"README 第 {n} 行论文 {pm.group(2)} 不在审阅表里，必须先进审阅表")
+        if not re.search(r"(arXiv|\d{4})", venue):
+            errors.append(f"README 第 {n} 行 Venue 应写会议和年份，如 ICML 2026 / arXiv 2026.09")
+        if pm.group(1) not in review:
+            errors.append(f"README 第 {n} 行论文 {pm.group(1)} 不在审阅表里，必须先进审阅表")
 
 CARD_ROWS = ("模块", "Year / Venue", "Paper", "Code", "Website", "Team")
 CARD_SECTIONS = ("一句话", "问题", "方法", "真机结果")
