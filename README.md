@@ -16,7 +16,14 @@
 
 ## Contents
 
-[1. VLM1 + VLM2](#vlm) (1) · [2. Code + Policy](#code-policy) (5) · [3. Memory](#memory) (0) · [4. Skill Growth](#skill) (1) · [5. Real-Robot Self-Improvement](#real-robot) (1) · [6. Harness Evolution Boundary](#boundary) (1)
+| Category | Focus | Papers |
+|:---:|:---:|:---:|
+| [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
+| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 5 |
+| [3. Memory](#memory) | Memory mechanisms | 0 |
+| [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
+| [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
+| [6. Harness Evolution Boundary](#boundary) | Guarding against overfitting | 1 |
 
 <a id="vlm"></a>
 

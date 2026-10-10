@@ -26,9 +26,9 @@
 
 ## README 结构
 
-从上到下固定为：居中标题和统计行 → 当前主线（中文） → Contents（一行目录） → 各类别表格。「当前主线」和表格里的 Method、Result 用中文，其余用英文。每次新增论文或会议，同时更新：
+从上到下固定为：居中标题和统计行 → 当前主线（中文） → Contents（目录表：Category | Focus | Papers） → 各类别表格。「当前主线」和表格里的 Method、Result 用中文，其余用英文。每次新增论文或会议，同时更新：
 - 标题下的统计行：`<sub>N Papers · M Meetings · Updated YYYY.MM.DD</sub>`（格式检查会核对论文数和会议数）
-- Contents 那一行里对应类别括号中的论文数
+- Contents 目录表里对应类别的论文数（新类别要加一行）
 
 ## README 论文表格写法
 
