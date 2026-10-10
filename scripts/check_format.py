@@ -19,7 +19,7 @@ errors = []
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
 review = (ROOT / "review" / "论文审阅表.html").read_text(encoding="utf-8")
 
-for heading in ("当前主线", "最近更新", "目录"):
+for heading in ("Current Focus", "Contents"):
     if not re.search(rf"^## \S* ?{heading}$", readme, re.M):
         errors.append(f"README 缺少「{heading}」一节")
 paper_rows = len(re.findall(r"^\| \d{4} \|", readme, re.M))
