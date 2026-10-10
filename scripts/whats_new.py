@@ -91,7 +91,7 @@ def card_info(href):
         text = card.read_text(encoding="utf-8")
         if aid in text:
             title = text.splitlines()[0].lstrip("# ").strip()
-            get = lambda k: (re.search(rf"^\| {k} \| (\S+)", text, re.M) or [None, "-"])[1]
+            get = lambda k: (re.search(rf"^\| {k} \| ([^\s（|]+)", text, re.M) or [None, "-"])[1]
             return title, get("Code"), get("Website")
     return None, "-", "-"
 
