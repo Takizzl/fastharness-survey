@@ -26,14 +26,14 @@
 
 ## README 结构
 
-从上到下固定为：居中标题和徽章 → 📌 当前主线 → 🔥 最近更新 → 📚 目录 → 各类别表格。每次新增论文或会议，同时更新：
+从上到下固定为：居中标题和徽章 → 当前主线 → 最近更新 → 目录 → 各类别表格。每次新增论文或会议，同时更新：
 - 顶部徽章：`Papers-<论文总数>`、`Meetings-<纪要数>`、`Updated-<日期>`（格式检查会核对前两个）
-- 🔥 最近更新：最上面加一条 `- **[YYYY.MM.DD]** 做了什么 → [CHANGELOG](CHANGELOG.md)`，只保留最近 5 条
-- 📚 目录：对应类别的论文数
+- 最近更新：最上面加一条 `- **[YYYY.MM.DD]** 做了什么 → [CHANGELOG](CHANGELOG.md)`，只保留最近 5 条
+- 目录：对应类别的论文数
 
 ## README 论文表格写法
 
-- **每个类别单独一张表**，表格上方依次是 `<a id="英文锚点"></a>`、空行、`## 图标 类别名`；表格下方是 `<div align="right"><a href="#top">🔝 回到顶部</a></div>`；还没有论文的类别写「待补。」
+- **每个类别单独一张表**，表格上方依次是 `<a id="英文锚点"></a>`、空行、`## 类别名`；表格下方是 `<div align="right"><a href="#top">回到顶部</a></div>`；还没有论文的类别写「待补。」
 - 每张表的表头完全相同（复制已有的表头，里面的 `assets/spacer.png` 占位图用来固定列宽，不要改宽度）
 - 列固定为：Year | Venue | Paper Title | Repository | Method | Result | Team | Website，全部居中（`:---:`）
 - 新论文插在对应类别表格的最后一行之后
@@ -42,5 +42,5 @@
 - Method：一句话核心思想
 - Result：一个最有代表性的数字，注明真机或基准名
 - Website：`[website](链接)`，没有写 `---`
-- Venue 只写已确认的会议；Workshop 奖写成 `` `ECCV Workshop`<br>🏆 Best Paper ``
+- Venue 只写已确认的会议；Workshop 奖写成 `` `ECCV Workshop`<br>Best Paper ``
 - 数字必须能在论文里找到；从图上读的标「约」
