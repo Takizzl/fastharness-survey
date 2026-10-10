@@ -35,7 +35,7 @@
 参考 [Awesome-LLM-Robotics](https://github.com/GT-RIPL/Awesome-LLM-Robotics) 的高信息密度写法，改成表格：
 
 - **每个类别单独一张表**，表格上方依次是 `<a id="英文锚点"></a>`、空行、`## 类别名`；还没有论文的类别写 `TBD.`
-- 每张表的表头完全相同（复制已有的表头，里面的 `assets/spacer.png` 占位图用来固定列宽，不要改宽度）
+- 每张表的表头完全相同（复制已有的表头，表头里的 `&nbsp;` 用来固定列宽，不要增删）
 - 列固定为：Name | Paper | Venue | Method | Result | Team | Code | Website，全部居中（`:---:`）
 - **所有字段都要填**；确实没有的写 `-`，不要留空
 - 新论文插在对应类别表格的最后一行之后

@@ -9,10 +9,11 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
-WIDTHS = [("Name", 90), ("Paper", 245), ("Venue", 95), ("Method", 240),
-          ("Result", 135), ("Team", 100), ("Code", 55), ("Website", 70)]
-HEADER = "| " + " | ".join(
-    f'{n}<br><img src="assets/spacer.png" width="{w}" height="1">' for n, w in WIDTHS) + " |"
+# Header cells are padded with non-breaking spaces so every category table has the same column widths on GitHub.
+PADDING = [("Paper", 22), ("Venue", 4), ("Method", 14), ("Result", 13),
+           ("Team", 4), ("Code", 0), ("Website", 0)]
+WIDTHS = PADDING
+HEADER = "| " + " | ".join("&nbsp;" * k + n + "&nbsp;" * k for n, k in PADDING) + " |"
 SEPARATOR = "|" + ":---:|" * len(WIDTHS)
 
 errors = []
@@ -26,8 +27,8 @@ for heading in ("当前主线", "Contents"):
 lines = readme.splitlines()
 paper_rows = 0
 for i, line in enumerate(lines):
-    if line.startswith("| Name") and line != HEADER:
-        errors.append(f"README 第 {i + 1} 行表头和标准表头不一致（列宽占位图也要一致）")
+    if re.match(r"\| (&nbsp;)*Paper", line) and line != HEADER:
+        errors.append(f"README 第 {i + 1} 行表头和标准表头不一致（表头里的 &nbsp; 用来固定列宽，要和标准表头完全一致）")
     if line != HEADER:
         continue
     if not lines[i - 2].startswith("## "):
@@ -42,15 +43,21 @@ for i, line in enumerate(lines):
         if len(cells) != len(WIDTHS):
             errors.append(f"README 第 {n} 行应有 {len(WIDTHS)} 列，实际 {len(cells)} 列")
             continue
-        name, title, venue, method, result, team, code, website = cells
-        if not re.fullmatch(r"\*\*[^*]+\*\*", name):
-            errors.append(f"README 第 {n} 行 Name 应为加粗简称，如 **Spotter**")
-        for label, val in (("Paper", title), ("Venue", venue), ("Method", method),
+        paper, venue, method, result, team, code, website = cells
+        pm = re.fullmatch(r"\*\*[^*]+\*\*<br>(\[[^\]]+\]\(https://arxiv\.org/abs/\d{4}\.\d{4,5}\))", paper)
+        if not pm:
+            errors.append(f"README 第 {n} 行 Paper 应为 **简称**<br>[标题](https://arxiv.org/abs/<id>)")
+            continue
+        title = pm.group(1)
+        for label, val in (("Paper", paper), ("Venue", venue), ("Method", method),
                            ("Result", result), ("Team", team), ("Code", code), ("Website", website)):
             if not val:
                 errors.append(f"README 第 {n} 行 {label} 不能为空")
         if not re.search(r"[一-鿿]", method):
             errors.append(f"README 第 {n} 行 Method 要用中文")
+        for label, val, limit in (("Method", method, 26), ("Result", result, 26)):
+            if len(re.sub(r"[ -~]", "", val)) + len(re.findall(r"[ -~]", val)) / 2 > limit:
+                errors.append(f"README 第 {n} 行 {label} 太长，压到约 {limit} 个汉字以内")
         if not re.search(r"\d", result) or "<br>" in result:
             errors.append(f"README 第 {n} 行 Result 要浓缩成一句含关键数字的话，不要换行")
         if "<br>" in method:
