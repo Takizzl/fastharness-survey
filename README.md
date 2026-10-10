@@ -8,17 +8,13 @@
 
 </div>
 
-<a id="top"></a>
-
-## Current Focus
-
-> Updated after [Meeting 01](meetings/01-第一次会议.md)
+## Current Focus · [Meeting 01](meetings/01-第一次会议.md)
 
 1. How GPT is combined with VLMs: how to plug in a VLM; Qwen-style VLMs should mainly answer multiple-choice questions
 2. How code is combined with VLAs: how policies are organized (down to the source code); whether WAMs are used
 3. Stage 2 (Haoran): how to build memory, transferring ideas from LLM agents
 
-Requirement: compatible with multiple LLMs and downstream policies
+**Requirement:** compatible with multiple LLMs and downstream policies
 
 ## Contents
 
@@ -39,8 +35,6 @@ Requirement: compatible with multiple LLMs and downstream policies
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 2026 | `arXiv` | [Spotter:&nbsp;Let&nbsp;the&nbsp;Embodied&nbsp;Model<br>Lead,&nbsp;and&nbsp;the&nbsp;VLM&nbsp;Reflect&nbsp;for&nbsp;It](https://arxiv.org/pdf/2609.36808) | [![GitHub stars](https://img.shields.io/github/stars/zqc3117/Spotter.svg?style=social)](https://github.com/zqc3117/Spotter) | VLA leads execution; a VLM monitors in parallel and takes over only to repair errors | Real robot 53% → 83% | Griffith / Tsinghua | --- |
 
-<div align="right"><a href="#top">Back to top</a></div>
-
 <a id="code-policy"></a>
 
 ## 2. Code + Policy
@@ -53,15 +47,11 @@ Requirement: compatible with multiple LLMs and downstream policies
 | 2026 | `arXiv` | [Show-Harness:&nbsp;Just&nbsp;a&nbsp;VLM<br>Agent&nbsp;Can&nbsp;Play&nbsp;Robots](https://arxiv.org/pdf/2609.10522) | [![GitHub stars](https://img.shields.io/github/stars/showlab/Show-Harness.svg?style=social)](https://github.com/showlab/Show-Harness) | The VLM outputs one small semantic action per step to drive the robot | Real robot 89% vs π0.5 39% | NUS | [website](https://showlab.github.io/Show-Harness) |
 | 2026 | `ECCV Workshop`<br>Best Paper | [RoboHarness:&nbsp;Memory-Driven&nbsp;Orchestration&nbsp;of<br>Heterogeneous&nbsp;Robot&nbsp;Policies&nbsp;for&nbsp;Long-Horizon&nbsp;Planning](https://arxiv.org/pdf/2607.18060) | --- | Routes subtasks to heterogeneous policies by capability and aligns states before handoff | LIBERO-LoHo 95.2% | Huawei Noah's Ark | --- |
 
-<div align="right"><a href="#top">Back to top</a></div>
-
 <a id="memory"></a>
 
 ## 3. Memory
 
 TBD.
-
-<div align="right"><a href="#top">Back to top</a></div>
 
 <a id="skill"></a>
 
@@ -71,8 +61,6 @@ TBD.
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 2026 | `arXiv` | [ASPIRE:&nbsp;Agentic&nbsp;/Skills<br>Discovery&nbsp;for&nbsp;Robotics](https://arxiv.org/pdf/2607.00272) | [![GitHub stars](https://img.shields.io/github/stars/NVlabs/ASPIRE.svg?style=social)](https://github.com/NVlabs/ASPIRE) | Repairs failures from per-call traces and distills fixes into a skill library | LIBERO-Pro 18% → 72% | NVIDIA | [website](https://research.nvidia.com/labs/gear/aspire/) |
 
-<div align="right"><a href="#top">Back to top</a></div>
-
 <a id="real-robot"></a>
 
 ## 5. Real-Robot Self-Improvement
@@ -81,8 +69,6 @@ TBD.
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 2026 | `arXiv` | [ENPIRE:&nbsp;Agentic&nbsp;Robot&nbsp;Policy<br>Self-Improvement&nbsp;in&nbsp;the&nbsp;Real&nbsp;World](https://arxiv.org/pdf/2606.19980) | [![GitHub stars](https://img.shields.io/github/stars/NVlabs/ENPIRE.svg?style=social)](https://github.com/NVlabs/ENPIRE) | The agent builds auto-reset and success checks, then edits training code on real robots | Real robot 99% | NVIDIA / CMU | [website](https://research.nvidia.com/labs/gear/enpire/) |
 
-<div align="right"><a href="#top">Back to top</a></div>
-
 <a id="boundary"></a>
 
 ## 6. Harness Evolution Boundary
@@ -90,5 +76,3 @@ TBD.
 | Year<br><img src="assets/spacer.png" width="50" height="1"> | Venue<br><img src="assets/spacer.png" width="130" height="1"> | Paper Title<br><img src="assets/spacer.png" width="440" height="1"> | Repository<br><img src="assets/spacer.png" width="110" height="1"> | Method<br><img src="assets/spacer.png" width="230" height="1"> | Result<br><img src="assets/spacer.png" width="160" height="1"> | Team<br><img src="assets/spacer.png" width="120" height="1"> | Website<br><img src="assets/spacer.png" width="70" height="1"> |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | 2026 | `arXiv` | [RRSI:&nbsp;Regularized&nbsp;Recursive<br>Self-Improvement&nbsp;of&nbsp;Agent&nbsp;Harnesses](https://arxiv.org/pdf/2609.24972) | [![GitHub stars](https://img.shields.io/github/stars/google-research/rrsi.svg?style=social)](https://github.com/google-research/rrsi) | Regularizes how harness edits are proposed and kept, to avoid overfitting the eval set | Unseen tasks 39.7 → 43.6 | Google | [website](https://regularized-rsi.com) |
-
-<div align="right"><a href="#top">Back to top</a></div>

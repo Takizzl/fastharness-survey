@@ -5,7 +5,7 @@
 ## 每次会议后
 
 1. 在 `meetings/` 新建纪要（复制 [`templates/meeting.md`](templates/meeting.md)），文件名如 `02-第二次会议.md`。
-2. 更新 `README.md` 的 **Current Focus**（英文）：换成本次会议定下的新主线，并把「Updated after」链接指向本次纪要。旧主线不用保留在 README，会议纪要里有记录。
+2. 更新 `README.md` 的 **Current Focus**（英文）：换成本次会议定下的新主线，标题里的会议链接改成本次纪要（`## Current Focus · [Meeting NN](...)`）。旧主线不用保留在 README，会议纪要里有记录。
 3. 在 `CHANGELOG.md` 最上面记一条。
 
 ## 新增论文
@@ -32,7 +32,7 @@ README 一律用英文。从上到下固定为：居中标题和徽章 → Curre
 
 ## README 论文表格写法
 
-- **每个类别单独一张表**，表格上方依次是 `<a id="英文锚点"></a>`、空行、`## 类别名`；表格下方是 `<div align="right"><a href="#top">回到顶部</a></div>`；还没有论文的类别写 `TBD.`
+- **每个类别单独一张表**，表格上方依次是 `<a id="英文锚点"></a>`、空行、`## 类别名`；还没有论文的类别写 `TBD.`
 - 每张表的表头完全相同（复制已有的表头，里面的 `assets/spacer.png` 占位图用来固定列宽，不要改宽度）
 - 列固定为：Year | Venue | Paper Title | Repository | Method | Result | Team | Website，全部居中（`:---:`）
 - 新论文插在对应类别表格的最后一行之后

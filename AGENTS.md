@@ -44,7 +44,7 @@
 
 用户给出新的会议内容时：
 1. 按 [`templates/meeting.md`](templates/meeting.md) 在 `meetings/` 新建纪要，编号顺延
-2. 用英文替换 README 的「Current Focus」为本次会议的新主线，「Updated after」链接指向新纪要
+2. 用英文替换 README 的「Current Focus」为本次会议的新主线，标题里的会议链接改成新纪要
 3. README 的 Meetings、Updated 徽章同步更新
 4. CHANGELOG 加一条
 

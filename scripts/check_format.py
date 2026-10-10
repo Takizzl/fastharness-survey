@@ -20,7 +20,7 @@ readme = (ROOT / "README.md").read_text(encoding="utf-8")
 review = (ROOT / "review" / "论文审阅表.html").read_text(encoding="utf-8")
 
 for heading in ("Current Focus", "Contents"):
-    if not re.search(rf"^## \S* ?{heading}$", readme, re.M):
+    if not re.search(rf"^## {heading}", readme, re.M):
         errors.append(f"README 缺少「{heading}」一节")
 paper_rows = len(re.findall(r"^\| \d{4} \|", readme, re.M))
 badge = re.search(r"badge/Papers-(\d+)-", readme)
