@@ -56,23 +56,10 @@
 
 ## 3. Memory
 
-### JitRL · 待审核
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **JitRL**<br>\[[Paper](https://arxiv.org/abs/2601.18510)\] · [待审核](review/论文审阅表.html) | — | 从相似经验中估计动作价值，修正当前候选动作的选择概率 | — | — |
 
-[Paper](https://arxiv.org/abs/2601.18510) · [审阅表](review/论文审阅表.html)
-
-- **问题：** 模型参数冻结后，容易重复之前的错误；把经验放进提示词，也不保证模型有效利用。
-- **方法：** 从相似经验中估计动作价值，修正当前候选动作的选择概率。
-- **实验与团队：** 用户提供的文档尚未填写，待核对补充。
-
-### 团队关注的问题
-
-“参考agentic的方式给模型提供memory”
-
-“在Benchmark有限的尝试机会里，来进行经验积累然后复用”
-
-“在其他任务上进行经验积累，然后测试其他Benchmark”
-
-以上来自 [FastHarness 文档与讨论原话](ideas/2026-10-12-FastHarness讨论与测评.md)。
 
 <br>
 

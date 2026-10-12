@@ -50,6 +50,13 @@ for i, line in enumerate(lines):
             errors.append(f"README 第 {n} 行应有 {len(WIDTHS)} 列，实际 {len(cells)} 列")
             continue
         paper, venue, method, result, team = cells
+        if "[待审核](review/论文审阅表.html)" in paper:
+            pending_link = re.search(r"https://arxiv\.org/abs/(\d{4}\.\d{4,5})", paper)
+            if not pending_link or pending_link.group(1) not in review:
+                errors.append(f"README 第 {n} 行待审核论文必须有 Paper 链接并已进入审阅表")
+            if not all(cells) or method in ("-", "—"):
+                errors.append(f"README 第 {n} 行待审核论文需要方法，缺失字段写 —")
+            continue
         pm = PAPER_CELL.fullmatch(paper)
         if not pm:
             errors.append(f"README 第 {n} 行 Paper 应为 **简称**: 标题<br>\\[[Paper](arXiv)\\] \\[[Code](GitHub)\\] \\[[Website](主页)\\]，"
