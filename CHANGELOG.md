@@ -4,6 +4,7 @@
 
 ## 2026-10-12 · 导入 FastHarness 文档与讨论
 
+- 补充 README 的 Memory 栏：首页展示 JitRL 的待审核问题与方法，以及文档中的 Memory 和经验复用讨论；目录明确区分已入库与待审核数量。
 - 保存用户提供的 [FastHarness 原始文档及配图](meetings/sources/2026-10-12-FastHarness/FastHarness.md)，补充第一次会议的文档入口；原文未注明会议日期。
 - 导入 [团队思考与测评方向](ideas/2026-10-12-FastHarness讨论与测评.md)，保留原话，包含 RPG 阅读线索、Memory、VLA 能力学习与仿真 / 真机测评设想。
 - 审阅表 Memory 类别新增 JitRL：问题与方法取自该文档，标为待审核，实验、团队信息尚未提供；未同步进 README 的论文列表。
