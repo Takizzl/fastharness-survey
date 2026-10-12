@@ -13,6 +13,8 @@
 
 **要求：** 需要兼容多个 LLM 和下游 policy
 
+[团队思考与测评方向](ideas/2026-10-12-FastHarness讨论与测评.md) · [会议原始文档](meetings/sources/2026-10-12-FastHarness/FastHarness.md)
+
 ## Contents
 
 | Category | Focus | Papers |
