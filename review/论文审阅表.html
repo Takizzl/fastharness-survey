@@ -22,6 +22,7 @@ p{margin:0}
 </style></head><body>
 <h3>FastHarness 论文审阅表</h3>
 <p class="note">新论文先加在这里（标 <span class="st wait">待审核</span>），审核人对照原文核对通过后，再同步到 README，并把状态改成 <span class="st ok">已入库</span>。</p>
+<p class="note">2026-10-14 新增 GPT-as-Policy、LoopROS、PhysicalRSI：来源核查与中文整理由 Codex 完成，待人工审核；PhysicalRSI 仅 Preview，LoopROS 尚未发布论文。</p>
 <table>
 <tr><th>模块</th><th>论文</th><th>问题</th><th>方法</th><th>仿真结果</th><th>真机结果</th><th>团队</th></tr>
 
@@ -100,6 +101,15 @@ p{margin:0}
 </tr>
 
 <tr>
+<td class="p"><a href="https://anonymous-report-421.github.io/public-website/?view=1">GPT-as-Policy</a><br><span class="st wait">待审核</span><br>技术报告 2026<br><a href="../papers/gpt-as-policy.md">来源核查详情</a></td>
+<td>GPT 直接控制机器人的表现有限，需要判断何时修正 VLA 动作。</td>
+<td>GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正，恢复后交还控制。</td>
+<td>10 个 RoboDojo 任务，各 5 个对齐样例。混合策略 24/50 成功（48%），Score 62.60（50 个有效分数）；Direct 13/50 成功（26%），Score 37.81（48 个有效分数）。混合策略修正了 14.4% 的已执行控制步。成功率分母均为 50，不能把 Direct 的分数分母 48 用作成功率分母。</td>
+<td>另有 RoboLab 录像集；本条未将录像数量转换为真机成功率，未找到可确认的真机量化对比。</td>
+<td>Jiayi Su、Yixin Zheng、Mi Yan、Li Yi、Zhizheng Zhang、He Wang（署名来自仓库；本次未独立确认单位）</td>
+</tr>
+
+<tr>
 <td class="m">3. Memory</td>
 <td class="p"><a href="https://arxiv.org/abs/2601.18510">JitRL</a><br><span class="st wait">待审核</span><br><small>来自用户提供的 FastHarness 文档；论文信息待核对</small></td>
 <td class="c">模型参数冻结后，容易重复之前的错误；把经验放进提示词，也不保证模型有效利用</td>
@@ -144,6 +154,24 @@ p{margin:0}
 <p><b>补充分析：</b></p><ul><li>正则项消融</li><li>换 Gemini 3.5 Flash</li><li>迁移到更弱的模型</li><li>token 比无约束进化少约 30%</li></ul></td>
 <td>不涉及（不是机器人工作）</td>
 <td class="c">Google Cloud AI Research（Tomas Pfister 组）、UNC、Stanford</td>
+</tr>
+<tr>
+<td class="m">7. RSI Projects</td>
+<td class="p"><a href="https://loopmaster.ai/loopros/">LoopROS / LoopMaster</a><br><span class="st wait">待审核</span><br>技术报告 2026.10<br><a href="../papers/loopros.md">来源核查详情</a></td>
+<td>机器人执行经验难以转化为后续任务可检索、复用的操作能力。</td>
+<td>Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。</td>
+<td>项目报告的 10 个选定任务，共 100 回合（每任务 10 回合），82 次成功，平均 Score 88.90，失败回合也计入。任务等权；含泛化测试的场景按标准:泛化=2:3 加权。非完整官方 RoboDojo 评测；外部方法可能采用不同设置，不当作同种子或同协议对比。</td>
+<td>官网展示双臂黄瓜削皮、切片录像，标注测试日为 9 月 10 日；未给出试验总次数或量化成功率，只记录为演示。</td>
+<td>LoopMaster（官网页脚：天津市陆浦智能科技有限公司）</td>
+</tr>
+
+<tr>
+<td class="p"><a href="https://mmlab.hk/research/PhysicalRSI">PhysicalRSI</a><br><span class="st wait">待审核</span><br>Preview 2026<br><a href="../papers/physicalrsi.md">来源核查详情</a></td>
+<td>固定策略难应对开放任务，需要根据执行反馈改写、筛选并积累控制技能。</td>
+<td>Agent 根据执行反馈改写 harness，评测候选并保留更优版本，继承代码技能与任务记忆。</td>
+<td>RoboDojo 官方榜单公开数据：Score 36.27、SR 31.38%，团队 HKU MMLab &amp; KAI；网站提及 52 个 task×layout settings。项目网页使用 2026-10-03 结果快照、注明 10-08 核对。2026-10-14 读取的基准前端数据快照为 10-09，PhysicalRSI 仍是相同分数，但 VPP2 已为 Score 39.26、SR 32.26%，不沿用项目页旧的 No.1 文案。</td>
+<td>官网当前主要为仿真与技能演示；未找到可确认的真机量化成功率。代码中物理机器人 SDK 与部署为外部依赖，演示不能视为真机基准验证。</td>
+<td>HKU MMLab &amp; KAI（RoboDojo 官方榜单署名）；代码引用为 MMLab &amp; PhysicalRSI contributors</td>
 </tr>
 </table>
 </body></html>
