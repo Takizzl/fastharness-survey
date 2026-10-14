@@ -2,6 +2,13 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-14 · RSI 项目与 Code + Policy 来源核查
+
+- 新增 [LoopROS / LoopMaster](papers/loopros.md)、[PhysicalRSI](papers/physicalrsi.md) 到 RSI Projects，新增 [GPT-as-Policy](papers/gpt-as-policy.md) 到 Code + Policy；README 与审阅表使用现有表格样式，均标待审核。
+- 核实官网与代码对应关系、公开范围和结果口径。LoopROS 只有客户端公开，论文 coming soon，10 任务 100 回合自报 82%；PhysicalRSI 仅 Preview，榜单 Score 36.27 / SR 31.38% 可交叉核对，旧 No.1 排名不沿用。
+- GPT-as-Policy 公共逐样例表核算：混合 24/50、Direct 13/50；Direct Score 只用 48 个有效值。外部官方模型是重加权参考，并非同种子重跑。
+- 保存核查链接、代码版本和证据摘要；原有已入库论文与 JitRL 内容不变。来源核查与中文整理：Codex；未运行付费模型或机器人实验。
+
 ## 2026-10-12 · 导入 FastHarness 文档与讨论
 
 - 按用户要求，Memory 改为与其他类别相同的五列表格；方法提取自文档，缺失字段用 —，讨论原话保留在 Ideas。待审核行允许缺失元数据，已入库行仍执行原有完整性检查。

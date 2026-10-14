@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-10-14",
+  "loopros": {
+    "episodes": 100,
+    "successes": 82,
+    "score": 88.9,
+    "source": "https://loopmaster.ai/loopros/assets/data.js"
+  },
+  "gpt_as_policy": {
+    "gpt": {
+      "episodes": 50,
+      "successes": 13,
+      "valid_scores": 48,
+      "mean_score_100": 37.8125
+    },
+    "mix": {
+      "episodes": 50,
+      "successes": 24,
+      "valid_scores": 50,
+      "mean_score_100": 62.6
+    }
+  },
+  "physicalrsi": {
+    "score": 36.27,
+    "success_rate_percent": 31.38,
+    "source": "https://robodojo-benchmark.com/leaderboard",
+    "frontend_snapshot": "2026-10-09",
+    "asset": "https://robodojo-benchmark.com/assets/index-BqjAzlO5.js"
+  },
+  "files": {
+    "loopros-data.js": {
+      "sha256": "98c515c8df78d2088028a3f028eb4b4a1afb2782f5fd8d9056154b7d3e319567"
+    },
+    "gpt-cases.json": {
+      "sha256": "b2ef651cc5d4c90375165a852030a3864b33d9410986dafedde7b04253f1c39a"
+    },
+    "gpt-scores.csv": {
+      "sha256": "8042446b354b5c554b1a3ec9a5b145545bce3a98703844297577d25d72fdce99"
+    },
+    "robodojo-index.js": {
+      "sha256": "16fb43b2a0c1cd8aa4b7efc86785c29f3ad84c48e9f43d7e8575a9644f95c5c1"
+    }
+  }
+}

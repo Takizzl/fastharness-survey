@@ -20,11 +20,12 @@
 | Category | Focus | Papers |
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
-| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 5 |
+| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 5 已入库，1 待审核 |
 | [3. Memory](#memory) | Memory mechanisms | 0 已入库，1 待审核 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
 | [6. Harness Evolution Boundary](#boundary) | Guarding against overfitting | 1 |
+| [7. RSI Projects](#rsi-projects) | Self-evolving robot systems | 2 项目，待审核 |
 
 <br>
 
@@ -49,6 +50,7 @@
 | **PyRUA-Lean**: Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens<br>\[[Paper](https://arxiv.org/abs/2610.01939)\] \[[Code](https://github.com/DAGroup-PKU/PyRUA-Lean)\] \[[Website](https://dagroup-pku.github.io/PyRUA-Lean/)\] | arXiv 2026.10 | VLM 写一段 Python 串起原语和 VLA，在代码里判断、重试，只回传请求的图像 | LIBERO-Pro、RoboTwin 2.0、RoboCasa365：工具调用版 63.1% → 71.7% | PKU |
 | **Show-Harness**: Just a VLM Agent Can Play Robots<br>\[[Paper](https://arxiv.org/abs/2609.10522)\] \[[Code](https://github.com/showlab/Show-Harness)\] \[[Website](https://showlab.github.io/Show-Harness)\] | arXiv 2026.09 | VLM 每步输出一个语义动作（前、后、左、右、上、下、旋转、抓取、松开），换算成 2 或 4 cm 末端位移 | Franka 真机 10 个抓放任务：89%，π0.5 只有 39% | NUS |
 | **RoboHarness**: Memory-Driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning<br>\[[Paper](https://arxiv.org/abs/2607.18060)\] \[[Code](https://github.com/markli1hoshipu/RoboHarness)\] \[[Website](https://robo-harness.com)\] | ECCV 2026 Workshop<br>**Best Paper** | Agent 按能力把子任务分给 VLA、RL、TAMP，换策略前先把机器人移到下一个策略熟悉的状态 | LIBERO-LoHo 长任务：95.2%，单用 π0.5 只有 6.4% | Huawei Noah's Ark |
+| **GPT-as-Policy**: GPT 6 Astra as an Embodied Policy<br>\[[Report](https://anonymous-report-421.github.io/public-website/?view=1)\] \[[Code](https://github.com/anonymous-report-421/GPT-as-Policy)\] \[[Website](https://anonymous-report-421.github.io/public-website/?view=1)\] · [待审核](review/论文审阅表.html) | 技术报告 2026 | GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正，恢复后交还控制。 | RoboDojo 50 例：混合 48%，Direct 26% | 署名作者；单位待核实 |
 
 <br>
 
@@ -90,3 +92,16 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **RRSI**: Regularized Recursive Self-Improvement of Agent Harnesses<br>\[[Paper](https://arxiv.org/abs/2609.24972)\] \[[Code](https://github.com/google-research/rrsi)\] \[[Website](https://regularized-rsi.com)\] | arXiv 2026.09 | 每轮能改的地方逐轮减少；只保留不含测试题答案、提升超过随机波动、多花的 token 有回报的改动 | JobBench、GDPval、APEX-Agents 平均：原始 harness 39.7 → 43.6 | Google |
+
+<br>
+
+<a id="rsi-projects"></a>
+
+## 7. RSI Projects
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **LoopROS / LoopMaster**: A Recursively Self-Evolving Robot Operating System for Agentic Manipulation<br>\[[Report](https://loopmaster.ai/loopros/)\] \[[Code](https://github.com/Boxjod/LoopROS_Client)\] \[[Website](https://loopmaster.ai/)\] · [待审核](review/论文审阅表.html) | 技术报告 2026.10 | Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。 | 自报 RoboDojo 10 任务 100 例：SR 82%，Score 88.90 | LoopMaster |
+| **PhysicalRSI**: Physical RSI 1.0: Recursive Self-Harness for Scaling Embodied Skills<br>Paper 未发布<br>\[[Code](https://github.com/PhysicalRSI/PhysicalRSI)\] \[[Website](https://mmlab.hk/research/PhysicalRSI)\] · [待审核](review/论文审阅表.html) | Preview 2026 | Agent 根据执行反馈改写 harness，评测候选并保留更优版本，继承代码技能与任务记忆。 | RoboDojo 官网快照：Score 36.27，SR 31.38% | HKU MMLab<br>KAI |
+
+项目报告与 Preview 按公开材料收录，来源核查和评测口径见 [LoopROS](papers/loopros.md)、[PhysicalRSI](papers/physicalrsi.md)。
