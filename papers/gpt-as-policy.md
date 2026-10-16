@@ -44,3 +44,7 @@ GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正
 - [逐样例元数据](https://github.com/anonymous-report-421/GPT-as-Policy/blob/main/public_results/evaluation_cases.json)
 - [分数表](https://github.com/anonymous-report-421/GPT-as-Policy/blob/main/public_results/scores.csv)
 - [控制判断提示](https://github.com/anonymous-report-421/GPT-as-Policy/blob/main/hybrid_rollout/robodojo/skill/gate_prompt.md)
+
+## 链接核查 · 2026-10-17
+
+论文/报告、代码和项目页对应且可访问，原链接保留；技术报告身份不变。

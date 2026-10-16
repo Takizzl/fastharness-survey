@@ -57,3 +57,7 @@ MMLab 项目页与 PhysicalRSI 代码仓库双向对应，仓库 README 和 CITA
 尚无开发 memory_rules 到发布操作记忆的完整转换历史，也没有 22 个发布技能由该流程生成的完整证据链；不能补成已确认事实。
 
 [笔记原文](../review/2026-10-17-资料补充/sources/physicalrsi.txt)
+
+## 链接核查 · 2026-10-17
+
+MMLab 项目页链接至 PhysicalRSI 仓库，链接可访问；仓库仍以 Preview 描述发布状态。

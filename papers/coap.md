@@ -1,4 +1,4 @@
-# COAP / Embodied Turing Machines: Embodied Turing Machines
+# COAP: Embodied Turing Machines: Stateful Code for Robot Recursive Self-Improvement
 
 | 项目 | 内容 |
 |---|---|
@@ -6,8 +6,8 @@
 | Year / Venue | arXiv 2026.10 |
 | Paper | https://arxiv.org/abs/2610.12369 |
 | Code | -（已有笔记未确认） |
-| Website | -（已有笔记未确认） |
-| Team | 待核实 |
+| Website | https://etmcode-bit.github.io/ |
+| Team | NTU、Ropedia |
 | Review | 依据已有资料整合；未核实字段保留待审核 |
 
 ## 一句话
@@ -34,11 +34,15 @@
 
 Paper：arXiv:2610.12369v1。已有笔记还包含各任务失败情况、模块代码规模和迭代时间；可作为后续详情。
 
-团队、Code、Website、会议信息未从本轮所读笔记中确认；每任务完整开发预算、累计 token 和费用未披露。分类请审核。
+Code 与会议信息尚未确认；每任务完整开发预算、累计 token 和费用未披露。
 
 ## 来源
 
-2026-10-17，Codex 按用户要求从已有资料整理，未重新联网确认发布状态。
+初稿依据已有资料整理；本轮联网核查见下方记录。
 
 - [已有笔记原文](../review/2026-10-17-资料补充/sources/coap.txt)
 - [本次缺项与补充记录](../review/2026-10-17-资料补充/index.html#coap)
+
+## 链接核查 · 2026-10-17
+
+[项目主页](https://etmcode-bit.github.io/) 与论文标题、作者和 arXiv 编号对应，团队为 NTU、Ropedia；未发现明确的官方代码入口。

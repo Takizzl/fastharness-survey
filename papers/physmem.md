@@ -4,8 +4,8 @@
 |---|---|
 | 模块 | 3. Memory |
 | Year / Venue | arXiv 2026.02 |
-| Paper | https://arxiv.org/abs/2602.20323 |
-| Code | -（已有材料未确认） |
+| Paper | https://arxiv.org/abs/2602.20323v1 |
+| Code | https://github.com/haoyangli16/PhysMem |
 | Website | https://phys-mem.github.io/ |
 | Team | UC San Diego、Stanford |
 | Review | 依据已有资料整合；未核实字段保留待审核 |
@@ -34,11 +34,15 @@
 
 Paper：arXiv:2602.20323v1；团队：UC San Diego、Stanford；作者 Haoyang Li、Yang You、Hao Su、Leonidas Guibas。已有报告链接项目页 https://phys-mem.github.io/。
 
-缺可直接入表的量化对照、基线、重复次数和统计范围；代码入口与会议录用待核实。
+缺可直接入表的量化对照、基线、重复次数和统计范围；会议录用未确认。
 
 ## 来源
 
-2026-10-17，Codex 按用户要求从已有资料整理，未重新联网确认发布状态。
+初稿依据已有资料整理；本轮联网核查见下方记录。
 
 - [已有笔记原文](../review/2026-10-17-资料补充/sources/physmem.txt)
 - [本次缺项与补充记录](../review/2026-10-17-资料补充/index.html#physmem)
+
+## 链接核查 · 2026-10-17
+
+[官网](https://phys-mem.github.io/) 的 Code 链接指向 [PhysMem](https://github.com/haoyangli16/PhysMem)。当前官网标题已更新；本卡解读仍依据 [v1](https://arxiv.org/abs/2602.20323v1)，不混入新版实验。

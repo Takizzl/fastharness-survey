@@ -43,3 +43,7 @@ Agent 读示范与场景，在线规划并执行；把动作反馈组织为任�
 - [技术报告（非已确认同行评审论文）](https://loopmaster.ai/loopros/)
 - [报告原始统计](https://loopmaster.ai/loopros/assets/data.js)
 - [客户端公开范围](https://github.com/Boxjod/LoopROS_Client#loopros_client)
+
+## 链接核查 · 2026-10-17
+
+报告页与客户端仓库对应，链接可访问；公开客户端与私有 Brain 的范围说明保留。

@@ -3,7 +3,7 @@
 | 项目 | 内容 |
 |---|---|
 | 模块 | 3. Memory |
-| Year / Venue | arXiv 2026.01 |
+| Year / Venue | ICML 2026 Spotlight（官方仓库 README 声明） |
 | Paper | https://arxiv.org/abs/2601.18510 |
 | Code | https://github.com/liushiliushi/JitRL |
 | Website | -（已有材料未确认独立项目主页） |
@@ -32,13 +32,17 @@
 
 ## 资料补充与边界
 
-团队：National University of Singapore。Paper：arXiv:2601.18510v4。已有 meta.json 记录代码为 [JitRL 官方仓库](https://github.com/liushiliushi/JitRL)。日期可先写 arXiv 2026.01；本地报告写 ICML 2026，但论文采用 ICML 模板不等于已录用。
+团队：National University of Singapore。Paper：arXiv:2601.18510v4。已有 meta.json 记录代码为 [JitRL 官方仓库](https://github.com/liushiliushi/JitRL)。录用信息见下方官网核查。
 
-ICML 录用依据、独立项目主页和代码链接当前可访问性尚需确认。机器人例子是教学迁移示例，不是真机实验。
+独立项目主页未确认。机器人例子是教学迁移示例，不是真机实验。
 
 ## 来源
 
-2026-10-17，Codex 按用户要求从已有资料整理，未重新联网确认发布状态。
+初稿依据已有资料整理；本轮联网核查见下方记录。
 
 - [已有笔记原文](../review/2026-10-17-资料补充/sources/jitrl.txt)
 - [本次缺项与补充记录](../review/2026-10-17-资料补充/index.html#jitrl)
+
+## 链接核查 · 2026-10-17
+
+[官方仓库](https://github.com/liushiliushi/JitRL) 明确标注 ICML 2026 Spotlight；代码入口正常。独立项目主页未确认。
