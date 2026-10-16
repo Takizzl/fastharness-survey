@@ -21,7 +21,7 @@
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
 | [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 5 已入库，1 待审核 |
-| [3. Memory](#memory) | Memory mechanisms | 0 已入库，1 待审核 |
+| [3. Memory](#memory) | Memory mechanisms | 0 已入库，2 待审核 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
 | [6. Harness Evolution Boundary](#boundary) | Guarding against overfitting | 1 |
@@ -61,6 +61,7 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **JitRL**<br>\[[Paper](https://arxiv.org/abs/2601.18510)\] · [待审核](review/论文审阅表.html) | — | 从相似经验中估计动作价值，修正当前候选动作的选择概率 | — | — |
+| **Robota-Embed**: Unified VLA Embeddings for Robot In-Context Learning and Evolution<br>\[[Paper](https://arxiv.org/abs/2610.19495v1)\] \[[Website](https://robota-ai.github.io/robota-embed/)\] · [详情](papers/robota-embed.md) · [待审核](review/论文审阅表.html)<br>Code / weights：未核实到发布入口 | arXiv 2026.10 | 将任务、画面和动作编码为向量，检索历史执行片段，把画面、命令和反馈交给策略复用。 | ManiSkill 5 任务×20 次：Astra 24%→68% | NVIDIA<br>MIT |
 
 
 <br>

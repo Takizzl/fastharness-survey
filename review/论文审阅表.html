@@ -118,6 +118,15 @@ p{margin:0}
 </tr>
 
 <tr>
+<td class="p"><a href="https://arxiv.org/abs/2610.19495v1">Robota-Embed</a><br><span class="st wait">待审核</span><br><a href="../papers/robota-embed.md">汇报整理与来源核对</a></td>
+<td>只有任务文字或相似画面，容易找对任务却找错执行阶段，无法挑出适合当前动作的历史经验。</td>
+<td>将任务、画面和动作编码为向量，检索历史执行片段，把画面、命令和反馈交给策略复用。 查询与候选均结合 VLA，输出 1024 维向量。开发阶段积累成功/失败回合，测试固定长期记忆和配置；Astra 和 embedding 权重冻结。</td>
+<td>Robota-Embed-Bench：4,000 个查询、8,000 条共享候选，片段级 R@1 47.33%、回合级 R@1 81.77%（摘要精确值；表格显示 47.3 / 81.8）。ManiSkill 五任务、每条件每任务 20 次：Astra Direct 24%、随机历史 20%、Evolve + Omni 33%、Embed2Evolve 68%；平均每测试回合策略 tokens 为 0.921M / 未报 / 约 2.531M / 0.518M，含失败、不含开发成本。DROID-Sim：无参考 47.0%、随机 36.0%、原始 top-1 50.3%、重排序后 56.3%；LIBERO 五个筛选难任务：86.4%→92.8%，该路线训练策略使用上下文。</td>
+<td>三项真机任务报告的是任务进度分数，每条件每任务 12 次：DreamZero Banana→Bowl 21.67→40.00；Fast-WAM Pick Fruit 75.00→79.17、Split Cup 66.67→87.50。不是二元成功率；Fast-WAM 路线包含策略训练。</td>
+<td>NVIDIA、MIT、UC Berkeley、Oxford、CMU</td>
+</tr>
+
+<tr>
 <td class="m">4. 技能增长</td>
 <td class="p"><a href="https://arxiv.org/abs/2607.00272">ASPIRE</a><br><span class="st ok">已入库</span></td>
 <td class="c">程序失败后难定位原因，修复经验无法跨任务积累</td>

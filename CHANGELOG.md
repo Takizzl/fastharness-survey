@@ -2,6 +2,14 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-16 · Robota-Embed 汇报合并至 Memory
+
+- 根据用户已有《Robota-Embed论文解读.html》与配套阅读记录，新增 [Robota-Embed](papers/robota-embed.md)，同步 Memory 五列表格和审阅表，标待人工审核。
+- 方法突出视觉、语言和动作 embedding 检索记忆；区分检索准确率、机器人成功率、真机任务进度与 token 成本。
+- 与论文 v1 表格核对：ManiSkill 五任务每条件每任务 20 次，Astra Direct 24%→Embed2Evolve 68%；开发积累长期记忆，正式测试固定记忆及配置。
+- 保留团队的 RoboDojo + Astra 经验复用目标及待验证问题，不将 ManiSkill 成绩写成 RoboDojo 结果。官方代码、权重入口尚未核实。
+- 来源核对与中文整理：Codex；原有条目未修改，未新增机器人实验。
+
 ## 2026-10-14 · RSI 项目与 Code + Policy 来源核查
 
 - 新增 [LoopROS / LoopMaster](papers/loopros.md)、[PhysicalRSI](papers/physicalrsi.md) 到 RSI Projects，新增 [GPT-as-Policy](papers/gpt-as-policy.md) 到 Code + Policy；README 与审阅表使用现有表格样式，均标待审核。
