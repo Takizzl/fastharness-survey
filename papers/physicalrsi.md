@@ -43,3 +43,17 @@ MMLab 项目页与 PhysicalRSI 代码仓库双向对应，仓库 README 和 CITA
 - [RoboDojo 官方榜单](https://robodojo-benchmark.com/leaderboard)
 - [基线集成](https://github.com/XPolicyLab/XPolicyLab/tree/main/policy/physicalRSI)
 - [Preview 声明](https://github.com/PhysicalRSI/PhysicalRSI#physicalrsi)
+
+## 已有资料补充：开发、评测与经验复用
+
+2026-10-17，Codex 根据本地阅读与源码笔记整理，经用户要求整合；以下为补充证据，不替换前述论文实验。
+
+开发模型返回新代码和经验；评测选择代理返回现成技能的选择。默认混合模式先比较已有 VLA 的开发分数，未达阈值才进入代码开发；learned_skill / code_policy 模式会改变分支。候选与父版本在同一批、排除开发布局的验证案例上比较，满足提升和不退步条件才接受。
+
+本次不新增榜单成绩。memory_rules.json 提供开发修改参考及 policy(robot, memory) 参数；policy_memory.json / run_context 供评测选择代理使用；发布包 programs/steps 供技能执行器绑定并执行已注册方法。
+
+依据本地开发代码 3c8cf7f12d4041babe30bab98854cc504a5afe88 与发布适配器 393f730788e7277c7d86829dd5806a924ac31e74；与仓库条目中的另一个核查版本分开记录。公开阶段仍是 Preview。
+
+尚无开发 memory_rules 到发布操作记忆的完整转换历史，也没有 22 个发布技能由该流程生成的完整证据链；不能补成已确认事实。
+
+[笔记原文](../review/2026-10-17-资料补充/sources/physicalrsi.txt)

@@ -1,0 +1,91 @@
+# JitRL
+
+Just-In-Time Reinforcement Learning: Continual Learning in LLM Agents Without Gradient Updates
+
+新加坡国立大学 · Yibo Li、Zijie Lin、Ailin Deng、Xuan Zhang、Yufei He、Shuo Ji、Tri Cao、Bryan Hooi  
+arXiv:2601.18510v4 · ICML 2026 · 分类：Memory
+
+## 问题与解决方案
+
+**问题：**模型参数冻结后，容易重复之前的错误；把经验放进提示词，也不保证模型有效利用。
+
+**解决方案：**从相似经验中估计动作价值，修正当前候选动作的选择概率。
+
+## 核心思想：用轨迹回报修正动作选择
+
+**LLM 评价一条已执行轨迹，计算各步的累计回报并存入 Memory；下次遇到类似状态，用这些回报修正候选动作的选择。**
+
+<div class="method-chain"><div><small>执行</small><strong>完成一条轨迹</strong><span>状态 → 动作 → 新状态</span></div><b class="arrow">→</b><div><small>评价</small><strong>逐步奖励 → 回报 G</strong><span>LLM 打分，程序累计</span></div><b class="arrow">→</b><div><small>记忆</small><strong>保存（s，a，G）</strong><span>状态 · 动作 · 回报</span></div><b class="arrow">→</b><div><small>再使用</small><strong>修正下一步选择</strong><span>提高高回报动作的概率</span></div></div>
+
+**目的：减少重复错误，提高任务成功率；不更新模型参数。**
+
+## 系统框架
+
+![Figure 2 · JitRL 系统框架](assets/figure-2.png)
+
+| 模块 | 作用 |
+| --- | --- |
+| Generator | 根据当前状态，生成候选动作与基础评分 |
+| Memory | 检索相似状态下的动作与回报 |
+| 价值估计与策略修正 | 比较历史回报，调整候选概率，选一个动作执行 |
+| LLM Evaluator | 回合结束后逐步打分；程序计算累计回报，再写入 Memory |
+
+**行动前用旧经验选动作，回合结束后评价新轨迹、补充经验。**
+
+[论文 §4、Figure 2](https://arxiv.org/html/2601.18510v4)
+
+## 一条 episode：执行后形成经验
+
+**Episode 就是一次完整的任务尝试。**左侧为网页教学例子，右侧为具身迁移示例。
+
+<div class="episode-grid"><div class="episode-heading web-head"><small>网页搜索 · 一次任务</small><strong>找到最便宜的红色杯子</strong></div><div class="episode-heading robot-head"><small>机器人 · 一次任务</small><strong>把杯子放进盒子</strong></div><div class="episode-cell web-cell"><b class="episode-stage">执行轨迹</b><div><span>输入“红色杯子”</span><span>↓ 点击搜索</span><span>↓ 按价格升序</span><span>↓ 打开最低价商品</span></div></div><div class="episode-cell robot-cell"><b class="episode-stage">执行轨迹</b><div><span>抓住杯子</span><span>↓ 抬升离桌</span><span>↓ 搬运到盒子上方</span><span>↓ 下降并放置</span></div></div><div class="episode-cell web-cell episode-after"><b class="episode-stage">LLM 评价</b><div><span>看页面变化与动作结果</span><span>给每步奖励 r</span></div></div><div class="episode-cell robot-cell episode-after"><b class="episode-stage">LLM 评价</b><div><span>看图像、抓持与物体状态</span><span>给每段动作奖励 r</span></div></div><div class="episode-cell web-cell"><b class="episode-stage">计算回报</b><div><span>当前奖励＋后续奖励的折扣和＝G</span></div></div><div class="episode-cell robot-cell"><b class="episode-stage">计算回报</b><div><span>当前奖励＋后续奖励的折扣和＝G</span></div></div><div class="episode-cell web-cell"><b class="episode-stage">存一条经验</b><div><span>s：商品列表未排序</span><span>a：按价格升序</span><span>G：这一步及后续的累计回报</span></div></div><div class="episode-cell robot-cell"><b class="episode-stage">存一条经验</b><div><span>s：杯子已抓住、尚未离桌</span><span>a：先抬升</span><span>G：这一步及后续的累计回报</span></div></div></div>
+
+一条 episode 按步骤保存多条经验；不是只给整条轨迹打一个总分。
+
+## 下次执行：用经验修正候选动作
+
+<div class="episode-grid"><div class="episode-heading web-head"><small>网页 · 又来到商品列表</small><strong>直接点击，还是先排序？</strong></div><div class="episode-heading robot-head"><small>具身 · 又抓住了杯子</small><strong>直接横移，还是先抬升？</strong></div><div class="episode-cell web-cell"><b class="episode-stage">LLM 候选</b><div><span>A：直接点击首项</span><span>B：先按价格升序</span></div></div><div class="episode-cell robot-cell"><b class="episode-stage">LLM 候选</b><div><span>A：直接横移</span><span>B：先抬升</span></div></div><div class="episode-cell web-cell"><b class="episode-stage">查 Memory</b><div><span>检索类似的未排序页面</span><span>分别统计 A、B 的历史平均回报</span></div></div><div class="episode-cell robot-cell"><b class="episode-stage">查 Memory</b><div><span>检索类似的抓持与离桌状态</span><span>分别统计 A、B 的历史平均回报</span></div></div><div class="episode-cell web-cell"><b class="episode-stage">修正选择</b><div><span>假设 B 的平均回报更高</span><span>↑ 提高“先排序”的选择概率</span></div></div><div class="episode-cell robot-cell"><b class="episode-stage">修正选择</b><div><span>假设 B 的平均回报更高</span><span>↑ 提高“先抬升”的选择概率</span></div></div><div class="episode-cell web-cell"><b class="episode-stage">实际执行</b><div><span>选一个动作 → 执行 → 看新页面</span></div></div><div class="episode-cell robot-cell"><b class="episode-stage">实际执行</b><div><span>选一个动作 → 执行 → 看新状态</span></div></div></div>
+
+**修正的是“下一步选哪个动作”。**依据多条相似经验的平均回报，而不是挑最高分的整条轨迹照着做。
+
+## 跨任务经验：组织方式与有效性
+
+**将历史经验组织为状态—动作—回报记录，检索相似状态并修正动作评分；以下两组实验检验其他任务的经验能否帮助当前任务。**
+
+### Table 5：只使用其他任务的经验
+
+**设置：**在 WebArena 上，使用记忆的方法仅允许利用其他任务的经验，排除当前任务自己的历史记录；Static 不使用历史经验。
+
+| 方法／成功率（%） | Admin | GitLab | Map | Reddit | Shopping |
+| --- | --- | --- | --- | --- | --- |
+| Static | 36.96 | 37.25 | 31.19 | 36.43 | 23.44 |
+| Memory | 47.83 | 37.75 | 33.03 | 50.39 | 26.04 |
+| Reflexion | 46.74 | 34.80 | 31.19 | 48.84 | 31.77 |
+| AWM | 47.28 | 36.27 | 34.86 | 52.71 | 23.44 |
+| EvoTest | 43.48 | 35.78 | 34.86 | 48.06 | 18.75 |
+| **JitRL** | **48.37** | **38.73** | **35.78** | **55.04** | **36.98** |
+
+**结果：**JitRL 在五个领域均高于无经验的 Static，也高于直接提供历史记录的 Memory，支持跨任务经验复用，以及基于回报修正动作评分的有效性。
+
+**归因范围：**这里验证的是经验组织、检索与动作评分的完整方法，不能单独归因于存储格式的改变。
+
+### Table 13：先积累经验，再固定记忆库评估
+
+<div class="execution-loop"><strong>其他任务：执行、评价、建立 Memory</strong><b>→</b><strong>固定 Memory</strong><b>→</b><strong>留出任务：检索经验、选择动作</strong><span>测试轨迹不用于更新 Memory；JitRL 不更新模型参数。</span></div>
+
+**设置：**在 WebArena 中排除 WebArena-Lite 的任务上收集经验，再测试留出的 **165 个 WebArena-Lite 任务**。各方法统一使用 **Llama-3.1-70B-Instruct**，测试时不适应。
+
+| 方法／成功率（%） | Admin | GitLab | Map | Reddit | Shopping | 总体 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 基础模型 | 10.50 | 16.70 | 17.10 | 20.00 | 4.40 | 12.70 |
+| SFT | 20.00 | 20.00 | 26.70 | 52.60 | 13.30 | 23.00 |
+| **JitRL** | 47.22 | 38.24 | 25.81 | 58.33 | **34.78** | **40.88** |
+| WebRL | **58.33** | **47.06** | **32.26** | **62.50** | 30.43 | **46.06** |
+
+**结果：**使用其他任务积累的经验，留出任务成功率从基础模型的 **12.70% 提高至 40.88%**，增加 **28.18 个百分点**；说明固定经验库也能帮助新任务，但总体仍低于 WebRL 的 **46.06%**。
+
+**具身实验参考：**在一组任务上构建经验库，测试另一组任务；比较无经验、直接提供历史记录、结构化经验检索与动作评分三种方式。
+
+[论文 §5.3 / Table 5、附录 J.1 / Table 13](https://arxiv.org/html/2601.18510v4)
+
+[论文](https://arxiv.org/abs/2601.18510) · [项目代码](https://github.com/liushiliushi/JitRL)

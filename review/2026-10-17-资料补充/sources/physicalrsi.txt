@@ -1,0 +1,182 @@
+# PhysicalRSI 开发与评测流程
+
+## 文献信息
+
+- 标题：Physical RSI 1.0: Recursive Self-Harness for Scaling Embodied Skills。
+- 作者／团队：MMLab & PhysicalRSI contributors（官方引用署名）。
+- 版本：软件0.2.0，Preview release；独立论文版本尚未核实。
+- 时间：软件引用发布日期2026-10-05；独立论文发表日期尚未核实，二者不混用。
+- [官方项目](https://mmlab.hk/research/PhysicalRSI) · [代码](https://github.com/PhysicalRSI/PhysicalRSI) · [引用元信息](https://github.com/PhysicalRSI/PhysicalRSI/blob/main/CITATION.cff)。
+- 论文链接：截至2026-10-16尚未找到该项目可核实的独立arXiv/PDF链接；当前引用对象为项目网站与软件。
+
+
+
+2026-10-16 · 根据用户五步提纲整理 · 源码核实
+
+开发时改代码，评测时选技能
+
+开发模型返回“新代码＋新经验”；评测代理返回“选哪个现成技能”。这不是同一次模型调用。
+
+证据范围：开发流程依据本地源码基线 3c8cf7f12d4041babe30bab98854cc504a5afe88；发布适配器依据 393f730788e7277c7d86829dd5806a924ac31e74。两端都能核实，但尚未找到22个发布技能由这条开发流程生成、转成操作记忆的完整历史。
+
+开发环节：一轮学习的数据流
+
+01　初始化
+已有两个训练好的VLA和机器人工具；新增代码与任务经验为空。每个任务初始选π0.5。
+RoboDojoTask.evolve() → _loop() → _seed() → state.initialize()
+保存：seed/skills.json = {}；seed/memory_rules.json = {}；seed/skill_selection.json = 任务 → pi05及版本。
+
+↓
+
+02　准备场景并试跑
+同一批开发布局分别运行π0.5与稀疏记忆版。若父版本当前选的是代码策略，也运行它。
+Proposal.develop() → evidence.cases() → NativeRuntime.cases() → layouts.generate_batch() / verify_batch()
+execute_cases() → execute_batch() → skill_selection_skill() → runtime.rollouts() → bound_rollout.execute() → episode_receipt()
+
+保存：development-layouts/、development-cases.json、development/、development-results.json。
+
+↓
+
+03　判断已有模型是否够用
+assess()统计两个VLA的平均进度分；propose_skill_choice()与配置阈值比较。
+
+至少一个达标
+选达标者中平均分最高的；同分时π0.5优先。形成候选选择，仍需验证。
+
+两个都未达标
+进入代码开发：旧代码＋旧经验＋开发反馈＋工具接口 → Coding模型。
+
+这是默认混合模式。learned_skill / code_policy模式会修改开发分支；不能将它说成所有运行方式的唯一规则。
+
+↓
+
+04　生成并保存候选
+skill_proposal.propose() → CodeProposer.propose() → model.complete() → json.loads() → validate_policy_source()
+
+模型返回JSON文本，程序解析出源码、经验字典、修改理由；先检查格式与语法，再保存候选。
+
+保存：proposals/<task>/request.json、response.json、skill-request.json、skill-proposal.json；candidate/code/<task>.py、skills.json、memory_rules.json、skill_selection.json。
+
+↓
+
+05　用新验证布局比较新旧版本
+Evaluation.admit() → validation() → evaluate(父版本/候选) → Selector.select() → select_survivor()
+
+排除本轮开发布局，新旧版本使用相同验证案例。满足提升和不退步条件才接受，否则保留父版本；下一轮从被接受的版本继续。
+
+保存：validation-layouts/、validation-cases.json、evaluation/；轮次接受/保留记录，以及state/current.json指向的当前版本。
+
+两个阈值，作用不同
+
+ | 条件 | 怎么计算 | 配置与判断
+
+ | VLA够不够用 | 开发回合的episode_score平均值，范围0～1；不是成功率 | mean_score ≥ minimum_vla_score即达标。阈值必须配置；尚未核实发布技能实际使用值。
+
+ | 候选整体是否更好 | 验证集每任务平均进度分，再按任务权重平均；本工作流各任务权重为1 | 候选减父版本 大于minimum_gain + 1e-10；minimum_gain缺省为0。
+
+ | 是否牺牲了其他任务 | 逐任务比较父版本分数减候选分数 | 下降不得超过maximum_regression + 1e-10；maximum_regression缺省为0。
+
+默认接受规则：每项不退步、整体有提升；打平保留父版本。这里是开发验证分数，不是官方排行榜的“五类等权成功率”。示意：阈值0.6，两个VLA开发分数0.3/0.5，则写代码；候选验证分数是否达标，要另与父版本比较。
+
+Coding模型究竟返回什么？
+
+输入：一份JSON文本
+task：任务名
+current_code：上一版源码，首次可为空
+memory：上一版任务经验，首次可为{}
+development_feedback：开发结果与诊断
+primitive_api：允许调用的工具说明
+
+输出：一份JSON文本
+{
+  "source": "def policy(robot, memory):\n    ...",
+  "memory": {"经验或参数": "..."},
+  "rationale": "修改理由"
+}
+
+格式示意，不是一次真实模型输出。
+
+source是Python源码字符串，不是机器人动作；memory是可复用经验字典，没有统一规定其内部字段；rationale用于审计。经验只有被代码读取或用于下一轮修改时才会影响行为。
+
+这条CodeProposer调用把反馈序列化为文本，没有把视频或图片编码为图像消息。证据路径存在，不等于模型已经看过画面。仿真画面会进入执行策略；“Coding模型看视频改代码”不能由此接口直接证明。
+
+开发结果的字段含义
+
+ | 字段 | 含义
+
+ | task / split | 任务名；development或validation用途标记。
+
+ | layout_sha256 | 布局内容哈希，核实是不是同一场景，不是分数。
+
+ | expert / revision | 实际策略名及固定版本。
+
+ | episode_score / success | 环境给出的0～1进度分；是否完整成功的布尔值。
+
+ | evidence / diagnostics | 证据路径及哈希；运行时提供的诊断内容。
+
+ | state / natural_terminal | 完成状态、是否自然结束；运行中断不应直接当作策略能力失败。
+
+评测环节：两条路径
+
+A　固定选择／冻结路由
+提前指定任务用哪个策略，不需要Agent重新选择。
+
+skill_selection.json
+→ name + revision
+→ skill_selection_skill()
+→ 指定执行后端
+
+在开发框架的代码执行接口中：
+execute_policy(source, memory, ...) → policy(robot, memory)
+源码和任务经验交给执行器，不是交给选择代理。
+
+B　发布适配器的代理选择
+Model._start_episode()
+→ AgentPlanner.plan()
+  → agent_observation()：观察筛选
+  → encode()：RGB转图片消息
+  → _planner_catalogue()：精简技能说明
+  → API返回技能选择JSON
+→ agent-decision.json
+→ operation-plan.json（适用时）
+→ load_skill() → 执行
+
+代理看指令、RGB、机器人状态、能力指导和可选技能目录；选择后保持到回合重置。
+
+回答“memory和policy直接输入Agent吗”：不是整份源码和全部记忆都给它。发布适配器将能力指导记忆交给Agent；技能目录会过滤source、implementation、configuration、evidence等字段，并简化操作记忆。代理返回选择，执行器再加载对应代码和完整操作记忆。
+
+代理输入：instruction + observation/图片
+        + task_specific_policy_memory
+        + available_compositions + operation_program（适用时）
+
+代理输出：{"composition":"注册组合名", "operations":["任务级操作标识"], "rationale":"理由"}
+独立模型后端的operations为空；无操作库的配置只返回composition与rationale。
+
+它并不在本回合先跑三种方法比较成功率；它根据能力契约和当前观察选择。固定策略同样根据新观察产生不同动作，冻结路由不等于回放固定轨迹。
+
+三种记忆分别由谁读取？
+
+ | 数据 | 谁读取 | 用途
+
+ | 开发产物memory_rules.json | Coding模型；生成代码的执行接口 | 下一轮修改参考；作为policy(robot, memory)的参数。
+
+ | policy_memory.json及run_context | 评测选择代理 | 理解能力、前提和限制，选择已注册技能。
+
+ | 发布包操作记忆programs/steps | 技能执行器 | 绑定已注册Python方法并按顺序执行；不是历次成功失败日志。
+
+未打通的证据：不能认定开发memory_rules.json原封不动变成发布操作记忆，也不能认定当前官方提交使用哪条路由。已核实的本地实验标记为冻结路由；该事实不证明它由上述开发框架直接启动。
+
+源码定位与核查依据
+
+[workflow.py](code/PhysicalRSI_baselines/robodojo/workflow.py)：_seed、develop、propose、Evaluation、execute_batch。
+
+[skill_selection.py](code/PhysicalRSI_baselines/robodojo/skill_selection.py)：assess、propose_skill_choice。
+
+[proposal.py](code/PhysicalRSI_baselines/robodojo/proposal.py)、[skill_proposal.py](code/PhysicalRSI_baselines/robodojo/skill_proposal.py)：模型请求与返回契约。
+
+[selection.py](code/PhysicalRSI_core/self_harness/selection.py)：select_survivor；[code_execution.py](code/PhysicalRSI_baselines/robodojo/code_execution.py)：policy(robot, memory)。
+
+[发布skill_model.py](comparison/adapter/runtime/PhysicalRSI_baselines/robodojo/skill_model.py)、[agent_planner.py](comparison/adapter/runtime/PhysicalRSI_baselines/robodojo/agent_planner.py)：选择、目录过滤、技能加载与记录。
+
+根据用户提纲与已核实代码整理；未运行学习或仿真实验。下方原有章节保留详细历史说明。
+

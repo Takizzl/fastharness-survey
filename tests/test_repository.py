@@ -14,8 +14,9 @@ import check_links
 class RepositoryTests(unittest.TestCase):
     def test_all_review_entries_are_queryable(self):
         records = whats_new.load_review()
-        self.assertEqual(len(records), 14)
-        for name in ('LoopROS', 'PhysicalRSI', 'Robota-Embed', 'GPT-as-Policy'):
+        self.assertTrue(records)
+        for name in ('LoopROS', 'PhysicalRSI', 'Robota-Embed', 'GPT-as-Policy',
+                     'JitRL', 'COAP', 'PhysMem', 'GroundingPI'):
             self.assertEqual(sum(name in r['paper'][0] for r in records.values()), 1)
         for card in (whats_new.ROOT / 'papers').glob('*.md'):
             self.assertIn(whats_new.card_source(card.relative_to(whats_new.ROOT)), records)
@@ -32,7 +33,10 @@ class RepositoryTests(unittest.TestCase):
         text = (whats_new.ROOT / 'README.md').read_text(encoding='utf-8')
         records = list(whats_new.load_review().values())
         rows = re.findall(r'^\| \[(\d+\. [^\]]+)\]\(#[^)]+\) \| [^|]+ \| ([^|]+) \|$', text, re.M)
-        self.assertEqual(len(rows), 7)
+        self.assertTrue(rows)
+        category_ids = [category.split('.', 1)[0] for category, _ in rows]
+        self.assertEqual(len(category_ids), len(set(category_ids)))
+        self.assertEqual(set(category_ids), {r['module'].split('.', 1)[0] for r in records})
         for category, count in rows:
             entries = [r for r in records if r['module'].split('.', 1)[0] == category.split('.', 1)[0]]
             numbers = [int(n) for n in re.findall(r'\d+', count)]

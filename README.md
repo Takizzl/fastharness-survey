@@ -15,17 +15,20 @@
 
 [团队思考与测评方向](ideas/2026-10-12-FastHarness讨论与测评.md) · [会议原始文档](meetings/sources/2026-10-12-FastHarness/FastHarness.md)
 
+[信息缺项与补充审阅稿（2026-10-17）](review/2026-10-17-资料补充/index.html) · 7 项补充已按用户要求整合；未核实字段保留待审核。
+
 ## Contents
 
 | Category | Focus | Papers |
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
-| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 5 已入库，1 待审核 |
-| [3. Memory](#memory) | Memory mechanisms | 0 已入库，2 待审核 |
+| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 5 已入库，2 待审核 |
+| [3. Memory](#memory) | Memory mechanisms | 0 已入库，3 待审核 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
 | [6. Harness Evolution Boundary](#boundary) | Guarding against overfitting | 1 |
 | [7. RSI Projects](#rsi-projects) | Self-evolving robot systems | 2 项目，待审核 |
+| [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 待审核 |
 
 <br>
 
@@ -51,6 +54,7 @@
 | **Show-Harness**: Just a VLM Agent Can Play Robots<br>\[[Paper](https://arxiv.org/abs/2609.10522)\] \[[Code](https://github.com/showlab/Show-Harness)\] \[[Website](https://showlab.github.io/Show-Harness)\] | arXiv 2026.09 | VLM 每步输出一个语义动作（前、后、左、右、上、下、旋转、抓取、松开），换算成 2 或 4 cm 末端位移 | Franka 真机 10 个抓放任务：89%，π0.5 只有 39% | NUS |
 | **RoboHarness**: Memory-Driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning<br>\[[Paper](https://arxiv.org/abs/2607.18060)\] \[[Code](https://github.com/markli1hoshipu/RoboHarness)\] \[[Website](https://robo-harness.com)\] | ECCV 2026 Workshop<br>**Best Paper** | Agent 按能力把子任务分给 VLA、RL、TAMP，换策略前先把机器人移到下一个策略熟悉的状态 | LIBERO-LoHo 长任务：95.2%，单用 π0.5 只有 6.4% | Huawei Noah's Ark |
 | **GPT-as-Policy**: GPT 6 Astra as an Embodied Policy<br>\[[Report](https://anonymous-report-421.github.io/public-website/?view=1)\] \[[Code](https://github.com/anonymous-report-421/GPT-as-Policy)\] \[[Website](https://anonymous-report-421.github.io/public-website/?view=1)\] · [待审核](review/论文审阅表.html) | 技术报告 2026 | GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正，恢复后交还控制。 | RoboDojo 50 例：混合 48%，Direct 26% | 署名作者；单位待核实 |
+| **COAP / Embodied Turing Machines**: Embodied Turing Machines<br>\[[Paper](https://arxiv.org/abs/2610.12369)\] · [详情](papers/coap.md) · [待审核](review/论文审阅表.html) | arXiv 2026.10 | 编码 Agent 根据执行反馈修改共享程序，最终冻结程序，用显式状态和重试完成任务。 | RoboDojo 42任务：成功率70.24%，均为仿真 | 待核实 |
 
 <br>
 
@@ -60,8 +64,9 @@
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
-| **JitRL**<br>\[[Paper](https://arxiv.org/abs/2601.18510)\] · [待审核](review/论文审阅表.html) | — | 从相似经验中估计动作价值，修正当前候选动作的选择概率 | — | — |
+| **JitRL**: Just-In-Time Reinforcement Learning: Continual Learning in LLM Agents Without Gradient Updates<br>\[[Paper](https://arxiv.org/abs/2601.18510)\] \[[Code](https://github.com/liushiliushi/JitRL)\] · [详情](papers/jitrl.md) · [待审核](review/论文审阅表.html) | arXiv 2026.01 | 检索状态、动作与回报，估计动作价值并修正候选动作概率，模型参数不变。 | WebArena-Lite 留出165任务：12.70%→40.88% | National University of Singapore |
 | **Robota-Embed**: Unified VLA Embeddings for Robot In-Context Learning and Evolution<br>\[[Paper](https://arxiv.org/abs/2610.19495v1)\] \[[Website](https://robota-ai.github.io/robota-embed/)\] · [详情](papers/robota-embed.md) · [待审核](review/论文审阅表.html)<br>Code / weights：未核实到发布入口 | arXiv 2026.10 | 将任务、画面和动作编码为向量，检索历史执行片段，把画面、命令和反馈交给策略复用。 | ManiSkill 5 任务×20 次：Astra 24%→68% | NVIDIA<br>MIT |
+| **PhysMem**: Learning Physical Principles from Interaction: Self-Evolving Planning via Test-Time Memory<br>\[[Paper](https://arxiv.org/abs/2602.20323)\] \[[Website](https://phys-mem.github.io/)\] · [详情](papers/physmem.md) · [待审核](review/论文审阅表.html) | arXiv 2026.02 | 从交互中生成并验证物理假设，将可靠原则写入记忆，检索后辅助下一次规划。 | 真机推球展示12次交互；缺总体量化对照 | UC San Diego<br>Stanford |
 
 
 <br>
@@ -106,3 +111,11 @@
 | **PhysicalRSI**: Physical RSI 1.0: Recursive Self-Harness for Scaling Embodied Skills<br>Paper 未发布<br>\[[Code](https://github.com/PhysicalRSI/PhysicalRSI)\] \[[Website](https://mmlab.hk/research/PhysicalRSI)\] · [待审核](review/论文审阅表.html) | Preview 2026 | Agent 根据执行反馈改写 harness，评测候选并保留更优版本，继承代码技能与任务记忆。 | RoboDojo 官网快照：Score 36.27，SR 31.38% | HKU MMLab<br>KAI |
 
 项目报告与 Preview 按公开材料收录，来源核查和评测口径见 [LoopROS](papers/loopros.md)、[PhysicalRSI](papers/physicalrsi.md)。
+
+<a id="perception"></a>
+
+## 8. Perception Foundation Models
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **GroundingPI**: GroundingPI: A Grounding Foundation Model towards Physical Intelligence with Visual Primitives<br>\[[Paper](https://arxiv.org/abs/2609.39601)\] \[[Code](https://github.com/groundingpi/GroundingPI)\] · [详情](papers/groundingpi.md) · [待审核](review/论文审阅表.html) | arXiv 2026.09 | 用定位监督训练视觉语言底座，将中间特征接入动作模型，支持精确感知与控制。 | 现有笔记未记录可直接入表的量化对照 | 小鹏汽车<br>北京大学<br>香港大学<br>UC Berkeley<br>Princeton<br>NUS<br>清华<br>HKUST (GZ) |

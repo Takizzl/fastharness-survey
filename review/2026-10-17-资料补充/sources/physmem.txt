@@ -1,0 +1,104 @@
+# PhysMem 论文解读
+
+论文：https://arxiv.org/pdf/2602.20323v1
+
+01 / 核心思想
+
+## 从交互中学习物理原则
+
+PhysMem · Learning Physical Principles from Interaction:Self-Evolving Planning via Test-Time Memory
+
+UC San Diego · Stanford University ｜ Haoyang Li · Yang You · Hao Su · Leonidas Guibas ｜ 2026.02
+
+Physical Grounding · §I
+### 通用物理知识缺少场景适应
+
+VLM 难以预测特定物体与环境的接触动力学；直接检索既有经验可能在物理条件变化后失效。
+
+Test-Time Learning · §III-A
+### 固定模型参数下的交互学习
+
+从部署期间的交互中学习可验证的物理原则，并用于后续规划。
+
+创新点：通过交互验证将原始经验提炼为可复用的物理原则，并压缩支持经验，在不更新模型参数的情况下改进后续规划。
+
+[论文 · §I、§III-C ↗](https://arxiv.org/html/2602.20323v1#S1)PHYSMEM / ORIGINAL FIGURES · v1
+
+
+
+02 / 核心思想
+
+## 方法结构：模块分工
+
+以下模型分工对应真机实验（§IV-A）；经验记录与记忆维护流程见 Algorithm 1。
+
+Planner · Gemini-3.0-Flash
+### 高层规划
+
+输入当前观察、任务与检索记忆，输出高层动作决策；开启 thinking mode。
+
+Memory System · RecordExperience
+### 经验记录 → 情景记忆
+
+由记忆系统写入经验缓冲区：图像／关键帧、动作、成功／失败、任务上下文与符号状态（动作类型、物体属性等）。
+
+Reflection Model · Qwen3-VL
+### 假设生成
+
+每 15 秒异步运行；根据相关经验、已有原则与假设生成候选假设。记忆系统维护置信度、晋升与移除。
+
+Executor · 低层控制器
+### 动作执行
+
+执行 Planner 指令，并产生后续观察与动作结果，供记忆系统记录。
+
+![论文原图：Figure 2 · 系统概览](physmem-source/fig2.png)
+Figure 2 · 系统概览 · PDF 第 2 页 · 点击放大
+
+[论文 · Algorithm 1、§III-B、§IV-A ↗](https://arxiv.org/html/2602.20323v1#S3)PHYSMEM / ORIGINAL FIGURES · v1
+
+
+
+03 / 核心思想
+
+## 记忆：记录、组织与提供
+
+Episodic Memory · 附录 A-A
+### 记录字段
+
+observation：图像／关键帧；action：动作；outcome：成功／失败；context：任务／子任务；symbolic_state：动作类型、物体属性、依赖状态、进度。另存 ID、时间索引、失败标签及一致性分数。
+
+Working → Long-term Memory
+### 组织与更新
+
+按符号状态相似性聚类；Qwen 生成 Avoid / Prefer / Sequence 假设，包含规则、适用动作与触发条件。依据相关动作结果更新置信度，满足条件后晋升为原则并折叠支持经验。
+
+Retrieval → Planner Prompt · §III-E
+### 向 Planner 提供记忆
+
+按动作类型和物体属性筛选，再进行语义排序。Top-k 已验证原则与活跃假设作为文本注入 Gemini 提示词，保留类型、条件与置信度（右图）。
+
+![论文原图：Figure 3 · 记忆注入提示词](physmem-source/fig3.png)
+Figure 3 · 记忆注入提示词 · PDF 第 4 页 · 点击放大
+
+[论文 · 附录 A、§III-C / E、Figure 3 ↗](https://arxiv.org/html/2602.20323v1#A1)PHYSMEM / ORIGINAL FIGURES · v1
+
+
+
+04 / 结果与官网
+
+## 实验结果
+
+真机 · Ball Navigation · Figure 6：连续 12 个 episode 的终态，按从左到右、从上到下排列。
+
+![论文原图：Figure 6 · 连续 12 次推球试验的结果](physmem-source/fig6.png)
+Figure 6 · 连续 12 次推球试验的结果 · PDF 第 6 页 · 点击放大
+
+结果：早期出现障碍阻挡或越过目标；随着原则积累，第 8–12 个 episode 持续到达目标区域。蓝圈表示球，青色叉号表示目标。
+
+官方项目页 · 演示视频与更多结果[phys-mem.github.io ↗](https://phys-mem.github.io/)
+
+arXiv:2602.20323v1 · Figure 6 · 真机定性结果
+
+[论文 · Figure 6、§V-A ↗](https://arxiv.org/html/2602.20323v1#S5.F6)PHYSMEM / ORIGINAL FIGURES · v1
+

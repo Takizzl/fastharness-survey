@@ -1,0 +1,44 @@
+[
+  {
+    "project": "JitRL",
+    "original": "C:\\Users\\taki\\Documents\\ChatGPT\\Harness\\papers\\jitrl\\paper_report.zh.md",
+    "snapshot": "sources/jitrl.txt",
+    "sha256": "a141dc9a80feb32386f8c5880bd2d4e7986633b133342eb577a22229d198ddc0"
+  },
+  {
+    "project": "COAP / Embodied Turing Machines",
+    "original": "C:\\Users\\taki\\Documents\\ChatGPT\\Harness\\COAP论文阅读笔记.md",
+    "snapshot": "sources/coap.txt",
+    "sha256": "1795456767568624e6dfa68576bba209b3f45379c04903bac97a7581ab3d3130"
+  },
+  {
+    "project": "PhysMem",
+    "original": "C:\\Users\\taki\\Documents\\ChatGPT\\Harness\\PhysMem论文解读.md",
+    "snapshot": "sources/physmem.txt",
+    "sha256": "fc8f1432520a99a6220ecc936cf92374f78f091571629b41f6b7af1ba34ec4dc"
+  },
+  {
+    "project": "GroundingPI",
+    "original": "C:\\Users\\taki\\Documents\\ChatGPT\\Harness\\papers\\GroundingPI\\精读笔记.md",
+    "snapshot": "sources/groundingpi.txt",
+    "sha256": "def28b03dfc7e001c545d854af70682a74c59bd81e8f41f751f350893ed554b6"
+  },
+  {
+    "project": "ASPIRE",
+    "original": "C:\\Users\\taki\\Documents\\ChatGPT\\Harness\\papers\\aspire\\代码迭代与经验复用.md",
+    "snapshot": "sources/aspire.txt",
+    "sha256": "71bd885797015c3b016e8295e6a65940dabe607fef5ab899aa9f67d2f5dfee72"
+  },
+  {
+    "project": "HarnessVLA",
+    "original": "C:\\Users\\taki\\Documents\\ChatGPT\\Harness\\papers\\harnessvla\\精读笔记.md",
+    "snapshot": "sources/harness-vla.txt",
+    "sha256": "6adf330eaaf401d0153438b57f6b7e5c165e695a59633431c6e931974b8e307a"
+  },
+  {
+    "project": "PhysicalRSI",
+    "original": "C:\\Users\\taki\\Documents\\ChatGPT\\Harness\\papers\\physicalrsi\\开发与评测流程.md",
+    "snapshot": "sources/physicalrsi.txt",
+    "sha256": "cafd648d03437588226c1f8c9e4bdf29de5cde73d8ad1d594b3364b21a5ef5ad"
+  }
+]

@@ -1,0 +1,2 @@
+# Preserve imported research notes byte-for-byte for the recorded SHA-256 hashes.
+review/**/sources/*.txt -text -whitespace

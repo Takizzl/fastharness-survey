@@ -1,0 +1,39 @@
+# 精读笔记 · Harness VLA
+
+## 基本情况
+- 论文：2607.08448v5，2026-09-24；团队和正文详见 paper_report.zh.md。
+- 输入：任务、RGB-D、机器人状态、Memory；输出：原语调用。
+- 官方代码：RPent。Git 克隆遇到 Windows schannel 凭据错误，改用官方 codeload main 压缩包，只读核对。
+- 下载记录：code-provenance.json；压缩包：code-main.zip；代码：repository/RPent-main/。
+- 不运行研究仓库代码，不安装其依赖。
+
+## 导读地图
+| 站 | 内容 | 原图／原文 | 代码 |
+| --- | --- | --- | --- |
+| ① 动机 | 冻结策略的分布外失败与原语分工 | §1，Figure 1/2 | — |
+| ② 架构 | Planner、VLA、解析控制、记忆 | §2，Figure 1 | robots/libero/robot_spec.py |
+| ③ 训练 | Harness 不更新 VLA；底层策略已有训练 | 附录 D | 本次不运行训练 |
+| ④ 数据 | JSON 总结、JSONL 命令、Markdown 规则 | 附录 A/E | rpent/memory/manager.py |
+| ⑤ 信息流 | 观察、原语执行、反馈、恢复 | §2.1–2.3 | robots/libero/tools.py |
+| ⑥ 案例 | 奶油奶酪盒空抓后恢复 | §3.3，Figure 7 | tools.py 的状态记录和 recipe 导出 |
+| ⑦ 实验 | 同任务新 seed、记忆对照、Flash 口径 | Table 2–7、附录 G/H | — |
+
+## 汇报正文
+完整汇报保存在 paper_report.zh.md；HTML 为 paper_report.html。三张展示图片均裁自论文，未重绘。
+
+## 源码定位与差异
+- manager.py:56 校验规则元数据；:99 合并证据；:212 merge_memory；:300 发布 audit/recipe。
+- robots/libero/robot_spec.py:155–159 区分 exploration inbox_write 与 evaluation read_only。
+- robots/libero/tools.py:936 起根据环境 terminated 决定是否导出 recipe；前面代码只取最后 reset 之后的记录。
+- robots/libero/prompts/explore.py:250 起要求 Agent 写审计总结与经验草稿。
+- rpent/cli/main.py:728 起在探索完成后调用 merge_memory。
+- 论文的逐步 command.json 协议与当前 toolkit/state 记录实现分开说明。
+- 当前 merge_memory 不覆盖已有完整任务配对；与论文“可换为更短／可靠序列”描述存在实现边界。
+- 当前有 task-family；论文主体为 task/global 两层。
+
+## 问答
+- Critic：没有独立命名模块；Planner 处理反馈与恢复，最终成功由仿真或真机操作人员确认。
+- 回报：任务二值成功信号；没有 JitRL 式每步累计回报与动作优势估计。
+- 跨任务：Global Memory 设计支持跨任务，但主要 few-shot 成绩有每任务 seed 0 经验，不能解释为完全未见任务迁移。
+- Flash：同 seed 选卡与报告，时间统计口径不同，不能宣称端到端加速倍数。
+- 图 1/正文 RoboCasa 汇总与表格不同：采用 Table 4/H，并明确差异。
