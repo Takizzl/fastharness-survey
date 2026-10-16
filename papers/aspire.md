@@ -8,7 +8,7 @@
 | Code | https://github.com/NVlabs/ASPIRE |
 | Website | https://research.nvidia.com/labs/gear/aspire/ |
 | Team | NVIDIA GEAR（Jim Fan、朱玉可组）、UMich、UIUC、UC Berkeley、CMU |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 

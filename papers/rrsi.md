@@ -8,7 +8,7 @@
 | Code | https://github.com/google-research/rrsi |
 | Website | https://regularized-rsi.com |
 | Team | Google Cloud AI Research（Tomas Pfister 组）、UNC、Stanford |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 

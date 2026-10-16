@@ -8,7 +8,7 @@
 | Code | https://github.com/zqc3117/Spotter |
 | Website | https://zqc3117.github.io/Spotter/ |
 | Team | Griffith University（通讯作者）、清华交叉信息院（共同一作）、复旦、腾讯、同济 |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 

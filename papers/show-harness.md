@@ -8,7 +8,7 @@
 | Code | https://github.com/showlab/Show-Harness |
 | Website | https://showlab.github.io/Show-Harness |
 | Team | NUS Show Lab（Mike Shou 组） |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
