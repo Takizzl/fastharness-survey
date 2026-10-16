@@ -13,10 +13,6 @@
 
 **要求：** 需要兼容多个 LLM 和下游 policy
 
-[团队思考与测评方向](ideas/2026-10-12-FastHarness讨论与测评.md) · [会议原始文档](meetings/sources/2026-10-12-FastHarness/FastHarness.md)
-
-[信息缺项与补充审阅稿（2026-10-17）](review/2026-10-17-资料补充/index.html) · 补充记录与来源。
-
 ## Contents
 
 | Category | Focus | Papers |
@@ -118,4 +114,4 @@
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
-| **GroundingPI**: A Grounding Foundation Model towards Physical Intelligence with Visual Primitives<br>\[[Paper](https://arxiv.org/abs/2609.39601)\] \[[Code](https://github.com/groundingpi/GroundingPI)\] \[[Website](https://groundingpi.github.io/)\] · [详情](papers/groundingpi.md) · [待审核](review/论文审阅表.html) | arXiv 2026.09 | 用定位监督训练视觉语言底座，将中间特征接入动作模型，支持精确感知与控制。 | — | XPeng<br>PKU<br>HKU<br>UC Berkeley<br>Princeton<br>NUS<br>Tsinghua<br>HKUST (GZ) |
+| **GroundingPI**: A Grounding Foundation Model towards Physical Intelligence with Visual Primitives<br>\[[Paper](https://arxiv.org/abs/2609.39601)\] \[[Code](https://github.com/groundingpi/GroundingPI)\] \[[Website](https://groundingpi.github.io/)\] · [详情](papers/groundingpi.md) · [待审核](review/论文审阅表.html) | arXiv 2026.09 | 用定位监督训练视觉语言底座，将中间特征接入动作模型，支持精确感知与控制。 | — | XPeng 等 |
