@@ -8,7 +8,6 @@
 | Code | https://github.com/DAGroup-PKU/PyRUA-Lean |
 | Website | https://dagroup-pku.github.io/PyRUA-Lean/ |
 | Team | 北大（周大权组）、NUS、NVIDIA |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -43,3 +42,7 @@ Tool Calling 每步调一次 VLM，token 开销大。
 ## 真机结果
 
 没做（论文写明）。
+
+## 核对依据
+
+[主实验及效率分析](https://arxiv.org/abs/2610.01939)

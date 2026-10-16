@@ -8,7 +8,6 @@
 | Code | https://github.com/capgym/cap-x |
 | Website | https://capgym.github.io |
 | Team | NVIDIA、UC Berkeley、Stanford、CMU（Ken Goldberg、Jim Fan 组） |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -51,3 +50,7 @@ Coding Agent 只拿 **Low-level Primitive**（SAM3 分割、IK 求解、Motion P
 
 **零样本演示**
 - Franka、AgiBot G1 上找杯下物体、解算式、按电梯等，没报成功率
+
+## 核对依据
+
+[CaP-Bench 主实验；已有原文核对记录](https://arxiv.org/abs/2603.22435)

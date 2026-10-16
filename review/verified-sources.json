@@ -1,0 +1,104 @@
+{
+  "spotter": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2609.36808",
+    "location": "摘要及真机实验",
+    "result": "Franka 成功率 53% → 83%"
+  },
+  "cap-x": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2603.22435",
+    "location": "CaP-Bench 主实验；已有原文核对记录",
+    "result": "低级原语多轮 54%，高级 API 单轮 39%"
+  },
+  "harness-vla": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2607.08448",
+    "location": "LIBERO-Pro 主表；本地 v5 原文",
+    "result": "82.4%，原 VLA 50.0%"
+  },
+  "pyrua-lean": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2610.01939",
+    "location": "主实验及效率分析",
+    "result": "63.1% → 71.7%；效率统计限两边均成功的任务"
+  },
+  "show-harness": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2609.10522",
+    "location": "真机实验",
+    "result": "Franka 89%，π0.5 39%"
+  },
+  "roboharness": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2607.18060",
+    "location": "LIBERO-LoHo 主实验",
+    "result": "95.2%，π0.5 6.4%"
+  },
+  "aspire": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2607.00272",
+    "location": "LIBERO-Pro 主实验；本地原文及代码阅读记录",
+    "result": "18% → 72%"
+  },
+  "enpire": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2606.19980",
+    "location": "真机实验及重试定义",
+    "result": "99% 允许最多 8 次重试，不是单次尝试成功率"
+  },
+  "rrsi": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/abs/2609.24972",
+    "location": "未见任务汇总",
+    "result": "39.7 → 43.6；非机器人实验"
+  },
+  "jitrl": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/html/2601.18510v4",
+    "location": "附录 J.1 表 13；官方仓库录用声明",
+    "result": "固定记忆、165 个留出任务：12.70% → 40.88%"
+  },
+  "coap": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/html/2610.12369v1",
+    "location": "摘要、实验与附录；作者项目主页",
+    "result": "RoboDojo 42 任务 70.24%，仿真"
+  },
+  "physmem": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/html/2602.20323v1",
+    "location": "图 6",
+    "result": "12 次真机推球过程，属于定性展示"
+  },
+  "groundingpi": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/html/2609.39601v1",
+    "location": "表 5",
+    "result": "COCO 每框 7.6 tokens；衡量序列化成本，不是推理速度"
+  },
+  "robota-embed": {
+    "date": "2026-10-17",
+    "source": "https://arxiv.org/html/2610.19495v1",
+    "location": "表 6",
+    "result": "ManiSkill 5 任务 × 20 次：24% → 68%"
+  },
+  "gpt-as-policy": {
+    "date": "2026-10-17",
+    "source": "https://anonymous-report-421.github.io/public-website/?view=1",
+    "location": "项目公开逐例数据；Galbot 官方报告与 arXiv:2609.38537",
+    "result": "50 例：混合 48%，Direct 26%"
+  },
+  "loopros": {
+    "date": "2026-10-17",
+    "source": "https://loopmaster.ai/loopros/",
+    "location": "官网 data.js 100 回合统计；客户端 README",
+    "result": "项目自报 82/100，Score 88.90；选定任务子集"
+  },
+  "physicalrsi": {
+    "date": "2026-10-17",
+    "source": "https://mmlab.hk/research/PhysicalRSI",
+    "location": "官方榜单 2026-10-09 快照与 Preview 仓库",
+    "result": "历史快照 Score 36.27、SR 31.38%；不是实时排名"
+  }
+}

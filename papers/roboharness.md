@@ -8,7 +8,6 @@
 | Code | https://github.com/markli1hoshipu/RoboHarness（官方仓库，2026-10 时只有项目说明，尚无源码） |
 | Website | https://robo-harness.com |
 | Team | 华为诺亚方舟实验室 |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -48,3 +47,7 @@ Coding Agent（Codex）作为**调度器**，把 VLA、RL、TAMP 封装成带 **
 - 5 种搭积木结构：67%~93%
 - 4 种干扰：67%~87%
 - 没和基线比
+
+## 核对依据
+
+[LIBERO-LoHo 主实验](https://arxiv.org/abs/2607.18060)

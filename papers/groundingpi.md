@@ -8,7 +8,6 @@
 | Code | https://github.com/groundingpi/GroundingPI |
 | Website | https://groundingpi.github.io/ |
 | Team | 小鹏汽车、北京大学、香港大学、UC Berkeley、Princeton、NUS、清华、HKUST (GZ) |
-| Review | 依据已有资料整合；未核实字段保留待审核 |
 
 ## 一句话
 
@@ -24,25 +23,13 @@
 
 ## 实验结果
 
-现有笔记未给出可直接入表的具体成绩。34 项感知基准平均分、nuScenes 开环轨迹误差和机器人成功率属于不同指标，不能混写。
-
-## 真机结果
-
-当前笔记未提供可确认的真机量化结果。
-
-## 资料补充与边界
-
-Paper：arXiv:2609.39601v1，2026-09-30。笔记记录团队：小鹏汽车、北京大学、香港大学、UC Berkeley、Princeton、NUS、清华、HKUST (GZ)。代码 [GroundingPI 官方仓库](https://github.com/groundingpi/GroundingPI)；权重 https://huggingface.co/GroundingPI/GroundingPI。
-
-需要继续从现有原论文抽取各基准具体成绩及协议；完整训练数据公开状态、代码核对和模块归属按感知基础模型收录。
+论文表 5：COCO 每框输出 7.6 tokens，Dense200 每框 5.1 tokens。这是输出序列化成本，不是推理速度或机器人成功率。
 
 ## 来源
 
-初稿依据已有资料整理；本轮联网核查见下方记录。
-
 - [已有笔记原文](../review/2026-10-17-资料补充/sources/groundingpi.txt)
-- [本次缺项与补充记录](../review/2026-10-17-资料补充/index.html#groundingpi)
 
-## 链接核查 · 2026-10-17
 
-[官方仓库](https://github.com/groundingpi/GroundingPI) 链接至 [项目主页](https://groundingpi.github.io/)，标题和论文对应。
+## 核对依据
+
+[表 5](https://arxiv.org/html/2609.39601v1)

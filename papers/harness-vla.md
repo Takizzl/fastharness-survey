@@ -8,7 +8,6 @@
 | Code | https://github.com/RLinf/RPent |
 | Website | https://harnessvla.github.io/ |
 | Team | 清华（于超、丁文伯组）、港科大、中科院自动化所等 |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -49,9 +48,7 @@ VLA Policy **冻结**，封装成 **vla_act 原语**，只负责抓取、放置�
 - 只有演示：换目标、按标记分拣、抓空后重试、倒珠子、擦盘子
 - 没报成功率
 
-## 已有资料补充：开发、评测与经验复用
-
-2026-10-17，Codex 根据本地阅读与源码笔记整理，经用户要求整合；以下为补充证据，不替换前述论文实验。
+## 开发、评测与经验复用
 
 探索阶段为 inbox_write，评测阶段为 read_only。探索结束后合并记忆；根据环境 terminated 决定是否导出成功 recipe，使用最后 reset 之后的记录。当前实现还区分 task-family；不能把发布实现与论文 task/global 两层描述完全等同。
 
@@ -62,3 +59,7 @@ VLA Policy **冻结**，封装成 **vla_act 原语**，只负责抓取、放置�
 源码来自本地保存的官方压缩包；不把后续发布实现差异当作论文结果的纠正。
 
 [笔记原文](../review/2026-10-17-资料补充/sources/harness-vla.txt)
+
+## 核对依据
+
+[LIBERO-Pro 主表；本地 v5 原文](https://arxiv.org/abs/2607.08448)

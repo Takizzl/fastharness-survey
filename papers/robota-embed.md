@@ -3,12 +3,10 @@
 | 项目 | 内容 |
 |---|---|
 | 模块 | 3. Memory |
-| Year / Venue | arXiv 2026.10；v1 2026-10-14，未核实会议录用 |
+| Year / Venue | arXiv 2026.10；v1 2026-10-14，arXiv 预印本 |
 | Paper | https://arxiv.org/abs/2610.19495v1 |
-| Code | -（2026-10-16 未核实到官方代码、权重发布入口） |
 | Website | https://robota-ai.github.io/robota-embed/ |
 | Team | NVIDIA、MIT、UC Berkeley、Oxford、CMU（论文首页） |
-| Review | 来源核对完成，待人工审核 |
 
 ## 一句话
 
@@ -48,23 +46,6 @@ ManiSkill 主表（论文表 6）：
 
 三项真机任务报告的是任务进度分数，每条件每任务 12 次：DreamZero Banana→Bowl 21.67→40.00；Fast-WAM Pick Fruit 75.00→79.17、Split Cup 66.67→87.50。不是二元成功率；Fast-WAM 路线包含策略训练。
 
-## 汇报中的研究重点：RoboDojo + Astra
+## 核对依据
 
-用户已有汇报：`Robota-Embed论文解读.html`；配套可编辑源：`papers/robota-embed/paper_report.zh.md`（原工作区）。以下由 Codex 据该汇报整理，研究设想尚未实施。
-
-- 用户目标原话：“我们现在考虑的都是在robodojo里面直接使用astra来进行推理”；“因为我要用他来复用经验，在robodojo中”。
-- 我们优先参考 Embed2Evolve：当前观测检索历史执行材料，让 Astra 直接推理与行动，不优先走训练 Fast-WAM 的路线。
-- 先固定策略、开发/测试划分与预算，对比无参考、随机参考、VL 检索、VLA 检索，分别评估阶段匹配、控制成功率和 token 成本。该建议来自汇报，尚无 RoboDojo 实验结果。
-- 失败经历可被检索，回合成功标签不表示每个局部动作正确；历史材料保留反馈，不能自动改写为正确操作建议。
-- ManiSkill 使用 endpoint-error action proxy 适配，是分布外适配；RoboDojo 的动作语义、codec、投影器与历史封装仍需核实，不能假定补零就能迁移。
-
-## 来源与核对
-
-- [arXiv v1](https://arxiv.org/abs/2610.19495v1)：标题、日期、摘要精确检索指标；34 页、14 图。
-- 本地论文 LaTeX：第 3 节、5.2 节、附录 A / D；表 2、6 及真机进度分数表，与已有汇报交叉核对。
-- [作者项目页](https://robota-ai.github.io/robota-embed/)：链接来自 arXiv；本次网络访问失败，未据此声称代码或权重已发布。未核实到代码不等于断言没有代码。
-- 核对日期：2026-10-16。论文结果与团队讨论分别记录；未运行机器人实验。
-
-## 链接核查 · 2026-10-17
-
-论文标题与项目页对应，链接可访问；项目页未发现明确的 GitHub 发布入口，保留原有代码/权重公开范围说明。
+[表 6](https://arxiv.org/html/2610.19495v1)

@@ -20,7 +20,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 FIELDS = ["问题", "方法", "仿真结果", "真机结果", "团队"]
-NOTICE = "> 以下内容取自审阅表与会议记录；逐项显示审核状态，待审核内容不代表人工确认。"
+NOTICE = "> 以下内容取自论文汇总表与会议记录。"
 
 
 def source_key(url):
@@ -112,7 +112,7 @@ def print_paper(r):
     links = [f"[{label}]({r['href']})"] + [f"[{k}]({u})" for k, u in (("Code", code), ("Website", web)) if u != "-"]
     print("- " + " ".join(links))
     for extra in r["paper"][1:]:
-        label = "状态" if extra in ("已入库", "待审核") else "备注"
+        label = "状态" if extra == "已入库" else "备注"
         print(f"- {label}：{extra.strip('（）')}")
     for f in FIELDS:
         lines = r.get(f) or ["-"]

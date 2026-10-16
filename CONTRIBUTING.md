@@ -1,6 +1,6 @@
 # 贡献规则
 
-已入库论文须经人工阅读原文、核对数据。用户要求提前展示的新论文、技术报告与 Preview 可以进入首页表格，但必须标「待审核」，注明来源与公开范围，不得冒充已审核论文。
+收录前核实论文、作者项目页或官方代码。缺乏依据的字段不展示，证据不足的项目暂不收录。
 
 ## 每次会议后
 
@@ -14,14 +14,10 @@
 
 ## 新增论文
 
-1. **先进 HTML 审阅表**（人工精简的完整内容只写在这里，它是唯一的原文来源）：新论文先写进 [`review/论文审阅表.html`](review/论文审阅表.html)，状态标「待审核」，包含问题、方法、仿真结果、真机结果、团队。提交者没给的信息要从原文补齐（规则见 [`AGENTS.md`](AGENTS.md)）。
-2. **人工审核**：审核人下载审阅表用浏览器打开，对照原文逐条核对。
-3. **再进仓库**：
-   - `README.md` 论文表格对应模块下加一行
-   - `papers/<简称>.md` 写详情（复制 [`templates/paper.md`](templates/paper.md)）
-   - `CHANGELOG.md` 最上面写明本次新增 / 修改了什么
-   - 审阅表里该论文状态改成「已入库」
-4. 提交 Pull Request，按模板勾选核对项。PR 会自动运行格式检查（`scripts/check_format.py`），不通过不能合并；本地可先运行 `python scripts/check_format.py`。
+1. 对照论文、项目页、代码核实方法、指标与团队。
+2. 同步更新 `papers/`、README、论文汇总表与 `review/verified-sources.json`。
+3. 未证实字段省略，不将 HTTP 200 当作内容核实。
+4. 提交前运行格式、测试与外链检查。
 
 ## 收录标准
 
@@ -42,7 +38,7 @@
 - 列固定为：Paper | Venue | Method | Result | Team，全部居中（`:---:`）
 - **所有字段都要填**；确实没有的写 `-`，不要留空
 - 新论文插在对应类别表格的最后一行之后
-- **Paper**：`**简称**: 标题<br>\[[Paper](arXiv 链接)\] \[[Code](GitHub 链接)\] \[[Website](项目主页)\]`；标题是去掉简称前缀后的部分（没有简称前缀就写完整标题）；三个链接都必须有，顺序固定，并且都要打开确认过（`python scripts/check_links.py`）
+- **Paper**：`**简称**: 标题<br>\[[Paper](arXiv 链接)\] \[[Code](GitHub 链接)\] \[[Website](项目主页)\]`；标题是去掉简称前缀后的部分（没有简称前缀就写完整标题）；只展示已确认的链接，至少包含 Paper 或 Report；各链接都要打开确认过（`python scripts/check_links.py`）
 - **Venue**：会议 + 年份，如 `ICML 2026`；只在 arXiv 就写 `arXiv 2026.09`（年月取 arXiv 第一版的提交日期，不是编号）；获奖写 `ECCV 2026 Workshop<br>**Best Paper**`，Workshop 必须注明
 - **Method**：中文，从审阅表里人工写好的「方法」浓缩成一句话，写清谁做什么；要让不了解这篇论文的人一眼看懂，领域常识词（VLA、SAM、IK、原语、RL、TAMP 等）直接用，只有论文自创的专有名词换成它实际做的事（如 Failure Risk Score →「给每段动作打出错风险分」），不超过 55 字，不换行
 - **Result**：中文，从审阅表的仿真 / 真机结果里挑最能说明效果的一项，写清基准或机器人、规模、对比对象，如「Franka 真机 3 个任务各 10 次：成功率从 53% 提到 83%」；不超过 35 字，不换行
@@ -50,9 +46,8 @@
 - **Team**：主要单位，最多两个，每个单位一行，用 `<br>` 分行，不要用 `/`
 - 数字必须能在论文里找到；从图上读的标「约」
 
-## 待审核项目与检查
+## 发布检查
 
-- 用户要求展示的待审核条目同样采用五列表格，关联审阅表；论文、代码或单位未核实到时明确说明，不编造链接。项目报告用 Report，Preview 标明阶段。
-- `python scripts/check_format.py` 检查表格、详情页、审阅状态和站内链接；`python -m unittest discover -s tests -v` 验证查询与链接检查逻辑。
-- `python scripts/check_links.py` 扫描维护文档和审阅表中的外链。HTTP 404/410 等明确错误阻断；网络、限流和服务器错误保留访问未核实警告，不计为验证通过。历史原件归档不据外链现状改写。
-- GitHub 的 repository-checks 分别显示格式、测试和外链任务；合并前确认所有任务完成，外链警告仍需查看原因。
+- 首页只保留核实后的条目、简短方法、结果与主要单位。
+- 每项必须有可追溯的原始来源，数字保留基准、版本及试验口径。
+- 运行 `python scripts/check_format.py`、`python -m unittest discover -s tests` 和 `python scripts/check_links.py`。

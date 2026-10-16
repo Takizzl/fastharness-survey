@@ -8,7 +8,6 @@
 | Code | https://github.com/showlab/Show-Harness |
 | Website | https://showlab.github.io/Show-Harness |
 | Team | NUS Show Lab（Mike Shou 组） |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -47,3 +46,7 @@ VLM 难以直接控制细粒度动作。
 - 推理任务、视频示范学习
 - 不同 VLM 与思考强度对比
 - 插件消融
+
+## 核对依据
+
+[真机实验](https://arxiv.org/abs/2609.10522)

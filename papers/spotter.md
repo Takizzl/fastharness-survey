@@ -8,7 +8,6 @@
 | Code | https://github.com/zqc3117/Spotter |
 | Website | https://zqc3117.github.io/Spotter/ |
 | Team | Griffith University（通讯作者）、清华交叉信息院（共同一作）、复旦、腾讯、同济 |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -44,3 +43,7 @@ VLA Policy 正常执行；本地 VLM（Qwen3.8-27B）**监控**，根据执行�
 - 叠杯：6/10 → 8/10
 - 方块放置：7/10 → 10/10
 - 两段任务：3/10 → 7/10
+
+## 核对依据
+
+[摘要及真机实验](https://arxiv.org/abs/2609.36808)

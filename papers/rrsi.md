@@ -8,7 +8,6 @@
 | Code | https://github.com/google-research/rrsi |
 | Website | https://regularized-rsi.com |
 | Team | Google Cloud AI Research（Tomas Pfister 组）、UNC、Stanford |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -41,3 +40,7 @@ Harness 自进化用同一批题提改动、选改动，出现自适应过拟合
 ## 真机结果
 
 不涉及（不是机器人工作）。
+
+## 核对依据
+
+[未见任务汇总](https://arxiv.org/abs/2609.24972)

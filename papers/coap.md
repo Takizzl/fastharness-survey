@@ -5,10 +5,8 @@
 | 模块 | 2. Code + Policy |
 | Year / Venue | arXiv 2026.10 |
 | Paper | https://arxiv.org/abs/2610.12369 |
-| Code | -（已有笔记未确认） |
 | Website | https://etmcode-bit.github.io/ |
 | Team | NTU、Ropedia |
-| Review | 依据已有资料整合；未核实字段保留待审核 |
 
 ## 一句话
 
@@ -30,19 +28,11 @@
 
 尚未进行真机验证；已有笔记中的成绩均来自仿真。
 
-## 资料补充与边界
-
-Paper：arXiv:2610.12369v1。已有笔记还包含各任务失败情况、模块代码规模和迭代时间；可作为后续详情。
-
-Code 与会议信息尚未确认；每任务完整开发预算、累计 token 和费用未披露。
-
 ## 来源
 
-初稿依据已有资料整理；本轮联网核查见下方记录。
-
 - [已有笔记原文](../review/2026-10-17-资料补充/sources/coap.txt)
-- [本次缺项与补充记录](../review/2026-10-17-资料补充/index.html#coap)
 
-## 链接核查 · 2026-10-17
 
-[项目主页](https://etmcode-bit.github.io/) 与论文标题、作者和 arXiv 编号对应，团队为 NTU、Ropedia；未发现明确的官方代码入口。
+## 核对依据
+
+[摘要、实验与附录；作者项目主页](https://arxiv.org/html/2610.12369v1)

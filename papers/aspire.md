@@ -8,7 +8,6 @@
 | Code | https://github.com/NVlabs/ASPIRE |
 | Website | https://research.nvidia.com/labs/gear/aspire/ |
 | Team | NVIDIA GEAR（Jim Fan、朱玉可组）、UMich、UIUC、UC Berkeley、CMU |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -48,9 +47,7 @@
 - 开抽屉：0/20 → 11/20
 - token 少 2~9 倍
 
-## 已有资料补充：开发、评测与经验复用
-
-2026-10-17，Codex 根据本地阅读与源码笔记整理，经用户要求整合；以下为补充证据，不替换前述论文实验。
+## 开发、评测与经验复用
 
 分开记录三种迭代：Fix Loop 修复单个任务程序；Evolutionary Search 在多个策略假设中搜索；协调者把有证据的 findings 和有效代码片段整理进共享技能。后续任务先读已有技能，再根据本任务反馈修改程序。
 
@@ -61,3 +58,7 @@
 尚无完整真实候选演进日志；上述实现协议不应直接推广为所有基准统一流程。
 
 [笔记原文](../review/2026-10-17-资料补充/sources/aspire.txt)
+
+## 核对依据
+
+[LIBERO-Pro 主实验；本地原文及代码阅读记录](https://arxiv.org/abs/2607.00272)

@@ -8,7 +8,6 @@
 | Code | https://github.com/Boxjod/LoopROS_Client |
 | Website | https://loopmaster.ai/ |
 | Team | LoopMaster（官网页脚：天津市陆浦智能科技有限公司） |
-| Review | 官网技术报告；论文 coming soon；客户端公开、Brain 私有；待人工审核 |
 
 ## 一句话
 
@@ -26,15 +25,9 @@ Agent 读示范与场景，在线规划并执行；把动作反馈组织为任�
 
 项目报告的 10 个选定任务，共 100 回合（每任务 10 回合），82 次成功，平均 Score 88.90，失败回合也计入。任务等权；含泛化测试的场景按标准:泛化=2:3 加权。非完整官方 RoboDojo 评测；外部方法可能采用不同设置，不当作同种子或同协议对比。
 
-## 真机结果
-
-官网展示双臂黄瓜削皮、切片录像，标注测试日为 9 月 10 日；未给出试验总次数或量化成功率，只记录为演示。
-
 ## 来源可靠性与公开范围
 
-官网直接链接 LoopROS_Client，仓库明确 Paper coming soon。公开的是客户端；规划运行在私有云端 Brain，当前云端 preview 支持 store_laptop_and_headphones，insert_key 为实验性本地适配。官网公开 data.js 的 100 个 episode 可核算统计，但不能据此确认完整系统可独立复现，亦不能把持续改善设计目标当作跨轮次提升实证。论文 PDF / arXiv 与云端 Brain 源码未找到。
-
-核查日期：2026-10-14。来源核验与中文整理：Codex；仍待人工审核。代码核查版本：`bbcde9760102281bd0c01c65a05b04dcf61a0848`。
+官网直接链接 LoopROS_Client，仓库明确 Paper coming soon。公开的是客户端；规划运行在私有云端 Brain，当前云端 preview 支持 store_laptop_and_headphones，insert_key 为实验性本地适配。官网公开 data.js 的 100 个 episode 可核算统计，但不能据此确认完整系统可独立复现。论文 PDF / arXiv 与云端 Brain 源码未找到。
 
 ## 来源
 
@@ -44,6 +37,7 @@ Agent 读示范与场景，在线规划并执行；把动作反馈组织为任�
 - [报告原始统计](https://loopmaster.ai/loopros/assets/data.js)
 - [客户端公开范围](https://github.com/Boxjod/LoopROS_Client#loopros_client)
 
-## 链接核查 · 2026-10-17
 
-报告页与客户端仓库对应，链接可访问；公开客户端与私有 Brain 的范围说明保留。
+## 核对依据
+
+[官网 data.js 100 回合统计；客户端 README](https://loopmaster.ai/loopros/)

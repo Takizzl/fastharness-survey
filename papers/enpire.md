@@ -8,7 +8,6 @@
 | Code | https://github.com/NVlabs/ENPIRE |
 | Website | https://research.nvidia.com/labs/gear/enpire/ |
 | Team | NVIDIA GEAR、CMU（Guanya Shi 组）、UC Berkeley |
-| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
@@ -47,3 +46,7 @@
 - 插销：约 55% → 95%（4 小时，从曲线读取）
 - 插销 8 台并行：约 40 分钟接近 100%（单台 1.5 小时以上）
 - Push-T：8 台并行约 2 小时达标（单台约 5 小时）
+
+## 核对依据
+
+[真机实验及重试定义](https://arxiv.org/abs/2606.19980)

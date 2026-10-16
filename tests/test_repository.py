@@ -12,6 +12,23 @@ import check_links
 
 
 class RepositoryTests(unittest.TestCase):
+    def test_published_material_has_sources_and_no_open_review_tasks(self):
+        import json
+        import re
+        root = whats_new.ROOT
+        cards = list((root / 'papers').glob('*.md'))
+        evidence = json.loads((root / 'review/verified-sources.json').read_text(encoding='utf-8'))
+        self.assertEqual(set(evidence), {p.stem for p in cards})
+        documents = [root / 'README.md', *cards, *root.glob('review/**/*.html')]
+        for path in documents:
+            text = path.read_text(encoding='utf-8')
+            self.assertIsNone(re.search(r'待(?:人工)?审核|待核实|待确认', text), str(path))
+        for card in cards:
+            proof = evidence[card.stem]
+            self.assertTrue(all(proof.get(k) for k in ('date', 'source', 'location', 'result')))
+            self.assertEqual(whats_new.source_key(proof['source']),
+                             whats_new.card_source(card.relative_to(root)))
+
     def test_all_review_entries_are_queryable(self):
         records = whats_new.load_review()
         self.assertTrue(records)
