@@ -8,7 +8,7 @@
 | Code | https://github.com/capgym/cap-x |
 | Website | https://capgym.github.io |
 | Team | NVIDIA、UC Berkeley、Stanford、CMU（Ken Goldberg、Jim Fan 组） |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 

@@ -8,7 +8,7 @@
 | Code | https://github.com/NVlabs/ENPIRE |
 | Website | https://research.nvidia.com/labs/gear/enpire/ |
 | Team | NVIDIA GEAR、CMU（Guanya Shi 组）、UC Berkeley |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 

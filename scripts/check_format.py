@@ -6,6 +6,8 @@ Exits non-zero and prints every problem found.
 import re
 import sys
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
+from whats_new import load_review, source_key, card_source
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,6 +25,7 @@ VAGUE = ("约", "大约", "左右", "等", "多个", "一些", "若干", "大幅
 SEPARATOR = "|" + ":---:|" * len(WIDTHS)
 
 errors = []
+review_rows = load_review()
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
 review = (ROOT / "review" / "论文审阅表.html").read_text(encoding="utf-8")
 
@@ -52,10 +55,15 @@ for i, line in enumerate(lines):
         paper, venue, method, result, team = cells
         if "[待审核](review/论文审阅表.html)" in paper:
             pending_links = re.findall(r"\]\((https://[^)]+)\)", paper)
-            if not pending_links or not any(link.replace("&", "&amp;") in review for link in pending_links):
+            matches = [review_rows[key] for key in dict.fromkeys(map(source_key, pending_links)) if key in review_rows]
+            if len(matches) != 1 or "待审核" not in matches[0]["paper"]:
                 errors.append(f"README 第 {n} 行待审核条目必须有来源链接并已进入审阅表")
             if not all(cells) or method in ("-", "—"):
                 errors.append(f"README 第 {n} 行待审核论文需要方法，缺失字段写 —")
+            if not re.search(r"[一-鿿]", method) or "<br>" in method:
+                errors.append(f"README 第 {n} 行待审核方法必须为中文单段")
+            if len(method) > 100 or len(result) > 100:
+                errors.append(f"README 第 {n} 行待审核方法或结果过长，应精简为一句话")
             continue
         pm = PAPER_CELL.fullmatch(paper)
         if not pm:
@@ -89,6 +97,18 @@ CARD_ROWS = ("模块", "Year / Venue", "Paper", "Code", "Website", "Team")
 CARD_SECTIONS = ("一句话", "问题", "方法", "真机结果")
 for card in sorted((ROOT / "papers").glob("*.md")):
     text = card.read_text(encoding="utf-8")
+    key = card_source(card.relative_to(ROOT))
+    record = review_rows.get(key)
+    if record is None:
+        errors.append(f"{card.name} 的元数据来源没有对应审阅表条目")
+    else:
+        module = re.search(r"^\| 模块 \| (.*?) \|$", text, re.M)
+        if module and module.group(1).split("（", 1)[0] != record["module"]:
+            errors.append(f"{card.name} 模块与审阅表不一致")
+        state = "已入库" if "已入库" in record["paper"] else "待审核"
+        review_field = re.search(r"^\| Review \| (.*?) \|$", text, re.M)
+        if not review_field or state not in review_field.group(1).replace("待人工审核", "待审核"):
+            errors.append(f"{card.name} 审核状态与审阅表不一致")
     for row in CARD_ROWS:
         m = re.search(rf"^\| {re.escape(row)} \| (.*?) \|$", text, re.M)
         if not m or not m.group(1).strip():
@@ -97,6 +117,24 @@ for card in sorted((ROOT / "papers").glob("*.md")):
         m = re.search(rf"^## (?:{sec})[^\n]*\n(.*?)(?=^## |\Z)", text, re.M | re.S)
         if not m or not m.group(1).strip():
             errors.append(f"{card.name} 缺少「{sec.split('|')[0]}」一节或内容为空")
+
+if paper_rows != len(review_rows):
+    errors.append(f"README 条目数 {paper_rows} 与审阅表 {len(review_rows)} 不一致")
+
+# Check maintained local destinations; source archives are immutable evidence.
+documents = [*ROOT.glob("*.md"), *ROOT.glob("papers/*.md"), *ROOT.glob("ideas/*.md"),
+             *ROOT.glob("meetings/*.md"), ROOT / "review" / "论文审阅表.html"]
+for document in documents:
+    text = document.read_text(encoding="utf-8")
+    text = re.sub(r"```.*?```|`[^`\n]*`", "", text, flags=re.S)
+    links = re.findall(r"\]\(([^)]+)\)", text) + re.findall(r'(?:href|src)="([^"]+)"', text)
+    for link in links:
+        parts = urlsplit(link)
+        if parts.scheme or parts.netloc or not parts.path:
+            continue
+        target = (document.parent / unquote(parts.path)).resolve()
+        if not target.exists():
+            errors.append(f"{document.relative_to(ROOT)} 的站内目标不存在：{link}")
 
 if errors:
     print("格式检查未通过：")

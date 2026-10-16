@@ -8,7 +8,7 @@
 | Code | https://github.com/RLinf/RPent |
 | Website | https://harnessvla.github.io/ |
 | Team | 清华（于超、丁文伯组）、港科大、中科院自动化所等 |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 

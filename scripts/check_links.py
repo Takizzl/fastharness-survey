@@ -10,6 +10,7 @@ import urllib.request
 import urllib.error
 import socket
 import time
+from html import unescape
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -19,13 +20,15 @@ URL = re.compile(r"https?://[^\s)（）|<>\"']+")
 
 
 def collect():
-    files = [ROOT / "README.md", *sorted((ROOT / "papers").glob("*.md"))]
+    files = [*sorted(ROOT.glob("*.md")), *sorted((ROOT / "papers").glob("*.md")),
+             *sorted((ROOT / "ideas").glob("*.md")), *sorted((ROOT / "meetings").glob("*.md")),
+             ROOT / "review" / "论文审阅表.html"]
     urls = {}
     for f in files:
         for u in URL.findall(f.read_text(encoding="utf-8")):
-            u = u.rstrip(".,;，。；")
+            u = unescape(u).replace(r"\.", ".").rstrip(".,;，。；")
             if "img.shields.io" not in u:
-                urls.setdefault(u, f.name)
+                urls.setdefault(u, str(f.relative_to(ROOT)))
     return urls
 
 

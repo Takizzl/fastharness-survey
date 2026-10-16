@@ -1,4 +1,4 @@
-"""Print the human-reviewed content of recently added papers and meetings, verbatim.
+"""Print recorded review-table content and meetings without summarizing.
 
 The text comes straight from review/论文审阅表.html (the human-curated source)
 and meetings/*.md. Nothing is summarized or rewritten.
@@ -20,7 +20,12 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 FIELDS = ["问题", "方法", "仿真结果", "真机结果", "团队"]
-NOTICE = "> 以下内容逐字取自人工审核的审阅表和会议纪要，未经 AI 改写。"
+NOTICE = "> 以下内容取自审阅表与会议记录；逐项显示审核状态，待审核内容不代表人工确认。"
+
+
+def source_key(url):
+    match = re.search(r"arxiv\.org/(?:abs|html|pdf)/(\d{4}\.\d{4,5})", url)
+    return match.group(1) if match else url.rstrip("/")
 
 
 class ReviewTable(HTMLParser):
@@ -39,7 +44,7 @@ class ReviewTable(HTMLParser):
             self.cell = {"cls": a.get("class", ""), "lines": [""]}
         elif self.cell is None:
             return
-        elif tag == "a" and "arxiv.org" in a.get("href", "") and self.row["href"] is None:
+        elif tag == "a" and self.cell["cls"] == "p" and a.get("href", "").startswith("https://") and self.row["href"] is None:
             self.row["href"] = a["href"]
         elif tag in ("br", "p"):
             self.cell["lines"].append("")
@@ -70,7 +75,7 @@ class ReviewTable(HTMLParser):
 def load_review():
     parser = ReviewTable()
     parser.feed((ROOT / "review" / "论文审阅表.html").read_text(encoding="utf-8"))
-    return {re.search(r"(\d{4}\.\d{4,5})", r["href"]).group(1): r for r in parser.rows}
+    return {source_key(r["href"]): r for r in parser.rows}
 
 
 def changelog_entries(n):
@@ -79,19 +84,23 @@ def changelog_entries(n):
     return [("## " + p).strip() for p in parts[:n]]
 
 
-def arxiv_of(card):
-    m = re.search(r"arxiv\.org/abs/(\d{4}\.\d{4,5})", (ROOT / card).read_text(encoding="utf-8"))
-    return m.group(1) if m else None
+def card_source(card):
+    text = (ROOT / card).read_text(encoding="utf-8")
+    for field in ("Paper", "Website"):
+        match = re.search(rf"^\| {field} \| (https://[^\s|]+)", text, re.M)
+        if match:
+            return source_key(match.group(1))
+    return None
 
 
 def card_info(href):
-    """Full title, Code and Website from papers/*.md, matched by arXiv id."""
-    aid = re.search(r"(\d{4}\.\d{4,5})", href).group(1)
+    """Match the explicit metadata source, never incidental citation text."""
+    key = source_key(href)
     for card in (ROOT / "papers").glob("*.md"):
         text = card.read_text(encoding="utf-8")
-        if aid in text:
+        if card_source(card) == key:
             title = text.splitlines()[0].lstrip("# ").strip()
-            get = lambda k: (re.search(rf"^\| {k} \| ([^\s（|]+)", text, re.M) or [None, "-"])[1]
+            get = lambda k: (re.search(rf"^\| {k} \| (https://[^\s（|]+)", text, re.M) or [None, "-"])[1]
             return title, get("Code"), get("Website")
     return None, "-", "-"
 
@@ -99,10 +108,11 @@ def card_info(href):
 def print_paper(r):
     title, code, web = card_info(r["href"])
     print(f"### {title or r['paper'][0]}（{r['module']}）")
-    links = [f"[Paper]({r['href']})"] + [f"[{k}]({u})" for k, u in (("Code", code), ("Website", web)) if u != "-"]
+    label = "Paper" if "arxiv.org/" in r["href"] else "Source"
+    links = [f"[{label}]({r['href']})"] + [f"[{k}]({u})" for k, u in (("Code", code), ("Website", web)) if u != "-"]
     print("- " + " ".join(links))
     for extra in r["paper"][1:]:
-        label = "状态" if extra in ("已入库", "待审核") else "发表"
+        label = "状态" if extra in ("已入库", "待审核") else "备注"
         print(f"- {label}：{extra.strip('（）')}")
     for f in FIELDS:
         lines = r.get(f) or ["-"]
@@ -131,6 +141,8 @@ def main():
     ap.add_argument("--module", help='只看某个类别，如 "VLM1 + VLM2"')
     ap.add_argument("--paper", help="只看某篇论文，如 Spotter")
     args = ap.parse_args()
+    if args.last < 1:
+        ap.error("--last 必须大于 0")
     review = load_review()
     filtered = bool(args.module or args.paper)
     scope = "（筛选：" + " ".join(x for x in (args.module, args.paper) if x) + "）" if filtered else ""
@@ -148,7 +160,7 @@ def main():
 
     for entry in changelog_entries(args.last):
         cards = list(dict.fromkeys(re.findall(r"\((papers/[^)]+\.md)\)", entry)))
-        hits = [review[a] for a in map(arxiv_of, cards) if a in review]
+        hits = [review[a] for a in map(card_source, cards) if a in review]
         shown = [r for r in hits if matches(r, args.module, args.paper)]
         print(entry.splitlines()[0].replace("## ", "## 更新：", 1) + "\n")
         print(f"本次共新增 / 修改 {len(hits)} 篇论文，下面列出 {len(shown)} 篇{scope}。\n")
@@ -161,8 +173,8 @@ def main():
         if filtered and not shown:
             print("这次更新里没有匹配的论文，可加 --all 查看全部。现有类别：" + categories + "\n")
         for c in cards:
-            if arxiv_of(c) not in review:
-                print(f"### {c}\n- 审阅表里没有这篇论文（arXiv {arxiv_of(c)}），请人工确认。\n")
+            if card_source(c) not in review:
+                print(f"### {c}\n- 审阅表里没有对应来源（{card_source(c)}），请人工确认。\n")
 
 
 if __name__ == "__main__":

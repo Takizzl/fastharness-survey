@@ -40,7 +40,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="m" rowspan="5">2. Code + Policy</td>
+<td class="m" rowspan="6">2. Code + Policy</td>
 <td class="p"><a href="https://arxiv.org/abs/2603.22435">CaP-X</a><br><b>（ICML 2026）</b><br><span class="st ok">已入库</span></td>
 <td class="c">Code-as-Policy 依赖人写的高层 API，看不出模型本身能力</td>
 <td>Coding Agent 只拿 <b>Low-level Primitive</b>（SAM3 分割、IK 求解、Motion Planning），<b>多轮写代码</b>：每轮执行后读取 stdout / 报错，以及 VDM（把前后图像变化转成文字），据此改代码；CaP-Agent0 再加入从成功代码中<b>自动提炼的 Skill Library</b>，并<b>多模型并行生成、合成一份代码</b>执行；CaP-RL 用 <b>GRPO</b>、以仿真成功为奖励训练 Qwen2.5-Coder-7B。</td>
@@ -110,7 +110,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="m">3. Memory</td>
+<td class="m" rowspan="2">3. Memory</td>
 <td class="p"><a href="https://arxiv.org/abs/2601.18510">JitRL</a><br><span class="st wait">待审核</span><br><small>来自用户提供的 FastHarness 文档；论文信息待核对</small></td>
 <td class="c">模型参数冻结后，容易重复之前的错误；把经验放进提示词，也不保证模型有效利用</td>
 <td>从相似经验中估计动作价值，修正当前候选动作的选择概率</td>
@@ -165,7 +165,7 @@ p{margin:0}
 <td class="c">Google Cloud AI Research（Tomas Pfister 组）、UNC、Stanford</td>
 </tr>
 <tr>
-<td class="m">7. RSI Projects</td>
+<td class="m" rowspan="2">7. RSI Projects</td>
 <td class="p"><a href="https://loopmaster.ai/loopros/">LoopROS / LoopMaster</a><br><span class="st wait">待审核</span><br>技术报告 2026.10<br><a href="../papers/loopros.md">来源核查详情</a></td>
 <td>机器人执行经验难以转化为后续任务可检索、复用的操作能力。</td>
 <td>Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。</td>

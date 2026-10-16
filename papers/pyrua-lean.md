@@ -8,7 +8,7 @@
 | Code | https://github.com/DAGroup-PKU/PyRUA-Lean |
 | Website | https://dagroup-pku.github.io/PyRUA-Lean/ |
 | Team | 北大（周大权组）、NUS、NVIDIA |
-| Review | ⏳ 待审核 |
+| Review | 已入库（与审阅表一致） |
 
 ## 一句话
 
