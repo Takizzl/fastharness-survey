@@ -100,5 +100,11 @@
     "source": "https://mmlab.hk/research/PhysicalRSI",
     "location": "官方榜单 2026-10-09 快照与 Preview 仓库",
     "result": "历史快照 Score 36.27、SR 31.38%；不是实时排名"
+  },
+  "memevolve": {
+    "date": "2026-10-21",
+    "source": "https://arxiv.org/abs/2512.18746v1",
+    "location": "论文表2–3、附录B.1；官方仓库README录用声明与代码入口",
+    "result": "Flash-Searcher + GPT-5-mini，xBench-DS 100题，pass@1：69%→74%；架构在TaskCraft演化。"
   }
 }
