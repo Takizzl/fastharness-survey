@@ -101,7 +101,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="p"><a href="https://anonymous-report-421.github.io/public-website/?view=1">GPT-as-Policy</a><br><br>技术报告 2026<br><a href="../papers/gpt-as-policy.md">来源核查详情</a></td>
+<td class="p"><a href="https://anonymous-report-421.github.io/public-website/?view=1">GPT-as-Policy</a><br><br>技术报告 2026</td>
 <td>GPT 直接控制机器人的表现有限，需要判断何时修正 VLA 动作。</td>
 <td>GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正，恢复后交还控制。</td>
 <td>10 个 RoboDojo 任务，各 5 个对齐样例。混合策略 24/50 成功（48%），Score 62.60（50 个有效分数）；Direct 13/50 成功（26%），Score 37.81（48 个有效分数）。混合策略修正了 14.4% 的已执行控制步。成功率分母均为 50，不能把 Direct 的分数分母 48 用作成功率分母。</td>
@@ -110,7 +110,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="p"><a href="https://arxiv.org/abs/2610.12369">COAP</a><br><br>arXiv 2026.10<br><a href="../papers/coap.md">已有资料整理详情</a></td>
+<td class="p"><a href="https://arxiv.org/abs/2610.12369">COAP</a><br><br>arXiv 2026.10</td>
 <td>需要将机器人任务的执行反馈转化为可复用的程序，并区分开发探索与最终执行。</td>
 <td>开发阶段由编码 Agent 运行任务、分析失败、修改程序、验证并合并到共享代码库。执行阶段冻结程序，通过显式状态、程序决策、检查和重试控制机器人，不调用 VLM / VLA。</td>
 <td>论文报告 RoboDojo 42 项任务整体成功率 70.24%；40 项有程序，2 项无程序。每任务 3 个种子 × 50 个布局 = 150 条 episode 是最终评测规模，不是开发探索量。所有结果来自仿真；没有真机验证。</td>
@@ -120,7 +120,7 @@ p{margin:0}
 
 <tr>
 <td class="m" rowspan="4">3. Memory</td>
-<td class="p"><a href="https://arxiv.org/abs/2601.18510">JitRL</a><br><br>ICML 2026 Spotlight<br><a href="../papers/jitrl.md">已有资料整理详情</a></td>
+<td class="p"><a href="https://arxiv.org/abs/2601.18510">JitRL</a><br><br>ICML 2026 Spotlight</td>
 <td>模型参数冻结后容易重复错误，直接提供历史经验不保证能正确利用。</td>
 <td>问题：冻结模型容易重复错误，直接将经验放进提示词不能保证有效利用。方法：完成轨迹后，由 LLM 评价步骤奖励，累计回报并存储状态—动作—回报；遇到相似状态时检索经验、估计动作价值，修正候选动作概率，不更新模型参数。</td>
 <td>论文附录 J.1 / Table 13：使用非 WebArena-Lite 任务积累经验，再固定记忆库测试 165 个留出任务；模型为 Llama-3.1-70B-Instruct。基础模型 12.70%，JitRL 40.88%，WebRL 46.06%。这组固定记忆实验中 JitRL 低于 WebRL，不应套用其他实验的领先结论。</td>
@@ -130,7 +130,7 @@ p{margin:0}
 
 
 <tr>
-<td class="p"><a href="https://arxiv.org/abs/2610.19495v1">Robota-Embed</a><br><br><a href="../papers/robota-embed.md">汇报整理与来源核对</a></td>
+<td class="p"><a href="https://arxiv.org/abs/2610.19495v1">Robota-Embed</a></td>
 <td>只有任务文字或相似画面，容易找对任务却找错执行阶段，无法挑出适合当前动作的历史经验。</td>
 <td>将任务、画面和动作编码为向量，检索历史执行片段，把画面、命令和反馈交给策略复用。 查询与候选均结合 VLA，输出 1024 维向量。开发阶段积累成功/失败回合，测试固定长期记忆和配置；Astra 和 embedding 权重冻结。</td>
 <td>Robota-Embed-Bench：4,000 个查询、8,000 条共享候选，片段级 R@1 47.33%、回合级 R@1 81.77%（摘要精确值；表格显示 47.3 / 81.8）。ManiSkill 五任务、每条件每任务 20 次：Astra Direct 24%、随机历史 20%、Evolve + Omni 33%、Embed2Evolve 68%；平均每测试回合策略 tokens 为 0.921M / 未报 / 约 2.531M / 0.518M，含失败、不含开发成本。DROID-Sim：无参考 47.0%、随机 36.0%、原始 top-1 50.3%、重排序后 56.3%；LIBERO 五个筛选难任务：86.4%→92.8%，该路线训练策略使用上下文。</td>
@@ -139,7 +139,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="p"><a href="https://arxiv.org/abs/2602.20323v1">PhysMem</a><br><br>arXiv 2026.02<br><a href="../papers/physmem.md">已有资料整理详情</a></td>
+<td class="p"><a href="https://arxiv.org/abs/2602.20323v1">PhysMem</a><br><br>arXiv 2026.02</td>
 <td>通用物理知识不足以预测具体场景中的接触动力学，直接检索旧经验在物理条件变化后可能失效。</td>
 <td>记录观察、动作、结果、上下文和符号状态；由反思模型生成 Avoid / Prefer / Sequence 假设，通过交互结果更新置信度，满足条件后晋升为原则并压缩支持经验。检索已验证原则和活跃假设，以文本提供给 Planner。真机配置：Gemini-3.0-Flash 规划，Qwen3-VL 异步生成假设。</td>
 <td>—</td>
@@ -148,7 +148,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="p"><a href="https://arxiv.org/abs/2512.18746v1">MemEvolve</a><br>ICML 2026<br><a href="../papers/memevolve.md">详情</a></td>
+<td class="p"><a href="https://arxiv.org/abs/2512.18746v1">MemEvolve</a><br>ICML 2026</td>
 <td>固定记忆架构只能更新内容，不能针对任务调整经验的组织和使用方式。</td>
 <td>内层积累执行记忆，外层根据轨迹反馈改写记忆编码、存储、检索与管理代码。三轮演化，每轮保留一个父代、生成三个候选；按成功率、成本和延迟筛选。</td>
 <td>表2，Flash-Searcher + GPT-5-mini，pass@1：WebWalkerQA 170题71.18%→74.71%；xBench-DS 100题69%→74%；TaskCraft 300题69.67%→72%；GAIA 165题69.09%→73.33%。前两个基准的架构在TaskCraft演化；后两个基准包含演化所用题目，不能称为完全留出。表3，GAIA单题费用$0.086→$0.085，延迟505.46→693.33秒。</td>
@@ -196,7 +196,7 @@ p{margin:0}
 </tr>
 <tr>
 <td class="m" rowspan="2">7. RSI Projects</td>
-<td class="p"><a href="https://loopmaster.ai/loopros/">LoopROS / LoopMaster</a><br><br>技术报告 2026.10<br><a href="../papers/loopros.md">来源核查详情</a></td>
+<td class="p"><a href="https://loopmaster.ai/loopros/">LoopROS / LoopMaster</a><br><br>技术报告 2026.10</td>
 <td>机器人执行经验难以转化为后续任务可检索、复用的操作能力。</td>
 <td>Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。</td>
 <td>项目报告的 10 个选定任务，共 100 回合（每任务 10 回合），82 次成功，平均 Score 88.90，失败回合也计入。任务等权；含泛化测试的场景按标准:泛化=2:3 加权。非完整官方 RoboDojo 评测；外部方法可能采用不同设置，不当作同种子或同协议对比。</td>
@@ -205,7 +205,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="p"><a href="https://mmlab.hk/research/PhysicalRSI">PhysicalRSI</a><br><br>Preview 2026<br><a href="../papers/physicalrsi.md">来源核查详情</a></td>
+<td class="p"><a href="https://mmlab.hk/research/PhysicalRSI">PhysicalRSI</a><br><br>Preview 2026</td>
 <td>固定策略难应对开放任务，需要根据执行反馈改写、筛选并积累控制技能。</td>
 <td>Agent 根据执行反馈改写 harness，评测候选并保留更优版本，继承代码技能与任务记忆。<p><b>已有资料补充：</b>开发模型返回新代码和经验；评测选择代理返回现成技能的选择。默认混合模式先比较已有 VLA 的开发分数，未达阈值才进入代码开发；learned_skill / code_policy 模式会改变分支。候选与父版本在同一批、排除开发布局的验证案例上比较，满足提升和不退步条件才接受。 <a href="../papers/physicalrsi.md">实现协议与证据边界</a></p></td>
 <td>RoboDojo 官方榜单公开数据：Score 36.27、SR 31.38%，团队 HKU MMLab &amp; KAI；网站提及 52 个 task×layout settings。项目网页使用 2026-10-03 结果快照、注明 10-08 核对。2026-10-14 读取的基准前端数据快照为 10-09，PhysicalRSI 仍是相同分数，但 VPP2 已为 Score 39.26、SR 32.26%，不沿用项目页旧的 No.1 文案。</td>
@@ -213,7 +213,7 @@ p{margin:0}
 <td>HKU MMLab &amp; KAI（RoboDojo 官方榜单署名）；代码引用为 MMLab &amp; PhysicalRSI contributors</td>
 </tr>
 <tr>
-<td class="m">8. 感知基础模型</td><td class="p"><a href="https://arxiv.org/abs/2609.39601">GroundingPI</a><br><br>arXiv 2026.09<br><a href="../papers/groundingpi.md">已有资料整理详情</a></td>
+<td class="m">8. 感知基础模型</td><td class="p"><a href="https://arxiv.org/abs/2609.39601">GroundingPI</a><br><br>arXiv 2026.09</td>
 <td>通用语义理解不能保证细粒度空间定位，动作示范同时承担视觉学习与控制学习的负担。</td>
 <td>4B 级视觉语言基础模型，以量化坐标词元统一标签、点和框输出。机器人分支将中间视觉语言特征注入 Action DiT；不是直接把框坐标换成机械臂动作。</td>
 <td>论文表 5：COCO 每框 7.6 tokens，Dense200 每框 5.1 tokens；为序列化指标。</td>
