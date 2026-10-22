@@ -26,7 +26,7 @@ evidence = json.loads((ROOT / "review/verified-sources.json").read_text(encoding
 readme = (ROOT / "README.md").read_text(encoding="utf-8")
 review = (ROOT / "review" / "论文审阅表.html").read_text(encoding="utf-8")
 
-for heading in ("当前主线", "Contents"):
+for heading in ("Contents",):
     if not re.search(rf"^## (?:\S+ )?{heading}", readme, re.M):
         errors.append(f"README 缺少「## {heading}」一节")
 
@@ -110,7 +110,7 @@ if paper_rows != len(review_rows):
 
 # Check maintained local destinations; source archives are immutable evidence.
 documents = [*ROOT.glob("*.md"), *ROOT.glob("papers/*.md"), *ROOT.glob("ideas/*.md"),
-             *ROOT.glob("meetings/*.md"), ROOT / "review" / "论文审阅表.html"]
+             ROOT / "review" / "论文审阅表.html"]
 for document in documents:
     text = document.read_text(encoding="utf-8")
     if document.name != "CHANGELOG.md" and re.search(r"待(?:人工)?审核|待核实|待确认", text):

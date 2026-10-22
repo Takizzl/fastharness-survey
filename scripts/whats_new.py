@@ -1,7 +1,6 @@
-"""Print recorded review-table content and meetings without summarizing.
+"""Print recorded review-table content without summarizing.
 
-The text comes straight from review/论文审阅表.html (the human-curated source)
-and meetings/*.md. Nothing is summarized or rewritten.
+The text comes straight from review/论文审阅表.html. Nothing is summarized or rewritten.
 
 Usage:
   python scripts/whats_new.py                          # the latest CHANGELOG entry
@@ -20,7 +19,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = Path(__file__).resolve().parent.parent
 FIELDS = ["问题", "方法", "仿真结果", "真机结果", "团队"]
-NOTICE = "> 以下内容取自论文汇总表与会议记录。"
+NOTICE = "> 以下内容取自论文汇总表。"
 
 
 def source_key(url):
@@ -164,10 +163,6 @@ def main():
         shown = [r for r in hits if matches(r, args.module, args.paper)]
         print(entry.splitlines()[0].replace("## ", "## 更新：", 1) + "\n")
         print(f"本次共新增 / 修改 {len(hits)} 篇论文，下面列出 {len(shown)} 篇{scope}。\n")
-        if not filtered:
-            for meeting in dict.fromkeys(re.findall(r"\((meetings/[^)]+\.md)\)", entry)):
-                print(f"### 会议纪要：{meeting}\n")
-                print((ROOT / meeting).read_text(encoding="utf-8").strip() + "\n")
         for r in shown:
             print_paper(r)
         if filtered and not shown:

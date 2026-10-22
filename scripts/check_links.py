@@ -21,7 +21,7 @@ URL = re.compile(r"https?://[^\s)（）|<>\"']+")
 
 def collect():
     files = [*sorted(ROOT.glob("*.md")), *sorted((ROOT / "papers").glob("*.md")),
-             *sorted((ROOT / "ideas").glob("*.md")), *sorted((ROOT / "meetings").glob("*.md")),
+             *sorted((ROOT / "ideas").glob("*.md")),
              ROOT / "review" / "论文审阅表.html"]
     urls = {}
     for f in files:

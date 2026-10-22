@@ -70,8 +70,18 @@ class RepositoryTests(unittest.TestCase):
             self.assertEqual(check_links.outcome(code), 'unverified')
 
     def test_markdown_escaped_url_is_normalized(self):
-        urls = check_links.collect()
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'review').mkdir()
+            (root / 'review/论文审阅表.html').write_text('', encoding='utf-8')
+            (root / 'README.md').write_text(
+                r'https://arxiv\.org/pdf/2610\.02204' + '\n' +
+                'https://example.com/?a=1&amp;b=2', encoding='utf-8')
+            with patch.object(check_links, 'ROOT', root):
+                urls = check_links.collect()
         self.assertIn('https://arxiv.org/pdf/2610.02204', urls)
+        self.assertIn('https://example.com/?a=1&b=2', urls)
         self.assertFalse(any('\\.' in url or '&amp;' in url for url in urls))
 
     def test_network_diagnostic_and_retry(self):

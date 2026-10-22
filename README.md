@@ -5,14 +5,6 @@
 
 </div>
 
-## 当前主线 · [第一次会议](meetings/01-第一次会议.md)
-
-1. 调研 GPT + VLM 的结合方式相关方法，怎么外挂 VLM，Qwen 等 VLM 尽量做选择题
-2. 调研 Code + VLA 怎么结合起来的，策略如何组织（定位到源码分析）（有没有 WAM）
-3. 考虑阶段 2 的事，专注 Memory 怎么去做，从 LLM 的角度迁移
-
-**要求：** 需要兼容多个 LLM 和下游 policy
-
 ## Contents
 
 | Category | Focus | Papers |
