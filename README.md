@@ -10,13 +10,14 @@
 | Category | Focus | Papers |
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
-| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 7 |
+| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 6 |
 | [3. Memory](#memory) | Memory mechanisms | 4 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
 | [6. Harness Evolution Boundary](#boundary) | Guarding against overfitting | 1 |
 | [7. RSI Projects](#rsi-projects) | Self-evolving robot systems | 2 |
 | [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 |
+| [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 2 |
 
 <br>
 
@@ -38,7 +39,6 @@
 |:---:|:---:|:---:|:---:|:---:|
 | **CaP-X**: A Framework for Benchmarking and Improving Coding Agents for Robot Manipulation<br>\[[Paper](https://arxiv.org/abs/2603.22435)\] \[[Code](https://github.com/capgym/cap-x)\] \[[Website](https://capgym.github.io)\] | ICML 2026 | Coding Agent 只用 SAM3、IK、运动规划这些低级原语写代码，每轮读报错和画面变化描述再改 | CaP-Bench（Robosuite 7 个任务）：底层接口多轮 54%，高层接口单次 39% | NVIDIA<br>UC Berkeley |
 | **Harness VLA**: Steering Frozen VLAs into Reliable Manipulation Primitives via Memory-Guided Agents<br>\[[Paper](https://arxiv.org/abs/2607.08448)\] \[[Code](https://github.com/RLinf/RPent)\] \[[Website](https://harnessvla.github.io/)\] | arXiv 2026.07 | 冻结的 VLA 只做抓取放置，Agent 用移动、旋转、夹爪原语摆位，没抓住就重摆再调 VLA | LIBERO-Pro 扰动测试：82.4%，单用 VLA 50.0% | Tsinghua |
-| **PyRUA-Lean**: Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens<br>\[[Paper](https://arxiv.org/abs/2610.01939)\] \[[Code](https://github.com/DAGroup-PKU/PyRUA-Lean)\] \[[Website](https://dagroup-pku.github.io/PyRUA-Lean/)\] | arXiv 2026.10 | VLM 写一段 Python 串起原语和 VLA，在代码里判断、重试，只回传请求的图像 | LIBERO-Pro、RoboTwin 2.0、RoboCasa365：工具调用版 63.1% → 71.7% | PKU |
 | **Show-Harness**: Just a VLM Agent Can Play Robots<br>\[[Paper](https://arxiv.org/abs/2609.10522)\] \[[Code](https://github.com/showlab/Show-Harness)\] \[[Website](https://showlab.github.io/Show-Harness)\] | arXiv 2026.09 | VLM 每步输出一个语义动作（前、后、左、右、上、下、旋转、抓取、松开），换算成 2 或 4 cm 末端位移 | Franka 真机 10 个抓放任务：89%，π0.5 只有 39% | NUS |
 | **RoboHarness**: Memory-Driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning<br>\[[Paper](https://arxiv.org/abs/2607.18060)\] \[[Code](https://github.com/markli1hoshipu/RoboHarness)\] \[[Website](https://robo-harness.com)\] | ECCV 2026 Workshop<br>**Best Paper** | Agent 按能力把子任务分给 VLA、RL、TAMP，换策略前先把机器人移到下一个策略熟悉的状态 | LIBERO-LoHo 长任务：95.2%，单用 π0.5 只有 6.4% | Huawei Noah's Ark |
 | **GPT-as-Policy**: GPT 6 Astra as an Embodied Policy<br>\[[Report](https://anonymous-report-421.github.io/public-website/?view=1)\] \[[Code](https://github.com/anonymous-report-421/GPT-as-Policy)\] \[[Website](https://anonymous-report-421.github.io/public-website/?view=1)\] | 技术报告 2026 | GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正，恢复后交还控制。 | RoboDojo 50 例：混合 48%，Direct 26% | Galbot |
@@ -107,3 +107,14 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **GroundingPI**: A Grounding Foundation Model towards Physical Intelligence with Visual Primitives<br>\[[Paper](https://arxiv.org/abs/2609.39601)\] \[[Code](https://github.com/groundingpi/GroundingPI)\] \[[Website](https://groundingpi.github.io/)\] | arXiv 2026.09 | 用定位监督训练视觉语言底座，将中间特征接入动作模型，支持精确感知与控制。 | COCO：每框输出 7.6 tokens | XPeng、PKU、HKU |
+
+<br>
+
+<a id="rl-post-training"></a>
+
+## 9. RL 后训练优化
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **PyRUA-Lean Coder**: Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens<br>\[[Paper](https://arxiv.org/abs/2610.01939)\] \[[Code](https://github.com/DAGroup-PKU/PyRUA-Lean)\] \[[Website](https://dagroup-pku.github.io/PyRUA-Lean/)\] | arXiv 2026.10 | 冻结原语与 VLA，用成败奖励做 GRPO，训练 4B Planner 组合代码、检查与重试 | LIBERO、RoboTwin、RC365 未见655例：18.8%→44.1% | PKU<br>NUS |
+| **AgenticRoboRL**: Bringing Coding-Agent Post-Training to Agentic Robotics<br>\[[Paper](https://arxiv.org/abs/2610.28589)\] \[[Code](https://github.com/xinxinliu-ai/AgenticRoboRL)\] \[[Website](https://xinxinliu-ai.github.io/AgenticRoboRL/)\] | arXiv 2026.10 | 成功示范 SFT 后，用多轮 RL 训练 9B Planner 调用 VLA 或生成控制代码 | RPent / LIBERO-PRO：18.1%→65.1%→71.0% | UCF<br>USC |

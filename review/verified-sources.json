@@ -18,10 +18,10 @@
     "result": "82.4%，原 VLA 50.0%"
   },
   "pyrua-lean": {
-    "date": "2026-10-17",
-    "source": "https://arxiv.org/abs/2610.01939",
-    "location": "主实验及效率分析",
-    "result": "63.1% → 71.7%；效率统计限两边均成功的任务"
+    "date": "2026-10-27",
+    "source": "https://arxiv.org/html/2610.01939v2",
+    "location": "§5.1–5.3、表8–9、附录J表16；§3框架与§4 RoboDojo另列；作者项目页真机演示",
+    "result": "Coder 655未见实例18.8%→44.1%；9任务45实例，16×8×30=3840 episodes、60优化步；框架63.1%→71.7%不归为GRPO收益。"
   },
   "show-harness": {
     "date": "2026-10-17",
@@ -106,5 +106,11 @@
     "source": "https://arxiv.org/abs/2512.18746v1",
     "location": "论文表2–3、附录B.1；官方仓库README录用声明与代码入口",
     "result": "Flash-Searcher + GPT-5-mini，xBench-DS 100题，pass@1：69%→74%；架构在TaskCraft演化。"
+  },
+  "agenticroborl": {
+    "date": "2026-10-27",
+    "source": "https://arxiv.org/html/2610.28589v2",
+    "location": "§3信息记录、SFT与LOO/PPO；表1–3；附录A–C；作者官方仓库及主页",
+    "result": "RPent / LIBERO-PRO 800 episodes：18.1%→65.1%→71.0%；LIBERO-Plus：19.2%→66.7%→72.2%；CaP-X特权状态600 episodes：2.7%→18.7%→28.5%。"
   }
 }

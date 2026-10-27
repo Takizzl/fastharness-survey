@@ -2,6 +2,13 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-27 · RL 后训练优化
+
+- 新建第9类「RL 后训练优化」，将 [PyRUA-Lean Coder](papers/pyrua-lean.md) 从 Code + Policy 移入，新增 [AgenticRoboRL](papers/agenticroborl.md)。
+- PyRUA-Lean 按 v2 补入 Coder 的直接 GRPO、9任务45实例、30轮与60优化步、泛化和资源；保留框架实验并区分统计口径，更新 RoboDojo 的 v2 完整评测与团队。
+- AgenticRoboRL 区分 SFT 与 RL 收益，列出实际模型请求记录、leave-one-out / dual-clipped PPO、教师记忆处理、训练规模和特权状态边界。
+- 同步首页、审阅表与来源记录。新增整理与结合 Harness 的建议署明 Codex；提交前完成来源核对和自审。
+
 ## 2026-10-22 · 移除会议资料
 
 - 删除会议纪要、原始文档与配图、会议衍生讨论稿和会议模板。

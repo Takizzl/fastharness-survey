@@ -21,6 +21,7 @@ p{margin:0}
 .note{font-size:12px;color:#646a73;margin:0 0 8px}
 </style></head><body>
 <h3>FastHarness 论文审阅表</h3>
+<p class="note">2026-10-27：第9类两篇由 Codex 据原论文 v2 整理；其他条目保留已有内容。</p>
 
 
 <table>
@@ -40,7 +41,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="m" rowspan="7">2. Code + Policy</td>
+<td class="m" rowspan="6">2. Code + Policy</td>
 <td class="p"><a href="https://arxiv.org/abs/2603.22435">CaP-X</a><br><b>（ICML 2026）</b><br></td>
 <td class="c">Code-as-Policy 依赖人写的高层 API，看不出模型本身能力</td>
 <td>Coding Agent 只拿 <b>Low-level Primitive</b>（SAM3 分割、IK 求解、Motion Planning），<b>多轮写代码</b>：每轮执行后读取 stdout / 报错，以及 VDM（把前后图像变化转成文字），据此改代码；CaP-Agent0 再加入从成功代码中<b>自动提炼的 Skill Library</b>，并<b>多模型并行生成、合成一份代码</b>执行；CaP-RL 用 <b>GRPO</b>、以仿真成功为奖励训练 Qwen2.5-Coder-7B。</td>
@@ -65,16 +66,7 @@ p{margin:0}
 <td class="c">清华（于超、丁文伯组）、港科大、中科院自动化所等</td>
 </tr>
 
-<tr>
-<td class="p"><a href="https://arxiv.org/abs/2610.01939">PyRUA-Lean</a><br></td>
-<td class="c">Tool Calling 每步调一次 VLM，token 开销大</td>
-<td>把原语和 VLA Policy 封装成 Python 对象 robo，VLM <b>一次写一个代码块</b>，在块内<b>串联多个原语、做条件判断和本地重试</b>，变量跨代码块保留；只有代码中<b>主动请求</b>的图像和打印信息才回传给 VLM。</td>
-<td><p><b>LIBERO-PRO + RoboTwin 2.0 + RoboCasa365（共 700 个实例，同用 GPT-6 Astra）</b></p><ul><li>总体：63.1% → 71.7%</li><li>LIBERO-PRO：83.0% → 94.0%</li><li>RoboTwin 2.0：60.0% → 69.2%</li><li>RoboCasa365 原子任务：78.9% → 86.7%</li><li>RoboCasa365 组合任务：34.4% → 39.4%</li></ul>
-<p><b>效率（两边都做成的任务）</b></p><ul><li>LLM 调用次数少 49%，输入 token 少 65%</li></ul>
-<p><b>补充分析：</b></p><ul><li>token 节省来源分解</li><li>只按需回图的消融</li><li>去掉 VLA / 操作指南的消融</li><li>RoboDojo 3 个任务小试：3.4% → 26.7%</li></ul></td>
-<td>没做（论文写明）</td>
-<td class="c">北大（周大权组）、NUS、NVIDIA</td>
-</tr>
+
 
 <tr>
 <td class="p"><a href="https://arxiv.org/abs/2609.10522">Show-Harness</a><br></td>
@@ -219,6 +211,23 @@ p{margin:0}
 <td>论文表 5：COCO 每框 7.6 tokens，Dense200 每框 5.1 tokens；为序列化指标。</td>
 <td>—</td>
 <td>小鹏汽车、北京大学、香港大学、UC Berkeley、Princeton、NUS、清华、HKUST (GZ)</td>
+</tr>
+<tr>
+<td class="m" rowspan="2">9. RL 后训练优化</td>
+<td class="p"><a href="https://arxiv.org/abs/2610.01939">PyRUA-Lean Coder</a><br>arXiv 2026.10</td>
+<td>逐步工具调用成本高；固定原语与 VLA 后，如何训练小模型的代码规划与接口使用能力？</td>
+<td>VLM 用 Python cell 组合原语、检查与重试，变量跨 cell 保留，仅回传请求的图像。Coder 对 Qwen3.5-4B 直接做全参数 GRPO，无 SFT；最终成败 1/0，同实例 8 次尝试组内归一化。9 任务、45 实例；每轮 16×8=128 episodes，30 轮共 3,840 episodes、60 优化步；仅更新 Planner。<br><a href="../papers/pyrua-lean.md">输入输出、更新批次与资源</a></td>
+<td><p><b>后训练（表8，655 未见实例）</b>：18.8%→44.1%；LIBERO 未见任务 13.5%→37.4%，RoboTwin 14.0%→52.4%，RoboCasa atomic 52.2%→76.7%，composite 12.5%→19.4%。</p><p><b>框架实验，非 GRPO 收益</b>：同一 Astra，700 实例 Tool 63.1%→Code 71.7%；LIBERO 83.0%→94.0%，RoboTwin 60.0%→69.2%，RoboCasa atomic 78.9%→86.7%，composite 34.4%→39.4%。共同成功子集调用减少49%、输入token减少65%。v2 RoboDojo RGB：42任务、2,100 episodes，51.62%。</p></td>
+<td>论文 v2 未报告 Coder 真机成功率；官网后续 AF8 两回合演示不作为 Coder 真机评测。</td>
+<td class="c">北京大学、NUS、NVIDIA、Impossible Research</td>
+</tr>
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2610.28589">AgenticRoboRL</a><br>arXiv 2026.10</td>
+<td>如何训练 Planner 自身，同时兼容 VLA 调用与控制代码生成两类 Harness？</td>
+<td>冻结执行组件，成功教师轨迹先 SFT，再用多轮 RL 训练 Qwen3.5-9B；记录真实模型调用，适配器将调用关联到完整 episode 结果。同任务、初始状态的 6 次尝试做 leave-one-out 优势，使用 dual-clipped PPO；每轮 64×6=384 episodes。RPent 学生 RL 与评测无外部记忆，教师 SFT 数据经过记忆依赖处理。<br><a href="../papers/agenticroborl.md">数据处理、训练规模与边界</a></td>
+<td><p><b>RPent / LIBERO-PRO，800 episodes</b>：9B 原始18.1%，SFT65.1%，SFT+RL71.0%。</p><p><b>LIBERO-Plus，10,030配置</b>：19.2%→66.7%→72.2%，同一 RPent checkpoint，不再训练。</p><p><b>CaP-X / LIBERO-PRO，600 episodes</b>：2.7%→18.7%→28.5%，另行训练，使用 privileged state。RL 相对 SFT 的增量分别为5.9和9.8个百分点；不能把总增益全部归于RL。</p></td>
+<td>论文未报告真机实验。</td>
+<td class="c">University of Central Florida、University of Southern California、Michigan State University</td>
 </tr>
 </table>
 </body></html>
