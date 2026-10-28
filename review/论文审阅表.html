@@ -189,7 +189,7 @@ p{margin:0}
 <tr>
 <td class="p"><a href="https://rsi-gear.github.io/">GEAR</a><br>项目预印本 2026.10</td>
 <td>如何从跨任务执行证据提炼可复用的 Harness 修改，并用一致评测筛选版本？</td>
-<td>Task-Agent 执行并产生轨迹与反馈，Meta-Agent 分析重复失败并提出 Harness 修改；进化搜索选择父版本、生成候选，经 Local、Bridge、完整种子集评测后执行晋升判断。GEAR 组织优化，Hitch 记录版本与执行证据，Rear 支持比较和标注。当前 Python 示例采用4→2→1候选筛选；官方文档明确其与历史 Marketing 算法存在差异，历史结果不能视作当前实现的测量。<br><a href="../papers/gear.md">流程、实现范围与阅读收获</a></td>
+<td>Meta-Agent 按模块化搜索策略生成、评测并迭代 Harness。父版本选择、任务采样、候选排序属于搜索算法模块；提示词、工具、技能和工作流属于被修改的 Harness 组件。Task-Agent 提供执行轨迹与反馈，经 Local、Bridge、完整种子集评测后决定版本晋升。GEAR 组织优化，Hitch 记录版本与执行证据，Rear 支持比较和标注。当前 Python 示例采用4→2→1候选筛选；官方文档明确其与历史 Marketing 算法存在差异，历史结果不能视作当前实现的测量。<br><a href="../papers/gear.md">流程、实现范围与阅读收获</a></td>
 <td><b>软件任务，非机器人仿真：</b>官网结果中，GPT 5.6 Luna medium、DSH Base→DSH+GEAR：AutomationBench Marketing通过率27.0%→40.0%、目标完成度75.4%→83.9%；Support通过率17.0%→25.0%、完成度72.9%→81.3%；Terminal-Bench 2.1通过率52.8%→62.9%。Marketing为100个共享任务，independentHeldOut=false；不能据此证明未见任务泛化。Astra max的Codex→DSH+GEAR另含Harness更换，非纯搜索消融。</td>
 <td>未报告机器人真机实验。</td>
 <td>Imperial College London、Duke University、香港中文大学、Brown University；另有独立研究者</td>
@@ -197,7 +197,7 @@ p{margin:0}
 <tr>
 <td class="p"><a href="https://arxiv.org/abs/2610.21791">RSIFlow</a><br>arXiv 2026.10 · v1</td>
 <td>性能瓶颈随改进变化，需要自适应选择改进对象，并让 Meta-Agent 利用历史改进反馈完善后续诊断与编排。</td>
-<td>Qwen3-4B/8B执行任务；GPT-5.6 Sol Meta-Agent诊断、检索经验并选择Model、Harness或Artifacts路径。主配置模型更新默认SFT，另测GRPO。候选在同一训练批次与父版本配对比较；每轮最多2次，均从同一父版本出发，接受首个有效且正增益候选。成功与失败证据维护为带条件、保留约束和反例的技能/原则。Meta基座参数冻结；公开skill-based变体的Meta可执行程序固定。<br><a href="../papers/rsiflow.md">Memory字段、五轮案例与评测隔离</a></td>
+<td>Task-Agent 执行任务，Meta-Agent 据反馈改进 Task 系统和自身 Harness，形成协同演化。Qwen3-4B/8B执行并产生轨迹与结果；GPT-5.6 Sol Meta-Agent据此选择Model、Harness或Artifacts路径，并把改进经验用于更新Meta-Harness，指导下一轮诊断与改进。主配置模型更新默认SFT，另测GRPO。候选在同一训练批次与父版本配对比较；每轮最多2次，均从同一父版本出发，接受首个有效且正增益候选。成功与失败证据维护为带条件、保留约束和反例的技能/原则。Meta基座参数冻结；公开skill-based变体的Meta可执行程序固定。<br><a href="../papers/rsiflow.md">Memory字段、五轮案例与评测隔离</a></td>
 <td><b>软件任务，非机器人仿真：</b>5轮×600不同训练任务，共3,000；固定744报告任务，报告反馈不参与进化，测试时冻结技能库与Meta-Harness。表1六基准等权平均：4B SIA45.15→RSIFlow51.21，8B56.00→59.86；不是744任务的统一成功率。12个模型×基准配置领先11个；8B ACEBench为HarnessForge59.07、RSIFlow52.62。表2关闭Meta演化，三领域平均51.21→45.47，差5.74个百分点；不代表单个Memory字段的独立贡献。</td>
 <td>未报告机器人真机实验。</td>
 <td>北京航空航天大学、清华大学、北京智源人工智能研究院（BAAI）</td>

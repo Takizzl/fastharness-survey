@@ -2,6 +2,12 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-28 · 按用户理解重写 Method
+
+- RSIFlow 突出 Task-Agent 执行与 Meta-Agent 改进之间的协同，以及 Task 系统和 Meta-Harness 的共同演化。
+- GEAR 突出 Meta-Agent 按模块化搜索策略迭代 Harness；区分搜索算法模块与被修改的 Harness 组件。
+- 同步首页 Method、审阅表、文献卡及本地报告；实验数字与来源不变。Codex 依据用户理解整理并完成自审。
+
 ## 2026-10-28 · Harness 进化分类调整
 
 - 按用户指定，将 GEAR、RSIFlow 从第7类 RSI Projects 移入第6类；第6类由 Harness Evolution Boundary 扩展为 Harness Evolution，共3项，RRSI 保留为进化约束方向。

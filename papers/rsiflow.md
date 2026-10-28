@@ -18,11 +18,13 @@ Agent 的瓶颈会随着改进而变化：固定改模型或固定改 Harness �
 
 ## 一句话：解决方案
 
-Meta-Agent 根据执行反馈选择修改模型、Harness 或当前产物，再把候选的成功与失败证据整理成技能和原则，改进后续的诊断与改进流程。
+Task-Agent 执行任务，Meta-Agent 据反馈改进 Task 系统和自身 Harness，形成协同演化。
 
 ## 方法：系统框架
 
 ![RSIFlow 原论文图2：Task 与 Meta 两层改进循环](assets/rsiflow-overview.png)
+
+**核心：任务执行与改进机制相互反馈。**Task-Agent 用当前模型与 Task-Harness 执行任务；Meta-Agent 根据其轨迹和结果选择改进 Task 模型、Harness 或产物，同时将本轮改进经验用于更新自己的 Meta-Harness。下一轮由改进后的 Task-Agent 执行，并由更新后的 Meta-Harness 组织改进。
 
 | 对象 | 包含什么 | 负责什么 |
 |---|---|---|
