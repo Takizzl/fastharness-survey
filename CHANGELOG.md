@@ -2,6 +2,11 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-28 · Harness 进化分类调整
+
+- 按用户指定，将 GEAR、RSIFlow 从第7类 RSI Projects 移入第6类；第6类由 Harness Evolution Boundary 扩展为 Harness Evolution，共3项，RRSI 保留为进化约束方向。
+- 同步首页分类计数、审阅表和三篇文献卡的模块字段；论文方法、结果和来源不变。Codex 完成提交前一致性检查。
+
 ## 2026-10-28 · RSI Projects 新增 GEAR 与 RSIFlow
 
 - 新增 [GEAR](papers/gear.md) 与 [RSIFlow](papers/rsiflow.md)，第7类由2项扩充至4项，并将分类说明扩展为递归自我改进系统。

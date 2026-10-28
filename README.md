@@ -14,8 +14,8 @@
 | [3. Memory](#memory) | Memory mechanisms | 4 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
-| [6. Harness Evolution Boundary](#boundary) | Guarding against overfitting | 1 |
-| [7. RSI Projects](#rsi-projects) | Recursive self-improvement systems | 4 |
+| [6. Harness Evolution](#harness-evolution) | Harness search, selection and evolution constraints | 3 |
+| [7. RSI Projects](#rsi-projects) | Self-evolving robot systems | 2 |
 | [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 |
 | [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 2 |
 
@@ -80,13 +80,15 @@
 
 <br>
 
-<a id="boundary"></a>
+<a id="harness-evolution"></a>
 
-## 6. Harness Evolution Boundary
+## 6. Harness Evolution
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **RRSI**: Regularized Recursive Self-Improvement of Agent Harnesses<br>\[[Paper](https://arxiv.org/abs/2609.24972)\] \[[Code](https://github.com/google-research/rrsi)\] \[[Website](https://regularized-rsi.com)\] | arXiv 2026.09 | 每轮能改的地方逐轮减少；只保留不含测试题答案、提升超过随机波动、多花的 token 有回报的改动 | JobBench、GDPval、APEX-Agents 平均：原始 harness 39.7 → 43.6 | Google |
+| **GEAR**: An Open General Evolutionary Architecture for Recursive Self-Improvement of LLM Agent Harness<br>\[[Report](https://rsi-gear.github.io/)\] \[[Code](https://github.com/rsi-gear/gear)\] \[[Website](https://rsi-gear.github.io/)\] | 项目预印本 2026.10 | Meta-Agent 从跨任务轨迹提出 Harness 修改，分阶段评测候选并保留版本 | Marketing 100共享任务：Luna 27%→40% | Imperial College London<br>Duke University |
+| **RSIFlow**: Adaptive Self-Improvement Workflows with an Evolving Meta-Agent<br>\[[Paper](https://arxiv.org/abs/2610.21791)\] \[[Code](https://github.com/1HUAN1/RSI-Flow)\] | arXiv 2026.10 | Meta-Agent 选择改模型、Harness或产物，把修改前后证据维护为技能和原则供后续检索 | 六基准留出评测：4B平均SIA 45.15→51.21 | Beihang University<br>Tsinghua University |
 
 <br>
 
@@ -98,8 +100,6 @@
 |:---:|:---:|:---:|:---:|:---:|
 | **LoopROS / LoopMaster**: A Recursively Self-Evolving Robot Operating System for Agentic Manipulation<br>\[[Report](https://loopmaster.ai/loopros/)\] \[[Code](https://github.com/Boxjod/LoopROS_Client)\] \[[Website](https://loopmaster.ai/)\] | 技术报告 2026.10 | Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。 | 自报 RoboDojo 10 任务 100 例：SR 82%，Score 88.90 | LoopMaster |
 | **PhysicalRSI**: Physical RSI 1.0: Recursive Self-Harness for Scaling Embodied Skills<br>\[[Code](https://github.com/PhysicalRSI/PhysicalRSI)\] \[[Website](https://mmlab.hk/research/PhysicalRSI)\] | Preview 2026 | Agent 根据执行反馈改写 harness，评测候选并保留更优版本，继承代码技能与任务记忆。 | RoboDojo 官网快照：Score 36.27，SR 31.38% | HKU MMLab<br>KAI |
-| **GEAR**: An Open General Evolutionary Architecture for Recursive Self-Improvement of LLM Agent Harness<br>\[[Report](https://rsi-gear.github.io/)\] \[[Code](https://github.com/rsi-gear/gear)\] \[[Website](https://rsi-gear.github.io/)\] | 项目预印本 2026.10 | Meta-Agent 从跨任务轨迹提出 Harness 修改，分阶段评测候选并保留版本 | Marketing 100共享任务：Luna 27%→40% | Imperial College London<br>Duke University |
-| **RSIFlow**: Adaptive Self-Improvement Workflows with an Evolving Meta-Agent<br>\[[Paper](https://arxiv.org/abs/2610.21791)\] \[[Code](https://github.com/1HUAN1/RSI-Flow)\] | arXiv 2026.10 | Meta-Agent 选择改模型、Harness或产物，把修改前后证据维护为技能和原则供后续检索 | 六基准留出评测：4B平均SIA 45.15→51.21 | Beihang University<br>Tsinghua University |
 
 
 <a id="perception"></a>

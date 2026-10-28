@@ -3,7 +3,7 @@
 | 字段 | 内容 |
 |---|---|
 | 完整标题 | GEAR: An Open General Evolutionary Architecture for Recursive Self-Improvement of LLM Agent Harness |
-| 模块 | 7. RSI Projects |
+| 模块 | 6. Harness 进化 |
 | Year / Venue | 项目预印本 2026.10；官网尚未提供 arXiv 全文入口 |
 | Team | Imperial College London、Duke University、香港中文大学、Brown University；另有独立研究者 |
 | 作者 | Yehui Tang、Guanqi Zhu、Shao-Jun Xia（共同一作）；Xin Chen、Mengzhe Geng、Hongyang Du、Yuhao Tang；Yehui Tang 为通讯作者 |

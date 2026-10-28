@@ -3,7 +3,7 @@
 | 字段 | 内容 |
 |---|---|
 | 完整标题 | RSIFlow: Adaptive Self-Improvement Workflows with an Evolving Meta-Agent |
-| 模块 | 7. RSI Projects |
+| 模块 | 6. Harness 进化 |
 | Year / Venue | arXiv 2026.10；2610.21791v1，2026-10-15 |
 | Team | 北京航空航天大学、清华大学、北京智源人工智能研究院（BAAI） |
 | 作者 | Huan Zhang、Mingju Chen（共同一作）；Dongxu Zhou、Can Lv、Sen Cui、Faguo Wu、Shiji Zhou；首页列 Shiji Zhou 为联系作者 |

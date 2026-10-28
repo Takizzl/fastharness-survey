@@ -2,7 +2,7 @@
 
 | 项目 | 内容 |
 |---|---|
-| 模块 | 6. Harness 迭代边界 |
+| 模块 | 6. Harness 进化 |
 | Year / Venue | 2026 / `arXiv` |
 | Paper | https://arxiv.org/abs/2609.24972 |
 | Code | https://github.com/google-research/rrsi |
