@@ -2,6 +2,13 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-29 · RAX归入RSI系统，RPG归入Sim2Real
+
+- 新增 [RAX](papers/rax.md) 与 [RPG](papers/rpg.md)，同步阅读版HTML、原论文框架图、首页、审阅表与来源记录。
+- 按用户讨论，RAX作为Coding Agent组织的完整机器人系统归入第7类RSI Projects；新增第10类Sim2Real收录RPG。技能成长保留为关联机制，不作为二者主分类。
+- RAX保留Score／成功率、纯程序／Agent在环、推理／机器人耗时的区别；RPG保留特权诊断、候选验收、留出初始化、真机自主重试与底层harness固定的边界。
+- 内容由Codex根据原论文与官方资料整理，用户确定分类；提交前完成来源核对与自审。
+
 ## 2026-10-28 · Harness 进化新增 BiPA
 
 - 按用户理解收录 [BiPA](papers/bipa.md)，第6类扩展至4项；重点为Skill更新收益可信度与执行成本诊断。

@@ -15,9 +15,10 @@
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
 | [6. Harness Evolution](#harness-evolution) | Harness search, selection, diagnosis and constraints | 4 |
-| [7. RSI Projects](#rsi-projects) | Self-evolving robot systems | 2 |
+| [7. RSI Projects](#rsi-projects) | Integrated robot systems and self-improvement | 3 |
 | [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 |
 | [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 2 |
+| [10. Sim2Real](#sim2real) | Simulation practice and physical deployment | 1 |
 
 <br>
 
@@ -101,6 +102,7 @@
 |:---:|:---:|:---:|:---:|:---:|
 | **LoopROS / LoopMaster**: A Recursively Self-Evolving Robot Operating System for Agentic Manipulation<br>\[[Report](https://loopmaster.ai/loopros/)\] \[[Code](https://github.com/Boxjod/LoopROS_Client)\] \[[Website](https://loopmaster.ai/)\] | 技术报告 2026.10 | Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。 | 自报 RoboDojo 10 任务 100 例：SR 82%，Score 88.90 | LoopMaster |
 | **PhysicalRSI**: Physical RSI 1.0: Recursive Self-Harness for Scaling Embodied Skills<br>\[[Code](https://github.com/PhysicalRSI/PhysicalRSI)\] \[[Website](https://mmlab.hk/research/PhysicalRSI)\] | Preview 2026 | Agent 根据执行反馈改写 harness，评测候选并保留更优版本，继承代码技能与任务记忆。 | RoboDojo 官网快照：Score 36.27，SR 31.38% | HKU MMLab<br>KAI |
+| **RAX**: Scaling Online Exploration for Robot Agents<br>\[[Paper](https://arxiv.org/abs/2610.22496v1)\] \[[Code](https://github.com/robot-agent-exploration/rax)\] \[[Website](https://robot-agent-exploration.com/)\] | arXiv 2026.10 | Coding Agent 自主探索，合成感知、规划与控制程序，保存经验并复用已验证技能 | RoboDojo 7任务：Score 24.9%→78.3% | Harvard<br>NVIDIA |
 
 
 <a id="perception"></a>
@@ -121,3 +123,13 @@
 |:---:|:---:|:---:|:---:|:---:|
 | **PyRUA-Lean Coder**: Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens<br>\[[Paper](https://arxiv.org/abs/2610.01939)\] \[[Code](https://github.com/DAGroup-PKU/PyRUA-Lean)\] \[[Website](https://dagroup-pku.github.io/PyRUA-Lean/)\] | arXiv 2026.10 | 冻结原语与 VLA，用成败奖励做 GRPO，训练 4B Planner 组合代码、检查与重试 | LIBERO、RoboTwin、RC365 未见655例：18.8%→44.1% | PKU<br>NUS |
 | **AgenticRoboRL**: Bringing Coding-Agent Post-Training to Agentic Robotics<br>\[[Paper](https://arxiv.org/abs/2610.28589)\] \[[Code](https://github.com/xinxinliu-ai/AgenticRoboRL)\] \[[Website](https://xinxinliu-ai.github.io/AgenticRoboRL/)\] | arXiv 2026.10 | 成功示范 SFT 后，用多轮 RL 训练 9B Planner 调用 VLA 或生成控制代码 | RPent / LIBERO-PRO：18.1%→65.1%→71.0% | UCF<br>USC |
+
+<br>
+
+<a id="sim2real"></a>
+
+## 10. Sim2Real
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **RPG**: Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents<br>\[[Paper](https://arxiv.org/abs/2610.02204v1)\] \[[Website](https://rpg-robot.github.io/)\] | arXiv 2026.10 | 从离线数据构造仿真练习，用执行与视频诊断迭代技能和提示词，验证后部署真机 | MuJoCo/YAM 22任务：28.6%→95.0% | UC Berkeley<br>Amazon FAR |

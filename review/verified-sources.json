@@ -130,5 +130,17 @@
     "source": "https://arxiv.org/abs/2610.37201v1",
     "location": "论文首页团队；§3–4、图2、表1、§5–6、Limitations、附录A/C/D/E；官方README 84606c3",
     "result": "16学习技能测试成功率相对种子+0.1个百分点；按任务配对输入Token几何平均比率1.16。BiPA是事后诊断与测量工具，不是直接优化器、适用边界识别或强制约束系统。"
+  },
+  "rax": {
+    "date": "2026-10-29",
+    "source": "https://arxiv.org/abs/2610.22496v1",
+    "location": "原论文v1首页、§3、§5.1–5.5、表1/9、附录§10.2；既有官方real/rainbow与robodojo-behavior/native代码阅读记录。",
+    "result": "RoboDojo 7个选定任务，各任务最大探索预算下平均Score为78.3%，VPP2为24.9%；每任务测试30–50个未见布局，包含部分得分，非完整基准任务成功率。另评测BEHAVIOR-1K、DexJoCo、HumanoidArena、LIBERO及LIBERO-Pro。 Franka FR3的记忆、炸锅、擦拭、精细插入与Bandu任务，以及RB-Y1长程移动操作。炸锅案例：Agent探索成功动作生成72.3分钟，后续程序计算18秒；机器人调用时间分别2.9与2.5分钟，不是任务总耗时241倍加速。"
+  },
+  "rpg": {
+    "date": "2026-10-29",
+    "source": "https://arxiv.org/abs/2610.02204v1",
+    "location": "原论文v1首页、§III-A–E、§IV-A–E、表II/IV/V、附录A/D；官方项目页Code coming soon，2026-10-29。",
+    "result": "同一22任务×10留出初始化，共220 episodes：第1轮后63/220（28.6%），第15轮后209/220（95.0%）；ASPIRE166/220（75.5%）；CaP-Agent0同Gemini模型107/220（48.6%），GPT-6 Astra Pro132/220（60.0%）。单独替换技能库的4任务对照26/40→37/40。主评测是未见初始化；4个无直接改进反馈任务仍参加开发回归验收。 YAM上放球入抽屉并关好、叠毛巾、双手转交碗，3任务各10次，RPG均10/10；CaP-Agent0/GPT-6分别4/10、9/10、1/10，同Gemini分别3/10、0/10、0/10。共同标定及硬件适配，无任务特定调参，预算内可自主重试，无人工帮助、手动重置或系统修改。"
   }
 }
