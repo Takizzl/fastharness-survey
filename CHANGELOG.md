@@ -2,6 +2,13 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-28 · RSI Projects 新增 GEAR 与 RSIFlow
+
+- 新增 [GEAR](papers/gear.md) 与 [RSIFlow](papers/rsiflow.md)，第7类由2项扩充至4项，并将分类说明扩展为递归自我改进系统。
+- GEAR 按官网项目预印本资料收录；补入分阶段搜索、当前Python与历史算法的差异、共享100任务的评测边界。
+- RSIFlow 说明三种改进路径、候选验收、Meta经验字段及维护、五轮案例与3,000开发/744报告任务隔离；区分SFT主配置与GRPO附录实验、平均得分与统一成功率。
+- 保留作者原图，新增阅读收获并署名Codex；同步首页、审阅表与原始来源记录。提交前由Codex核对来源并自审。
+
 ## 2026-10-27 · RL 后训练优化
 
 - 新建第9类「RL 后训练优化」，将 [PyRUA-Lean Coder](papers/pyrua-lean.md) 从 Code + Policy 移入，新增 [AgenticRoboRL](papers/agenticroborl.md)。

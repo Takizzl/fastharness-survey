@@ -112,5 +112,17 @@
     "source": "https://arxiv.org/html/2610.28589v2",
     "location": "§3信息记录、SFT与LOO/PPO；表1–3；附录A–C；作者官方仓库及主页",
     "result": "RPent / LIBERO-PRO 800 episodes：18.1%→65.1%→71.0%；LIBERO-Plus：19.2%→66.7%→72.2%；CaP-X特权状态600 episodes：2.7%→18.7%→28.5%。"
+  },
+  "gear": {
+    "date": "2026-10-28",
+    "source": "https://rsi-gear.github.io/",
+    "location": "作者官网Framework/Results/Citation；assets/paper-results.json与marketing-results.json；官方仓库8fc5205的README及example-algorithm.md",
+    "result": "项目预印本，未提供arXiv全文。Luna medium：Marketing27%→40%、Support17%→25%、Terminal-Bench2.1 52.8%→62.9%；Marketing100共享任务无独立留出。当前Python与历史staged算法区分。"
+  },
+  "rsiflow": {
+    "date": "2026-10-28",
+    "source": "https://arxiv.org/abs/2610.21791v1",
+    "location": "论文首页团队、§3、表1–3、附录A.1–A.3/B/C/D/F；官方README 496d3cf的公开变体说明",
+    "result": "3,000进化任务与744报告任务隔离；六基准等权平均4B45.15→51.21，8B56.00→59.86；11/12配置领先。关闭Meta演化平均下降5.74个百分点；无机器人实验。"
   }
 }

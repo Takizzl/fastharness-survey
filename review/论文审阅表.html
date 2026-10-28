@@ -21,7 +21,7 @@ p{margin:0}
 .note{font-size:12px;color:#646a73;margin:0 0 8px}
 </style></head><body>
 <h3>FastHarness 论文审阅表</h3>
-<p class="note">2026-10-27：第9类两篇由 Codex 据原论文 v2 整理；其他条目保留已有内容。</p>
+<p class="note">2026-10-28：第7类新增 GEAR 与 RSIFlow，由 Codex 据所提供笔记、原论文及官方资料核对整理；GEAR 为公开项目预印本资料。保留其他已收录内容。</p>
 
 
 <table>
@@ -187,7 +187,7 @@ p{margin:0}
 <td class="c">Google Cloud AI Research（Tomas Pfister 组）、UNC、Stanford</td>
 </tr>
 <tr>
-<td class="m" rowspan="2">7. RSI Projects</td>
+<td class="m" rowspan="4">7. RSI Projects</td>
 <td class="p"><a href="https://loopmaster.ai/loopros/">LoopROS / LoopMaster</a><br><br>技术报告 2026.10</td>
 <td>机器人执行经验难以转化为后续任务可检索、复用的操作能力。</td>
 <td>Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。</td>
@@ -203,6 +203,22 @@ p{margin:0}
 <td>RoboDojo 官方榜单公开数据：Score 36.27、SR 31.38%，团队 HKU MMLab &amp; KAI；网站提及 52 个 task×layout settings。项目网页使用 2026-10-03 结果快照、注明 10-08 核对。2026-10-14 读取的基准前端数据快照为 10-09，PhysicalRSI 仍是相同分数，但 VPP2 已为 Score 39.26、SR 32.26%，不沿用项目页旧的 No.1 文案。</td>
 <td>—</td>
 <td>HKU MMLab &amp; KAI（RoboDojo 官方榜单署名）；代码引用为 MMLab &amp; PhysicalRSI contributors</td>
+</tr>
+<tr>
+<td class="p"><a href="https://rsi-gear.github.io/">GEAR</a><br>项目预印本 2026.10</td>
+<td>如何从跨任务执行证据提炼可复用的 Harness 修改，并用一致评测筛选版本？</td>
+<td>Task-Agent 执行并产生轨迹与反馈，Meta-Agent 分析重复失败并提出 Harness 修改；进化搜索选择父版本、生成候选，经 Local、Bridge、完整种子集评测后执行晋升判断。GEAR 组织优化，Hitch 记录版本与执行证据，Rear 支持比较和标注。当前 Python 示例采用4→2→1候选筛选；官方文档明确其与历史 Marketing 算法存在差异，历史结果不能视作当前实现的测量。<br><a href="../papers/gear.md">流程、实现范围与阅读收获</a></td>
+<td><b>软件任务，非机器人仿真：</b>官网结果中，GPT 5.6 Luna medium、DSH Base→DSH+GEAR：AutomationBench Marketing通过率27.0%→40.0%、目标完成度75.4%→83.9%；Support通过率17.0%→25.0%、完成度72.9%→81.3%；Terminal-Bench 2.1通过率52.8%→62.9%。Marketing为100个共享任务，independentHeldOut=false；不能据此证明未见任务泛化。Astra max的Codex→DSH+GEAR另含Harness更换，非纯搜索消融。</td>
+<td>未报告机器人真机实验。</td>
+<td>Imperial College London、Duke University、香港中文大学、Brown University；另有独立研究者</td>
+</tr>
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2610.21791">RSIFlow</a><br>arXiv 2026.10 · v1</td>
+<td>性能瓶颈随改进变化，需要自适应选择改进对象，并让 Meta-Agent 利用历史改进反馈完善后续诊断与编排。</td>
+<td>Qwen3-4B/8B执行任务；GPT-5.6 Sol Meta-Agent诊断、检索经验并选择Model、Harness或Artifacts路径。主配置模型更新默认SFT，另测GRPO。候选在同一训练批次与父版本配对比较；每轮最多2次，均从同一父版本出发，接受首个有效且正增益候选。成功与失败证据维护为带条件、保留约束和反例的技能/原则。Meta基座参数冻结；公开skill-based变体的Meta可执行程序固定。<br><a href="../papers/rsiflow.md">Memory字段、五轮案例与评测隔离</a></td>
+<td><b>软件任务，非机器人仿真：</b>5轮×600不同训练任务，共3,000；固定744报告任务，报告反馈不参与进化，测试时冻结技能库与Meta-Harness。表1六基准等权平均：4B SIA45.15→RSIFlow51.21，8B56.00→59.86；不是744任务的统一成功率。12个模型×基准配置领先11个；8B ACEBench为HarnessForge59.07、RSIFlow52.62。表2关闭Meta演化，三领域平均51.21→45.47，差5.74个百分点；不代表单个Memory字段的独立贡献。</td>
+<td>未报告机器人真机实验。</td>
+<td>北京航空航天大学、清华大学、北京智源人工智能研究院（BAAI）</td>
 </tr>
 <tr>
 <td class="m">8. 感知基础模型</td><td class="p"><a href="https://arxiv.org/abs/2609.39601">GroundingPI</a><br><br>arXiv 2026.09</td>
