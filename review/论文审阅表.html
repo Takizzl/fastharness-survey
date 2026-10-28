@@ -21,7 +21,7 @@ p{margin:0}
 .note{font-size:12px;color:#646a73;margin:0 0 8px}
 </style></head><body>
 <h3>FastHarness 论文审阅表</h3>
-<p class="note">2026-10-28：按用户分类，将 GEAR、RSIFlow 归入第6类 Harness 进化；RRSI 保留为进化约束方向。论文方法与实验内容不变。</p>
+<p class="note">2026-10-28：BiPA按用户理解与原论文v1由Codex整理，归入Harness进化的收益与成本诊断；其余条目保留已有内容。</p>
 
 
 <table>
@@ -176,7 +176,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="m" rowspan="3">6. Harness 进化</td>
+<td class="m" rowspan="4">6. Harness 进化</td>
 <td class="p"><a href="https://arxiv.org/abs/2609.24972">RRSI</a><br></td>
 <td class="c">Harness 自进化用同一批题提改动、选改动，出现自适应过拟合</td>
 <td><b>提出端</b>：每轮可改动数量随轮次递减；记录全部历史，失败过的思路作为反面证据；停滞时转向没改过的组件。<b>选择端</b>：Critic 先<b>筛掉带评测题答案的改动</b>；提升必须超过重复评测的<b>噪声带</b>；多花的 token 要和提升成比例；长期没贡献的组件<b>剪掉</b>。</td>
@@ -201,6 +201,14 @@ p{margin:0}
 <td><b>软件任务，非机器人仿真：</b>5轮×600不同训练任务，共3,000；固定744报告任务，报告反馈不参与进化，测试时冻结技能库与Meta-Harness。表1六基准等权平均：4B SIA45.15→RSIFlow51.21，8B56.00→59.86；不是744任务的统一成功率。12个模型×基准配置领先11个；8B ACEBench为HarnessForge59.07、RSIFlow52.62。表2关闭Meta演化，三领域平均51.21→45.47，差5.74个百分点；不代表单个Memory字段的独立贡献。</td>
 <td>未报告机器人真机实验。</td>
 <td>北京航空航天大学、清华大学、北京智源人工智能研究院（BAAI）</td>
+</tr>
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2610.37201">BiPA</a><br>arXiv 2026.10 · v1</td>
+<td>持续Rollout与Skill迭代时，如何判断更新有效性、性能收益可信度与新增规则的执行成本？</td>
+<td>按用户理解整理：BiPA通过候选选择回放，测量不变候选也会被选出的开发集增益；建立执行轮次与上下文组件的二部图，追踪输入Token与工具调用，将成本分解为调用增多、调用拆轮、每轮内容增多与Skill前缀增长。提出过滤选择偏差、按新增轮次核算成本、允许删除合并规则、反馈历史规则成本四项原则。属于分析与诊断框架，未建立Skill适用边界识别机制，也不是强制执行的Harness约束系统。<br><a href="../papers/bipa.md">方法、实验口径与用户理解</a></td>
+<td><b>软件任务，非具身仿真：</b>GEPA、SkillOpt、SkillAdam；DeepSeek-V4.1-Flash与GPT-6-Luna；OpenCode。Terminal-Bench 2.1测试18任务（Luna实际17）、τ³-bench75、AutomationBench120；每技能重复3次，avg@3。16个学习技能相对人工种子，测试成功率汇总+0.1个百分点，按任务配对的输入Token几何平均比率1.16。不是BiPA带来的优化收益。DeepSeek59个可识别父版本的编辑中，轮次变化单独解释Token变化方差93%，文本长度变化解释10%；不能将两项相加。</td>
+<td>未报告机器人真机实验。</td>
+<td>上海人工智能实验室、复旦大学、上海交通大学、中国科学技术大学、清华大学</td>
 </tr>
 <tr>
 <td class="m" rowspan="2">7. RSI Projects</td>

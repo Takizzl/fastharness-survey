@@ -14,7 +14,7 @@
 | [3. Memory](#memory) | Memory mechanisms | 4 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
-| [6. Harness Evolution](#harness-evolution) | Harness search, selection and evolution constraints | 3 |
+| [6. Harness Evolution](#harness-evolution) | Harness search, selection, diagnosis and constraints | 4 |
 | [7. RSI Projects](#rsi-projects) | Self-evolving robot systems | 2 |
 | [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 |
 | [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 2 |
@@ -89,6 +89,7 @@
 | **RRSI**: Regularized Recursive Self-Improvement of Agent Harnesses<br>\[[Paper](https://arxiv.org/abs/2609.24972)\] \[[Code](https://github.com/google-research/rrsi)\] \[[Website](https://regularized-rsi.com)\] | arXiv 2026.09 | 每轮能改的地方逐轮减少；只保留不含测试题答案、提升超过随机波动、多花的 token 有回报的改动 | JobBench、GDPval、APEX-Agents 平均：原始 harness 39.7 → 43.6 | Google |
 | **GEAR**: An Open General Evolutionary Architecture for Recursive Self-Improvement of LLM Agent Harness<br>\[[Report](https://rsi-gear.github.io/)\] \[[Code](https://github.com/rsi-gear/gear)\] \[[Website](https://rsi-gear.github.io/)\] | 项目预印本 2026.10 | Meta-Agent 按模块化搜索策略生成、评测并迭代 Harness | Marketing 100共享任务：Luna 27%→40% | Imperial College London<br>Duke University |
 | **RSIFlow**: Adaptive Self-Improvement Workflows with an Evolving Meta-Agent<br>\[[Paper](https://arxiv.org/abs/2610.21791)\] \[[Code](https://github.com/1HUAN1/RSI-Flow)\] | arXiv 2026.10 | Task-Agent 执行任务，Meta-Agent 据反馈改进 Task 系统和自身 Harness，形成协同演化 | 六基准留出评测：4B平均SIA 45.15→51.21 | Beihang University<br>Tsinghua University |
+| **BiPA**: Does Your Generalist Skill Optimizer Really Incentivize Agentic Tasks? Rethinking Skill Optimization via Bipartite Attribution<br>\[[Paper](https://arxiv.org/abs/2610.37201)\] \[[Code](https://github.com/valleysprings/BiPA)\] | arXiv 2026.10 | 回放候选选择检验收益可信度，用轮次与上下文二部图分解 Skill 更新的执行成本 | 三基准16技能：成功率+0.1pp，输入token×1.16 | Shanghai AI Laboratory<br>Fudan University |
 
 <br>
 
