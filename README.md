@@ -11,7 +11,7 @@
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
 | [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 7 |
-| [3. Memory](#memory) | Memory mechanisms | 4 |
+| [3. Memory](#memory) | Memory mechanisms | 5 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
 | [6. Harness Evolution](#harness-evolution) | Harness search, selection, diagnosis and constraints | 4 |
@@ -58,6 +58,7 @@
 | **Robota-Embed**: Unified VLA Embeddings for Robot In-Context Learning and Evolution<br>\[[Paper](https://arxiv.org/abs/2610.19495v1)\] \[[Website](https://robota-ai.github.io/robota-embed/)\] | arXiv 2026.10 | 将任务、画面和动作编码为向量，检索历史执行片段，把画面、命令和反馈交给策略复用。 | ManiSkill 5 任务×20 次：Astra 24%→68% | NVIDIA<br>MIT |
 | **PhysMem**: Learning Physical Principles from Interaction: Self-Evolving Planning via Test-Time Memory<br>\[[Paper](https://arxiv.org/abs/2602.20323v1)\] \[[Code](https://github.com/haoyangli16/PhysMem)\] \[[Website](https://phys-mem.github.io/)\] | arXiv 2026.02 | 从交互中生成并验证物理假设，将可靠原则写入记忆，检索后辅助下一次规划。 | 真机推球：12 次连续交互定性展示 | UC San Diego<br>Stanford |
 | **MemEvolve**: Meta-Evolution of Agent Memory Systems<br>\[[Paper](https://arxiv.org/abs/2512.18746v1)\] \[[Code](https://github.com/bingreeky/MemEvolve)\] | ICML 2026 | 内层积累执行记忆，外层根据反馈改写记忆编码、存储、检索与管理代码。 | xBench-DS 100题：Flash-Searcher 69%→74%（pass@1） | OPPO<br>NUS |
+| **EmbodiedRSI**: Active Continual Robot Learning Through Hypothesis-Guided Co-Evolution<br>\[[Paper](https://arxiv.org/abs/2610.10498v1)\] \[[Website](https://geeksongs.github.io/agentic_robotics/)\] · [知识笔记](papers/embodiedrsi.md) | arXiv 2026.10 | 冻结VLA，试验演化代码与技能，用后续执行收益通过PPO训练记忆管理器。 | RoboCasa365总体：Harness VLA 63.6%→77.0% | Columbia<br>Princeton |
 
 
 <br>
