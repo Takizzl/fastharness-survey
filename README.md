@@ -10,7 +10,7 @@
 | Category | Focus | Papers |
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
-| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 6 |
+| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 7 |
 | [3. Memory](#memory) | Memory mechanisms | 4 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
@@ -44,6 +44,7 @@
 | **RoboHarness**: Memory-Driven Orchestration of Heterogeneous Robot Policies for Long-Horizon Planning<br>\[[Paper](https://arxiv.org/abs/2607.18060)\] \[[Code](https://github.com/markli1hoshipu/RoboHarness)\] \[[Website](https://robo-harness.com)\] | ECCV 2026 Workshop<br>**Best Paper** | Agent 按能力把子任务分给 VLA、RL、TAMP，换策略前先把机器人移到下一个策略熟悉的状态 | LIBERO-LoHo 长任务：95.2%，单用 π0.5 只有 6.4% | Huawei Noah's Ark |
 | **GPT-as-Policy**: GPT 6 Astra as an Embodied Policy<br>\[[Report](https://anonymous-report-421.github.io/public-website/?view=1)\] \[[Code](https://github.com/anonymous-report-421/GPT-as-Policy)\] \[[Website](https://anonymous-report-421.github.io/public-website/?view=1)\] | 技术报告 2026 | GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正，恢复后交还控制。 | RoboDojo 50 例：混合 48%，Direct 26% | Galbot |
 | **COAP**: Embodied Turing Machines<br>\[[Paper](https://arxiv.org/abs/2610.12369)\] \[[Website](https://etmcode-bit.github.io/)\] | arXiv 2026.10 | Agent 根据反馈改程序；测试冻结代码，用显式状态与重试执行。 | RoboDojo 42任务：成功率70.24%，均为仿真 | NTU<br>Ropedia |
+| **RoboAuto**: Autonomous Robot Program Search through Multi-Level Physical Understanding<br>\[[Paper](https://arxiv.org/abs/2610.36533v1)\] \[[Website](https://roboauto-ai.github.io/)\] · [笔记](papers/roboauto.md) | arXiv 2026.10 | Agent检索物体知识、测量场景，分阶段写代码并验证，失败后修改或做诊断实验。 | RoboTwin 4任务各50次：24.5%→91.5% | Washington Univ. in St. Louis |
 
 <br>
 

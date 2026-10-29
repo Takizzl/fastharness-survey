@@ -25,6 +25,7 @@ p{margin:0}
 <p class="note">2026-10-28：BiPA按用户理解与原论文v1由Codex整理，归入Harness进化的收益与成本诊断；其余条目保留已有内容。</p>
 
 
+<p class="note">2026-10-29：RoboAuto按用户要求归入Code + Policy；Codex对照原论文v1、附录与官方项目页整理、自审，保留英文字段及中文注释。</p>
 <table>
 <tr><th>模块</th><th>论文</th><th>问题</th><th>方法</th><th>仿真结果</th><th>真机结果</th><th>团队</th></tr>
 
@@ -42,7 +43,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="m" rowspan="6">2. Code + Policy</td>
+<td class="m" rowspan="7">2. Code + Policy</td>
 <td class="p"><a href="https://arxiv.org/abs/2603.22435">CaP-X</a><br><b>（ICML 2026）</b><br></td>
 <td class="c">Code-as-Policy 依赖人写的高层 API，看不出模型本身能力</td>
 <td>Coding Agent 只拿 <b>Low-level Primitive</b>（SAM3 分割、IK 求解、Motion Planning），<b>多轮写代码</b>：每轮执行后读取 stdout / 报错，以及 VDM（把前后图像变化转成文字），据此改代码；CaP-Agent0 再加入从成功代码中<b>自动提炼的 Skill Library</b>，并<b>多模型并行生成、合成一份代码</b>执行；CaP-RL 用 <b>GRPO</b>、以仿真成功为奖励训练 Qwen2.5-Coder-7B。</td>
@@ -109,6 +110,15 @@ p{margin:0}
 <td>论文报告 RoboDojo 42 项任务整体成功率 70.24%；40 项有程序，2 项无程序。每任务 3 个种子 × 50 个布局 = 150 条 episode 是最终评测规模，不是开发探索量。所有结果来自仿真；没有真机验证。</td>
 <td>尚未进行真机验证；已有笔记中的成绩均来自仿真。</td>
 <td>NTU、Ropedia</td>
+</tr>
+
+<tr>
+<td class="p"><a href="https://arxiv.org/abs/2610.36533v1">RoboAuto</a><br>arXiv 2026.10</td>
+<td>仅凭执行反馈修改代码，容易保留错误物理假设，缺少当前几何与阶段效果验证。</td>
+<td>Agent检索物体知识、测量场景，分阶段写代码并验证，失败后修改或做诊断实验。 LIBERO-90每源任务1段成功示范，共90段初始化物体知识；程序搜索中保留验证技能和物理证据。开发可修改程序，留出测试固定最后一版程序，不更新知识库。<br><a href="../papers/roboauto.md">方法与结果</a> · <a href="../reports/roboauto.html">HTML汇报</a></td>
+<td>LIBERO-PRO Object／Spatial／Goal：98.7%／94.8%／73.7%；Long：73.4%；LIBERO-Plus：90.3%；Robosuite：90.6%。RoboTwin 4任务各50次，11次开发rollout预算：无知识24.5%，有分层知识91.5%。开发预算45／55／11次按设置区分，测试seed与开发分离。</td>
+<td>WidowX AI：Opus 5、每任务10次开发rollout，固定程序后各20次新位置测试。Sort Balls／Stack Dishes／Erase Board平均阶段完成评分100.00%／100.00%／95.83%，不是整任务成功率；人工提供搜索成败判断、场景重置与测试评分。</td>
+<td class="c">Washington University in St. Louis</td>
 </tr>
 
 <tr>

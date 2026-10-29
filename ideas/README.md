@@ -11,4 +11,4 @@
 
 - [π0.7：语言指导、目标图像与VLA训练](pi07-training-and-gradient.md) · 感知与执行／VLA训练与条件控制 · [阅读版HTML](../reports/pi07.html) · 2026-10-29
 
-- [RoboAuto：初始化与Sim2Real](roboauto-initialization-sim2real.md) · Code + Policy／物体知识与技能迁移 · [阅读版HTML](../reports/roboauto.html) · 2026-10-29
+- [RoboAuto：经验初始化、程序开发与Sim2Real](roboauto-initialization-sim2real.md) · Code + Policy／物体知识与技能迁移 · [阅读版HTML](../reports/roboauto.html) · 2026-10-29

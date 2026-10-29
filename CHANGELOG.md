@@ -4,6 +4,7 @@
 
 ## 2026-10-29 · RoboAuto：初始化与知识迁移
 
+- 按用户要求正式归入Code + Policy：同步[论文条目](papers/roboauto.md)、首页分类与审阅表；扩充经验字段英文摘录及中文注释、开发／测试边界、各benchmark预算与成功率、真机10次搜索／20次评测。
 - 新增[阅读笔记](ideas/roboauto-initialization-sim2real.md)与[HTML](reports/roboauto.html)，重点核对90段示范初始化、物体知识与技能分层、真机10次搜索及独立20次评测。
 - 保留图12／图8原图和阶段完成评分口径，区分知识迁移、目标域程序搜索与跨仿真器实验。Codex对照原文v1、附录及官方项目页整理并自审。
 
