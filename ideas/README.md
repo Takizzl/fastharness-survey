@@ -12,3 +12,9 @@
 - [π0.7：语言指导、目标图像与VLA训练](pi07-training-and-gradient.md) · 感知与执行／VLA训练与条件控制 · [阅读版HTML](../reports/pi07.html) · 2026-10-29
 
 - [RoboAuto：经验初始化、程序开发与Sim2Real](roboauto-initialization-sim2real.md) · Code + Policy／物体知识与技能迁移 · [阅读版HTML](../reports/roboauto.html) · 2026-10-29
+
+- [SkillRL：数据、训练与经验迭代](skillrl-reading.md) · RL 后训练优化 · [HTML](../reports/skillrl.html) · 2026-10-31
+
+- [CaPtain：数据、训练与经验迭代](captain-reading.md) · RL 后训练优化 · [HTML](../reports/captain.html) · 2026-10-31
+
+- [OmniBrain-0：数据、训练与经验迭代](omnibrain0-reading.md) · RSI 与自我改进 · [HTML](../reports/omnibrain0.html) · 2026-10-31

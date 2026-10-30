@@ -26,6 +26,7 @@ p{margin:0}
 
 
 <p class="note">2026-10-29：RoboAuto按用户要求归入Code + Policy；Codex对照原论文v1、附录与官方项目页整理、自审，保留英文字段及中文注释。</p>
+<p class="note">2026-10-31：Codex按用户阅读问题整理SkillRL、CaPtain与OmniBrain-0；原始实验和公开代码设置分开标注。</p>
 <table>
 <tr><th>模块</th><th>论文</th><th>问题</th><th>方法</th><th>仿真结果</th><th>真机结果</th><th>团队</th></tr>
 
@@ -231,7 +232,7 @@ p{margin:0}
 <td>上海人工智能实验室、复旦大学、上海交通大学、中国科学技术大学、清华大学</td>
 </tr>
 <tr>
-<td class="m" rowspan="3">7. RSI Projects</td>
+<td class="m" rowspan="4">7. RSI Projects</td>
 <td class="p"><a href="https://loopmaster.ai/loopros/">LoopROS / LoopMaster</a><br><br>技术报告 2026.10</td>
 <td>机器人执行经验难以转化为后续任务可检索、复用的操作能力。</td>
 <td>Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。</td>
@@ -249,6 +250,7 @@ p{margin:0}
 <td>HKU MMLab &amp; KAI（RoboDojo 官方榜单署名）；代码引用为 MMLab &amp; PhysicalRSI contributors</td>
 </tr>
 <tr><td class="p"><a href="https://arxiv.org/abs/2610.22496v1">RAX</a><br>arXiv 2026.10</td><td>机器人适配新任务与本体依赖额外演示和策略训练，已有策略受原训练分布限制。</td><td>Coding Agent 自主探索，合成感知、规划与控制程序，保存经验并复用已验证技能。<br><a href="../papers/rax.md">方法、评测口径与分类</a></td><td>RoboDojo 7个选定任务，各任务最大探索预算下平均Score为78.3%，VPP2为24.9%；每任务测试30–50个未见布局，包含部分得分，非完整基准任务成功率。另评测BEHAVIOR-1K、DexJoCo、HumanoidArena、LIBERO及LIBERO-Pro。</td><td>Franka FR3的记忆、炸锅、擦拭、精细插入与Bandu任务，以及RB-Y1长程移动操作。炸锅案例：Agent探索成功动作生成72.3分钟，后续程序计算18秒；机器人调用时间分别2.9与2.5分钟，不是任务总耗时241倍加速。</td><td class="c">Harvard、NVIDIA、UC Berkeley、MIT、Stanford</td></tr>
+<tr><td class="p"><a href="https://arxiv.org/abs/2610.36013v1">OmniBrain-0</a><br>arXiv 2026.10</td><td>小模型难以复现强模型的规划、进度判断与恢复能力，操作和导航决策仍需统一。</td><td>训练操作与导航专家，再蒸馏统一Planner；迭代提醒、回收成功轨迹并重新训练。<br><a href="../papers/omnibrain0.md">数据与训练细节</a> · <a href="../reports/omnibrain0.html">HTML汇报</a></td><td>9B→RSI：LIBERO-Pro65.5%→69.3%，Plus83.8%→84.5%，RoboCasa36539.6%→43.2%，RoboTwin2.0 88.2%→89.4%，R2R-CE65%→66%。初始3,846条示范、RSI新增1,142条。主表评测不使用外部Experience Library；总RSI轮数与每轮采集量未说明。</td><td>堆积木、苹果入碗、开抽屉各20次：OmniBrain-0为75%／60%／85%，平均73.3%；π0.5平均58.3%，GPT-5.6-Sol平均86.7%。Planner无真机评测任务额外微调，底层硬件对齐细节未完整报告。</td><td class="c">小米具身智能团队、澳门大学、清华大学</td></tr>
 <tr>
 <td class="m">8. 感知基础模型</td><td class="p"><a href="https://arxiv.org/abs/2609.39601">GroundingPI</a><br><br>arXiv 2026.09</td>
 <td>通用语义理解不能保证细粒度空间定位，动作示范同时承担视觉学习与控制学习的负担。</td>
@@ -258,7 +260,7 @@ p{margin:0}
 <td>小鹏汽车、北京大学、香港大学、UC Berkeley、Princeton、NUS、清华、HKUST (GZ)</td>
 </tr>
 <tr>
-<td class="m" rowspan="2">9. RL 后训练优化</td>
+<td class="m" rowspan="4">9. RL 后训练优化</td>
 <td class="p"><a href="https://arxiv.org/abs/2610.01939">PyRUA-Lean Coder</a><br>arXiv 2026.10</td>
 <td>逐步工具调用成本高；固定原语与 VLA 后，如何训练小模型的代码规划与接口使用能力？</td>
 <td>VLM 用 Python cell 组合原语、检查与重试，变量跨 cell 保留，仅回传请求的图像。Coder 对 Qwen3.5-4B 直接做全参数 GRPO，无 SFT；最终成败 1/0，同实例 8 次尝试组内归一化。9 任务、45 实例；每轮 16×8=128 episodes，30 轮共 3,840 episodes、60 优化步；仅更新 Planner。<br><a href="../papers/pyrua-lean.md">输入输出、更新批次与资源</a></td>
@@ -274,6 +276,8 @@ p{margin:0}
 <td>论文未报告真机实验。</td>
 <td class="c">University of Central Florida、University of Southern California、Michigan State University</td>
 </tr>
+<tr><td class="p"><a href="https://arxiv.org/abs/2602.08234v2">SkillRL</a><br>NeurIPS 2026</td><td>原始轨迹冗余、含失败噪声，难以提炼可复用策略并持续改进Agent。</td><td>o3提炼文字技能，SFT与GRPO训练Qwen使用技能，训练失败推动技能库更新。<br><a href="../papers/skillrl.md">数据与训练细节</a> · <a href="../reports/skillrl.html">HTML汇报</a></td><td>ALFWorld／WebShop：GRPO为77.6%／66.1%，固定技能库84.4%／70.3%，完整SkillRL89.9%／72.7%；去除SFT为65.2%／46.5%。动态更新发生在训练过程中，不能作为部署期单episode热更新的证据。</td><td>未报告真实机器人或图像输入VLA实验。ALFWorld采用文本交互，另有WebShop与搜索问答。</td><td class="c">UNC-Chapel Hill、University of Chicago、UC San Diego、NEC Labs America、UC Berkeley、UC Santa Cruz</td></tr>
+<tr><td class="p"><a href="https://waltstephen.github.io/captain/assets/paper/CaPtain.pdf">CaPtain</a><br>技术论文 2026</td><td>小模型视觉代码控制不足，终局奖励难以区分长轨迹中各次模型调用的贡献。</td><td>Qwen先SFT再RL，物理状态Critic估计调用前后进展，为代码调用分配信用。<br><a href="../papers/captain.md">数据与训练细节</a> · <a href="../reports/captain.html">HTML汇报</a></td><td>留出LIBERO40任务×6初始状态共240局：基础0%、SFT55.4%、RL73.8%；LIBERO-PRO0.3%／59.5%／78.5%。RoboTwin2.0为22.6%，RoboDojo0.8%。300轮×256=76,800 episodes，Qwen75次更新。论文25,961行／861M与公开数据24,440行／797.1M、2,036 episodes分开记录。</td><td>Astrabot XR1：先在粗略XR1孪生仿真中适配，无真机训练数据；图5展示两条新物体／布局任务，不作为总体成功率。部署不使用Critic。</td><td class="c">香港中文大学MMLab、NovaXBot</td></tr>
 <tr><td class="m">10. Sim2Real</td><td class="p"><a href="https://arxiv.org/abs/2610.02204v1">RPG</a><br>arXiv 2026.10</td><td>开发和维护机器人技能需要人工投入，MLLM频繁参与低层决策增加执行延迟。</td><td>从离线数据构造仿真练习，用执行与视频诊断迭代技能和提示词，验证后部署真机。<br><a href="../papers/rpg.md">方法、评测口径与分类</a></td><td>同一22任务×10留出初始化，共220 episodes：第1轮后63/220（28.6%），第15轮后209/220（95.0%）；ASPIRE166/220（75.5%）；CaP-Agent0同Gemini模型107/220（48.6%），GPT-6 Astra Pro132/220（60.0%）。单独替换技能库的4任务对照26/40→37/40。主评测是未见初始化；4个无直接改进反馈任务仍参加开发回归验收。</td><td>YAM上放球入抽屉并关好、叠毛巾、双手转交碗，3任务各10次，RPG均10/10；CaP-Agent0/GPT-6分别4/10、9/10、1/10，同Gemini分别3/10、0/10、0/10。共同标定及硬件适配，无任务特定调参，预算内可自主重试，无人工帮助、手动重置或系统修改。</td><td class="c">UC Berkeley、Amazon FAR、MIT、University of Chicago</td></tr>
 </table>
 </body></html>

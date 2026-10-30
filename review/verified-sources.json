@@ -154,5 +154,23 @@
     "source": "https://arxiv.org/abs/2610.10498v1",
     "location": "原论文v1首页、§3.1–3.3、§4.1–4.4、图2–3、表1–3/5；本地12页PDF与LaTeX源文件；官方项目页与作者website仓库；RoboCasa官方50任务协议。",
     "result": "RoboCasa365总体63.6%→77.0%，Composite-Unseen40.1%→71.3%；LIBERO-Pro总体86.8%。SO-101五任务各30次/条件，46.0%→71.3%；基础SmolVLA先经每任务50示范微调后冻结。Memory消融61.7/65.2/71.3%，AUC .556/.589/.635。进化和评测10+10种子隔离；PPO样本/更新频率、奖励估计、任务隔离与测试期自适应配置未充分披露，不补造实现。"
+  },
+  "skillrl": {
+    "date": "2026-10-31",
+    "source": "https://arxiv.org/abs/2602.08234v2",
+    "location": "论文v2 §3、表1/3、附录B–E；官方README录用声明；本地官方代码4d984d4的ALFWorld脚本、ray_trainer、skill_updater和SFT生成实现。",
+    "result": "ALFWorld／WebShop：GRPO为77.6%／66.1%，固定技能库84.4%／70.3%，完整SkillRL89.9%／72.7%；去除SFT为65.2%／46.5%。动态更新发生在训练过程中，不能作为部署期单episode热更新的证据。 未报告真实机器人或图像输入VLA实验。ALFWorld采用文本交互，另有WebShop与搜索问答。"
+  },
+  "captain": {
+    "date": "2026-10-31",
+    "source": "https://waltstephen.github.io/captain/assets/paper/CaPtain.pdf",
+    "location": "作者33页PDF §3–4、图2/5/6、表1/5、附录A/C/H；官方CaPtain代码与数据卡。",
+    "result": "留出LIBERO40任务×6初始状态共240局：基础0%、SFT55.4%、RL73.8%；LIBERO-PRO0.3%／59.5%／78.5%。RoboTwin2.0为22.6%，RoboDojo0.8%。300轮×256=76,800 episodes，Qwen75次更新。论文25,961行／861M与公开数据24,440行／797.1M、2,036 episodes分开记录。 Astrabot XR1：先在粗略XR1孪生仿真中适配，无真机训练数据；图5展示两条新物体／布局任务，不作为总体成功率。部署不使用Critic。"
+  },
+  "omnibrain0": {
+    "date": "2026-10-31",
+    "source": "https://arxiv.org/abs/2610.36013v1",
+    "location": "原论文v1 §3–5、表1–5、图7/8、§6.4.1与附录A–C；作者项目仓库目前标记训练代码release soon。",
+    "result": "9B→RSI：LIBERO-Pro65.5%→69.3%，Plus83.8%→84.5%，RoboCasa36539.6%→43.2%，RoboTwin2.0 88.2%→89.4%，R2R-CE65%→66%。初始3,846条示范、RSI新增1,142条。主表评测不使用外部Experience Library；总RSI轮数与每轮采集量未说明。 堆积木、苹果入碗、开抽屉各20次：OmniBrain-0为75%／60%／85%，平均73.3%；π0.5平均58.3%，GPT-5.6-Sol平均86.7%。Planner无真机评测任务额外微调，底层硬件对齐细节未完整报告。"
   }
 }

@@ -2,6 +2,12 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-10-31 · SkillRL、CaPtain与OmniBrain-0
+
+- 新增三篇中文阅读笔记、原图HTML、论文卡片及来源记录；SkillRL／CaPtain归入RL后训练优化，OmniBrain-0归入RSI系统。
+- 按用户追问整理技能更新时间、episode与样本口径、Critic信用分配、Base／专家／统一模型的训练顺序及Sim2Real边界。
+- 区分CaPtain论文数据与公开数据集；不补造SkillRL初始采集量和OmniBrain-0迭代次数。
+
 ## 2026-10-30 · EmbodiedRSI：沿用已讲明白的反馈说明
 
 - 按用户要求，以已讲明白的答复重写[反馈数据说明](papers/embodiedrsi.md#反馈数据怎么获得)，保留反馈表、逐步流程、奖励公式与成功率估计缺口。
