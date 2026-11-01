@@ -15,10 +15,11 @@
 | [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
 | [6. Harness Evolution](#harness-evolution) | Harness search, selection, diagnosis and constraints | 4 |
-| [7. RSI Projects](#rsi-projects) | Integrated robot systems and self-improvement | 4 |
+| [7. RSI Projects](#rsi-projects) | Integrated robot systems and self-improvement | 5 |
 | [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 |
 | [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 4 |
 | [10. Sim2Real](#sim2real) | Simulation practice and physical deployment | 1 |
+| [11. Planner External Augmentation](#planner-augmentation) | State, knowledge and action feasibility | 1 |
 
 <br>
 
@@ -106,6 +107,7 @@
 | **PhysicalRSI**: Physical RSI 1.0: Recursive Self-Harness for Scaling Embodied Skills<br>\[[Code](https://github.com/PhysicalRSI/PhysicalRSI)\] \[[Website](https://mmlab.hk/research/PhysicalRSI)\] | Preview 2026 | Agent 根据执行反馈改写 harness，评测候选并保留更优版本，继承代码技能与任务记忆。 | RoboDojo 官网快照：Score 36.27，SR 31.38% | HKU MMLab<br>KAI |
 | **RAX**: Scaling Online Exploration for Robot Agents<br>\[[Paper](https://arxiv.org/abs/2610.22496v1)\] \[[Code](https://github.com/robot-agent-exploration/rax)\] \[[Website](https://robot-agent-exploration.com/)\] | arXiv 2026.10 | Coding Agent 自主探索，合成感知、规划与控制程序，保存经验并复用已验证技能 | RoboDojo 7任务：Score 24.9%→78.3% | Harvard<br>NVIDIA |
 | **OmniBrain-0**: A Unified Agentic Model for Embodied Intelligence<br>\[[Paper](https://arxiv.org/abs/2610.36013v1)\] \[[Code](https://github.com/luo-yc17/OmniBrain-0)\] \[[Website](https://public-bots.github.io/OmniBrain-0/)\] · [笔记](papers/omnibrain0.md) | arXiv 2026.10 | 训练操作与导航专家，再蒸馏统一Planner；迭代提醒、回收成功轨迹并重新训练。 | LIBERO-Pro：9B65.5%→RSI69.3% | Xiaomi<br>Tsinghua |
+| **GO-3 Preview**: Genie Master and WRAM<br>\[[Report](https://www.agibot.com/article/231/detail/133.html)\] \[[Website](https://www.agibot.com/article/231/detail/133.html)\] · [笔记](papers/go-3-preview.md) | Preview 2026.10 | Genie Master组织任务与反馈，经验写入记忆或用于策略训练；WRAM预测未来并生成动作。 | - | AGIBOT |
 
 
 <a id="perception"></a>
@@ -138,3 +140,13 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **RPG**: Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents<br>\[[Paper](https://arxiv.org/abs/2610.02204v1)\] \[[Website](https://rpg-robot.github.io/)\] | arXiv 2026.10 | 从离线数据构造仿真练习，用执行与视频诊断迭代技能和提示词，验证后部署真机 | MuJoCo/YAM 22任务：28.6%→95.0% | UC Berkeley<br>Amazon FAR |
+
+<br>
+
+<a id="planner-augmentation"></a>
+
+## 11. Planner External Augmentation
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **CausGround**: Causal Interaction Grounding for Adaptive Embodied Planning<br>\[[Paper](https://arxiv.org/abs/2610.29702v1)\] \[[Code](https://github.com/Intelligent-Interaction/CausGround)\] \[[Website](https://causground.github.io/)\] · [笔记](papers/causground.md) | arXiv 2026.10 | 从交互提取动作前置条件与效果，检索因果依赖并结合视觉状态，辅助冻结Planner选动作。 | VirtualHome：平均成功率24.9%→53.3% | ECNU<br>BAAI |

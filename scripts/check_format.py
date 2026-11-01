@@ -68,7 +68,7 @@ for i, line in enumerate(lines):
             vague = [v for v in VAGUE if v in val]
             if vague:
                 errors.append(f"README 第 {n} 行 {label} 有模糊说法 {vague}，改成具体的名称或数字")
-        if not re.search(r"\d", result) or "<br>" in result:
+        if result != "-" and (not re.search(r"\d", result) or "<br>" in result):
             errors.append(f"README 第 {n} 行 Result 要浓缩成一句含关键数字的话，不要换行")
         if "<br>" in method:
             errors.append(f"README 第 {n} 行 Method 要浓缩成一句话，不要换行")

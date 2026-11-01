@@ -172,5 +172,17 @@
     "source": "https://arxiv.org/abs/2610.36013v1",
     "location": "原论文v1 §3–5、表1–5、图7/8、§6.4.1与附录A–C；作者项目仓库目前标记训练代码release soon。",
     "result": "9B→RSI：LIBERO-Pro65.5%→69.3%，Plus83.8%→84.5%，RoboCasa36539.6%→43.2%，RoboTwin2.0 88.2%→89.4%，R2R-CE65%→66%。初始3,846条示范、RSI新增1,142条。主表评测不使用外部Experience Library；总RSI轮数与每轮采集量未说明。 堆积木、苹果入碗、开抽屉各20次：OmniBrain-0为75%／60%／85%，平均73.3%；π0.5平均58.3%，GPT-5.6-Sol平均86.7%。Planner无真机评测任务额外微调，底层硬件对齐细节未完整报告。"
+  },
+  "go-3-preview": {
+    "date": "2026-11-01",
+    "source": "https://www.agibot.com/article/231/detail/133.html",
+    "location": "AGIBOT官方2026-10-29发布介绍；用户提供GO-3_Preview_Genie_Master_WRAM.html及其中5项来源。",
+    "result": "本条目收录Preview公开技术体系。发布稿提及RoboDojo、RoboTwin、RoboColiseum榜单，但所提供笔记未列完整评测协议与成功率，不补写数值。 公开展示便利店挂货恢复与乐高装配；乐高示例含额外示范和微调。未提供可用于统一比较的任务次数与成功率。"
+  },
+  "causground": {
+    "date": "2026-11-01",
+    "source": "https://arxiv.org/abs/2610.29702v1",
+    "location": "原论文v1 §3、§4、表1–4、附录B/C/E；官方知识构建与检索代码；本地已整理阅读报告。",
+    "result": "改编VirtualHome平均成功率24.9%→53.3%；RoboCasa闭环规划43.0%→57.0%；SWITCH交互推理准确率25.8%→31.9%。RoboCasa按离线轨迹边界解析高层动作，在各方法均未遇到UNKNOWN的共同子集比较，非完整在线物理控制。 展示顺序操作案例；未报告重复次数、成功率或真机对照。MLLM解析目标后，从前置条件和效果反推高层动作，已有控制器执行。"
   }
 }

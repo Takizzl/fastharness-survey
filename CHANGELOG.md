@@ -2,6 +2,13 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-11-01 · GO-3 Preview、CausGround
+
+- GO-3 Preview归入RSI Projects；CausGround新增Planner External Augmentation分类。
+- 补齐知识卡、原有HTML汇报、首页摘要、汇总表及来源核对记录；保留Preview阶段与实验条件。
+- GO-3未提供统一成功率，Result使用规则允许的“-”；格式检查同步允许该缺省值，不补造数字。
+- Codex对照官方发布材料、CausGround原论文与用户已有笔记整理并自审。
+
 ## 2026-10-31 · SkillRL、CaPtain与OmniBrain-0
 
 - 新增三篇中文阅读笔记、原图HTML、论文卡片及来源记录；SkillRL／CaPtain归入RL后训练优化，OmniBrain-0归入RSI系统。
