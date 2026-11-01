@@ -44,7 +44,7 @@ p{margin:0}
 </tr>
 
 <tr>
-<td class="m" rowspan="7">2. Code + Policy</td>
+<td class="m" rowspan="8">2. Code + Policy</td>
 <td class="p"><a href="https://arxiv.org/abs/2603.22435">CaP-X</a><br><b>（ICML 2026）</b><br></td>
 <td class="c">Code-as-Policy 依赖人写的高层 API，看不出模型本身能力</td>
 <td>Coding Agent 只拿 <b>Low-level Primitive</b>（SAM3 分割、IK 求解、Motion Planning），<b>多轮写代码</b>：每轮执行后读取 stdout / 报错，以及 VDM（把前后图像变化转成文字），据此改代码；CaP-Agent0 再加入从成功代码中<b>自动提炼的 Skill Library</b>，并<b>多模型并行生成、合成一份代码</b>执行；CaP-RL 用 <b>GRPO</b>、以仿真成功为奖励训练 Qwen2.5-Coder-7B。</td>
@@ -121,6 +121,7 @@ p{margin:0}
 <td>WidowX AI：Opus 5、每任务10次开发rollout，固定程序后各20次新位置测试。Sort Balls／Stack Dishes／Erase Board平均阶段完成评分100.00%／100.00%／95.83%，不是整任务成功率；人工提供搜索成败判断、场景重置与测试评分。</td>
 <td class="c">Washington University in St. Louis</td>
 </tr>
+<tr><td class="p"><a href="https://arxiv.org/abs/2606.13097v2">FCGraft</a><br>ICML 2026</td><td>代码策略反复prefill带来生成延迟，全量重生成容易破坏有效控制结构。</td><td>检索已验证函数及KV缓存，拼接代码并局部修补，成功后更新函数缓存库。<br><a href="../papers/fcgraft.md">知识卡</a></td><td>论文另评估仿真代码策略生成；本次索引保留已有笔记中的真机表2结果，不将策略合成时间当作整次任务耗时。</td><td>办公桌整理、厨房准备各9种条件×3次，共54次；成功率77.78%／81.48%，策略合成时间3.80／2.85秒。办公桌RAGCache成功率44.44%。</td><td class="c">Sungkyunkwan University</td></tr>
 
 <tr>
 <td class="m" rowspan="5">3. Memory</td>
@@ -232,7 +233,7 @@ p{margin:0}
 <td>上海人工智能实验室、复旦大学、上海交通大学、中国科学技术大学、清华大学</td>
 </tr>
 <tr>
-<td class="m" rowspan="5">7. RSI Projects</td>
+<td class="m" rowspan="6">7. RSI Projects</td>
 <td class="p"><a href="https://loopmaster.ai/loopros/">LoopROS / LoopMaster</a><br><br>技术报告 2026.10</td>
 <td>机器人执行经验难以转化为后续任务可检索、复用的操作能力。</td>
 <td>Agent 读示范与场景，在线规划并执行；把动作反馈组织为任务 Skills，供后续检索复用。</td>
@@ -252,6 +253,7 @@ p{margin:0}
 <tr><td class="p"><a href="https://arxiv.org/abs/2610.22496v1">RAX</a><br>arXiv 2026.10</td><td>机器人适配新任务与本体依赖额外演示和策略训练，已有策略受原训练分布限制。</td><td>Coding Agent 自主探索，合成感知、规划与控制程序，保存经验并复用已验证技能。<br><a href="../papers/rax.md">方法、评测口径与分类</a></td><td>RoboDojo 7个选定任务，各任务最大探索预算下平均Score为78.3%，VPP2为24.9%；每任务测试30–50个未见布局，包含部分得分，非完整基准任务成功率。另评测BEHAVIOR-1K、DexJoCo、HumanoidArena、LIBERO及LIBERO-Pro。</td><td>Franka FR3的记忆、炸锅、擦拭、精细插入与Bandu任务，以及RB-Y1长程移动操作。炸锅案例：Agent探索成功动作生成72.3分钟，后续程序计算18秒；机器人调用时间分别2.9与2.5分钟，不是任务总耗时241倍加速。</td><td class="c">Harvard、NVIDIA、UC Berkeley、MIT、Stanford</td></tr>
 <tr><td class="p"><a href="https://arxiv.org/abs/2610.36013v1">OmniBrain-0</a><br>arXiv 2026.10</td><td>小模型难以复现强模型的规划、进度判断与恢复能力，操作和导航决策仍需统一。</td><td>训练操作与导航专家，再蒸馏统一Planner；迭代提醒、回收成功轨迹并重新训练。<br><a href="../papers/omnibrain0.md">数据与训练细节</a> · <a href="../reports/omnibrain0.html">HTML汇报</a></td><td>9B→RSI：LIBERO-Pro65.5%→69.3%，Plus83.8%→84.5%，RoboCasa36539.6%→43.2%，RoboTwin2.0 88.2%→89.4%，R2R-CE65%→66%。初始3,846条示范、RSI新增1,142条。主表评测不使用外部Experience Library；总RSI轮数与每轮采集量未说明。</td><td>堆积木、苹果入碗、开抽屉各20次：OmniBrain-0为75%／60%／85%，平均73.3%；π0.5平均58.3%，GPT-5.6-Sol平均86.7%。Planner无真机评测任务额外微调，底层硬件对齐细节未完整报告。</td><td class="c">小米具身智能团队、澳门大学、清华大学</td></tr>
 <tr><td class="p"><a href="https://www.agibot.com/article/231/detail/133.html">GO-3 Preview</a><br>Preview 2026.10</td><td>部署后遇到新情况时，需要协调任务执行、故障恢复、经验积累与动作策略改进。</td><td>Genie Master组织任务与反馈，经验写入记忆或用于策略训练；WRAM预测未来并生成动作。<br><a href="../papers/go-3-preview.md">知识卡</a></td><td>本条目收录Preview公开技术体系。发布稿提及RoboDojo、RoboTwin、RoboColiseum榜单，但所提供笔记未列完整评测协议与成功率，不补写数值。</td><td>公开展示便利店挂货恢复与乐高装配；乐高示例含额外示范和微调。未提供可用于统一比较的任务次数与成功率。</td><td class="c">智元 AGIBOT</td></tr>
+<tr><td class="p"><a href="https://arxiv.org/abs/2609.32698v1">SEES</a><br>arXiv 2026.09</td><td>长程任务中的高频失败原子技能会阻塞整条任务，人工定位和补示范成本高。</td><td>统计失败原子技能，恢复仿真状态并生成成功检测函数，用PPO训练技能类别共享LoRA。<br><a href="../papers/sees.md">知识卡</a></td><td>表1 GR00T三轮：原子任务47.2%→55.7%，已见组合任务10.2%→13.1%，未见组合任务3.5%→6.1%。表2 LIBERO四套任务均值53.10%→65.40%。</td><td>未报告真机评测；主方法依赖可恢复的仿真状态及成功检测API。</td><td class="c">MBZUAI、University of Sydney、University of Oxford、AI2 Robotics、University of Waterloo、University of Melbourne</td></tr>
 <tr>
 <td class="m">8. 感知基础模型</td><td class="p"><a href="https://arxiv.org/abs/2609.39601">GroundingPI</a><br><br>arXiv 2026.09</td>
 <td>通用语义理解不能保证细粒度空间定位，动作示范同时承担视觉学习与控制学习的负担。</td>
@@ -281,5 +283,12 @@ p{margin:0}
 <tr><td class="p"><a href="https://waltstephen.github.io/captain/assets/paper/CaPtain.pdf">CaPtain</a><br>技术论文 2026</td><td>小模型视觉代码控制不足，终局奖励难以区分长轨迹中各次模型调用的贡献。</td><td>Qwen先SFT再RL，物理状态Critic估计调用前后进展，为代码调用分配信用。<br><a href="../papers/captain.md">数据与训练细节</a> · <a href="../reports/captain.html">HTML汇报</a></td><td>留出LIBERO40任务×6初始状态共240局：基础0%、SFT55.4%、RL73.8%；LIBERO-PRO0.3%／59.5%／78.5%。RoboTwin2.0为22.6%，RoboDojo0.8%。300轮×256=76,800 episodes，Qwen75次更新。论文25,961行／861M与公开数据24,440行／797.1M、2,036 episodes分开记录。</td><td>Astrabot XR1：先在粗略XR1孪生仿真中适配，无真机训练数据；图5展示两条新物体／布局任务，不作为总体成功率。部署不使用Critic。</td><td class="c">香港中文大学MMLab、NovaXBot</td></tr>
 <tr><td class="m">10. Sim2Real</td><td class="p"><a href="https://arxiv.org/abs/2610.02204v1">RPG</a><br>arXiv 2026.10</td><td>开发和维护机器人技能需要人工投入，MLLM频繁参与低层决策增加执行延迟。</td><td>从离线数据构造仿真练习，用执行与视频诊断迭代技能和提示词，验证后部署真机。<br><a href="../papers/rpg.md">方法、评测口径与分类</a></td><td>同一22任务×10留出初始化，共220 episodes：第1轮后63/220（28.6%），第15轮后209/220（95.0%）；ASPIRE166/220（75.5%）；CaP-Agent0同Gemini模型107/220（48.6%），GPT-6 Astra Pro132/220（60.0%）。单独替换技能库的4任务对照26/40→37/40。主评测是未见初始化；4个无直接改进反馈任务仍参加开发回归验收。</td><td>YAM上放球入抽屉并关好、叠毛巾、双手转交碗，3任务各10次，RPG均10/10；CaP-Agent0/GPT-6分别4/10、9/10、1/10，同Gemini分别3/10、0/10、0/10。共同标定及硬件适配，无任务特定调参，预算内可自主重试，无人工帮助、手动重置或系统修改。</td><td class="c">UC Berkeley、Amazon FAR、MIT、University of Chicago</td></tr>
 <tr><td class="m">11. Planner External Augmentation</td><td class="p"><a href="https://arxiv.org/abs/2610.29702v1">CausGround</a><br>arXiv 2026.10</td><td>Planner不了解环境中动作的前置条件与效果，原始交互轨迹也难以复用。</td><td>从交互提取动作前置条件与效果，检索因果依赖并结合视觉状态，辅助冻结Planner选动作。<br><a href="../papers/causground.md">知识卡</a></td><td>改编VirtualHome平均成功率24.9%→53.3%；RoboCasa闭环规划43.0%→57.0%；SWITCH交互推理准确率25.8%→31.9%。RoboCasa按离线轨迹边界解析高层动作，在各方法均未遇到UNKNOWN的共同子集比较，非完整在线物理控制。</td><td>展示顺序操作案例；未报告重复次数、成功率或真机对照。MLLM解析目标后，从前置条件和效果反推高层动作，已有控制器执行。</td><td class="c">华东师范大学、北京智源人工智能研究院、西北工业大学、中国科学院大学、中国科学院自动化研究所</td></tr>
+<tr><td class="m" rowspan="3">12. Perception and Execution</td><td class="p"><a href="https://research.nvidia.com/labs/srl/projects/astranomy/">Astranomy</a><br>技术报告 2026.10</td><td>Astra的执行效果同时受到输入信息、动作接口、上下文与执行循环影响。</td><td>固定Astra，对比直接控制、Agent执行和监督下游策略，消融几何、历史与动作接口。<br><a href="../papers/astranomy.md">知识卡</a></td><td>RoboLab-120共120任务、每任务5次：Direct 66.3%，Agentic 74.8%，Orchestrated 66.5%。历史小样本：文本历史加当前图20/23，仅视觉历史13/23，两者完整23/23；不是轨迹理解准确率，也不是跨任务经验。</td><td>本文是RoboLab仿真研究，不将这些成功率标为真机结果。Direct单次推理18.56秒；Agentic成本按成功episode计为30.9M tokens、36.40美元。</td><td class="c">NVIDIA Seattle Robotics Lab</td></tr>
+<tr><td class="p"><a href="https://www.pi.website/download/pi07.pdf">π0.7</a><br>技术论文 2026.04</td><td>单条任务指令难以规定操作方式，模型需要利用语言指导与子目标图像控制执行。</td><td>coaching训练上层子任务策略，世界模型生成目标图；VLA训练隔离梯度，部署据目标输出动作。<br><a href="../papers/pi07.md">知识卡</a></td><td>本条目关注训练信息流与部署协作，不将图示或演示改写为统一仿真成功率。</td><td>图16在5个真机任务比较自主上层策略与人工coaching的任务进度。论文还展示跨任务及跨本体执行；本次索引不从图上估读成功率。</td><td class="c">Physical Intelligence</td></tr>
+<tr><td class="p"><a href="https://arxiv.org/abs/2610.12457v1">SpatialHarness</a><br>arXiv 2026.10</td><td>固定物理相机可能遮挡精细操作所需的空间关系，限制冻结策略的动作判断。</td><td>维护与真实执行同步的仿真场景，渲染互补视角并提供物体位姿，辅助冻结Astra控制。<br><a href="../papers/spatialharness.md">知识卡</a></td><td>仿真场景用于在线同步与渲染，主评测是真机操作，不能将渲染场景视为独立仿真benchmark。</td><td>Franka Research 3，4任务×每方法15次，共120次。基线11/60、SpatialHarness50/60；插头26.67%→66.67%，孔套柱0%→100%。</td><td class="c">复旦大学、新加坡管理大学</td></tr>
+<tr><td class="m">6. Harness Evolution</td><td class="p"><a href="https://arxiv.org/abs/2609.29166v2">HarnessPAI</a><br>arXiv 2026.09</td><td>动作模型遇到目标和布局变化易失败，同一任务反复在线规划也增加推理成本。</td><td>Agent跨rollout改写验证程序，按工作流节点存储修复；执行时固定程序调用动作模型。<br><a href="../papers/harnesspai.md">知识卡</a></td><td>LIBERO-PRO 60扰动任务、每任务50 seeds：34.9%→96.5%，含15个开发seed和35个额外seed；RoboCasa Atomic-Seen 18任务×20次：65.0%→92.2%。不能按纯留出任务泛化解释。</td><td>七类实验场景为仿真，未报告真机批量成功率。另用成功程序轨迹SFT π0.5，在LIBERO-PRO上34.9%→73.7%。</td><td class="c">Darwin Agent Team；小米、清华大学、南京大学</td></tr>
+<tr><td class="m" rowspan="2">5. Real-Robot Self-Improvement</td><td class="p"><a href="https://arxiv.org/abs/2511.00091v1">PLD</a><br>arXiv 2025.10</td><td>VLA依赖人工示范，单纯采集专家状态又可能偏离基础策略部署时会遇到的状态。</td><td>训练残差专家，用基础VLA与残差混合采集恢复轨迹，再通过SFT更新通用VLA。<br><a href="../papers/pld.md">知识卡</a></td><td>原文报告LIBERO成功率99%，并在SimplerEnv评估。残差专家用于采集，整理后的轨迹通过标准SFT更新通用模型。</td><td>Franka与YAM操作；YAM展示GPU插拔四阶段循环持续1小时无需人工复位。Franka特制桌面支持部分自动复位，论文未给总体人工恢复比例。</td><td class="c">NVIDIA、UC Berkeley、CMU、UT Austin</td></tr>
+<tr><td class="p"><a href="https://arxiv.org/abs/2604.23073v2">RLT</a><br>arXiv 2026.04</td><td>精细动作需要快速在线改进，而完整VLA参数更新的计算与采样开销较高。</td><td>VLA输出紧凑RL token，在线训练轻量Actor-Critic，改进精细操作阶段的动作。<br><a href="../papers/rlt.md">知识卡</a></td><td>本条目以作者的真机实验为主，不将复现项目的模式开关视为原论文实验。</td><td>螺丝安装、扎带紧固、充电器插入、网线插入四项任务；在线练习数分钟至数小时，精细阶段最高提速3倍。该数值不代表完整episode均提速3倍。</td><td class="c">Physical Intelligence</td></tr>
+<tr><td class="m">4. Skill Growth</td><td class="p"><a href="https://arxiv.org/abs/2606.07999v1">RECENT</a><br>ICML 2026</td><td>本体和环境变化会使已有技能失效，全量重写增加执行中断与适配成本。</td><td>保留技能代码控制结构，小语言模型修改本体和环境相关绑定，执行检查触发局部修复。<br><a href="../papers/recent.md">知识卡</a></td><td>表1：换机械臂成功率73%，换夹爪82.5%。离线验证技能，部署时Qwen2.5-Coder-7B局部重构，不进行在线参数训练。</td><td>表24扫码装袋共10次：RECENT 8/10，CaP 4/10；每次平均中断0.40对3.00次，中断耗时2.34对23.51秒。</td><td class="c">Sungkyunkwan University</td></tr>
 </table>
 </body></html>

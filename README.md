@@ -10,16 +10,17 @@
 | Category | Focus | Papers |
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
-| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 7 |
+| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 8 |
 | [3. Memory](#memory) | Memory mechanisms | 5 |
-| [4. Skill Growth](#skill) | Accumulating a skill library | 1 |
-| [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 1 |
-| [6. Harness Evolution](#harness-evolution) | Harness search, selection, diagnosis and constraints | 4 |
-| [7. RSI Projects](#rsi-projects) | Integrated robot systems and self-improvement | 5 |
+| [4. Skill Growth](#skill) | Accumulating a skill library | 2 |
+| [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 3 |
+| [6. Harness Evolution](#harness-evolution) | Harness search, selection, diagnosis and constraints | 5 |
+| [7. RSI Projects](#rsi-projects) | Integrated robot systems and self-improvement | 6 |
 | [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 |
 | [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 4 |
 | [10. Sim2Real](#sim2real) | Simulation practice and physical deployment | 1 |
 | [11. Planner External Augmentation](#planner-augmentation) | State, knowledge and action feasibility | 1 |
+| [12. Perception and Execution](#perception-execution) | Observation, action interfaces and policy conditioning | 3 |
 
 <br>
 
@@ -46,6 +47,7 @@
 | **GPT-as-Policy**: GPT 6 Astra as an Embodied Policy<br>\[[Report](https://anonymous-report-421.github.io/public-website/?view=1)\] \[[Code](https://github.com/anonymous-report-421/GPT-as-Policy)\] \[[Website](https://anonymous-report-421.github.io/public-website/?view=1)\] | 技术报告 2026 | GPT 检查 π0.5 动作与执行历史，确认失败或子目标错位后修正，恢复后交还控制。 | RoboDojo 50 例：混合 48%，Direct 26% | Galbot |
 | **COAP**: Embodied Turing Machines<br>\[[Paper](https://arxiv.org/abs/2610.12369)\] \[[Website](https://etmcode-bit.github.io/)\] | arXiv 2026.10 | Agent 根据反馈改程序；测试冻结代码，用显式状态与重试执行。 | RoboDojo 42任务：成功率70.24%，均为仿真 | NTU<br>Ropedia |
 | **RoboAuto**: Autonomous Robot Program Search through Multi-Level Physical Understanding<br>\[[Paper](https://arxiv.org/abs/2610.36533v1)\] \[[Website](https://roboauto-ai.github.io/)\] · [笔记](papers/roboauto.md) | arXiv 2026.10 | Agent检索物体知识、测量场景，分阶段写代码并验证，失败后修改或做诊断实验。 | RoboTwin 4任务各50次：24.5%→91.5% | Washington Univ. in St. Louis |
+| **FCGraft**: Robust and Rapid Code-Policy Synthesis for Embodied Agents<br>\[[Paper](https://arxiv.org/abs/2606.13097v2)\] · [笔记](papers/fcgraft.md) | ICML 2026 | 检索已验证函数及KV缓存，拼接代码并局部修补，成功后更新函数缓存库。 | 真机办公桌27次：RAGCache44.44%→77.78% | Sungkyunkwan Univ. |
 
 <br>
 
@@ -71,6 +73,7 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **ASPIRE**: Agentic /Skills Discovery for Robotics<br>\[[Paper](https://arxiv.org/abs/2607.00272)\] \[[Code](https://github.com/NVlabs/ASPIRE)\] \[[Website](https://research.nvidia.com/labs/gear/aspire/)\] | arXiv 2026.06 | 记录每个原语调用的输入、输出和画面，Agent 只修出错的原语，验证有效的修复存入技能库 | LIBERO-Pro 扰动测试：72%，之前最好的 CaP-Agent0 18% | NVIDIA |
+| **RECENT**: Efficient Skill Grounding via Code Refactoring with Small Language Models<br>\[[Paper](https://arxiv.org/abs/2606.07999v1)\] · [笔记](papers/recent.md) | ICML 2026 | 保留技能代码控制结构，小语言模型修改本体和环境相关绑定，执行检查触发局部修复。 | 真机扫码装袋10次：CaP4/10→RECENT8/10 | Sungkyunkwan Univ. |
 
 <br>
 
@@ -81,6 +84,8 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **ENPIRE**: Agentic Robot Policy Self-Improvement in the Real World<br>\[[Paper](https://arxiv.org/abs/2606.19980)\] \[[Code](https://github.com/NVlabs/ENPIRE)\] \[[Website](https://research.nvidia.com/labs/gear/enpire/)\] | CoRL 2026 | Agent 先写好自动复位和成功判定并固定，再在真机上改 BC / RL 训练代码，8 台机器经 Git 共享 | YAM 双臂真机插销、推 T、剪扎带：99%（允许重试 8 次） | NVIDIA<br>CMU |
+| **PLD**: Self-Improving Vision-Language-Action Models with Data Generation via Residual RL<br>\[[Paper](https://arxiv.org/abs/2511.00091v1)\] \[[Website](https://wenlixiao.com/self-improve-VLA-PLD)\] · [笔记](papers/pld.md) | arXiv 2025.10 | 训练残差专家，用基础VLA与残差混合采集恢复轨迹，再通过SFT更新通用VLA。 | LIBERO：PLD任务成功率99% | NVIDIA<br>UC Berkeley |
+| **RLT**: Bootstrapping Online RL with Vision-Language-Action Models<br>\[[Paper](https://arxiv.org/abs/2604.23073v2)\] \[[Website](https://www.pi.website/research/rlt)\] · [笔记](papers/rlt.md) | arXiv 2026.04 | VLA输出紧凑RL token，在线训练轻量Actor-Critic，改进精细操作阶段的动作。 | 4项真机任务：精细阶段最高提速3倍 | Physical Intelligence |
 
 <br>
 
@@ -94,6 +99,7 @@
 | **GEAR**: An Open General Evolutionary Architecture for Recursive Self-Improvement of LLM Agent Harness<br>\[[Report](https://rsi-gear.github.io/)\] \[[Code](https://github.com/rsi-gear/gear)\] \[[Website](https://rsi-gear.github.io/)\] | 项目预印本 2026.10 | Meta-Agent 按模块化搜索策略生成、评测并迭代 Harness | Marketing 100共享任务：Luna 27%→40% | Imperial College London<br>Duke University |
 | **RSIFlow**: Adaptive Self-Improvement Workflows with an Evolving Meta-Agent<br>\[[Paper](https://arxiv.org/abs/2610.21791)\] \[[Code](https://github.com/1HUAN1/RSI-Flow)\] | arXiv 2026.10 | Task-Agent 执行任务，Meta-Agent 据反馈改进 Task 系统和自身 Harness，形成协同演化 | 六基准留出评测：4B平均SIA 45.15→51.21 | Beihang University<br>Tsinghua University |
 | **BiPA**: Does Your Generalist Skill Optimizer Really Incentivize Agentic Tasks? Rethinking Skill Optimization via Bipartite Attribution<br>\[[Paper](https://arxiv.org/abs/2610.37201)\] \[[Code](https://github.com/valleysprings/BiPA)\] | arXiv 2026.10 | 回放候选选择检验收益可信度，用轮次与上下文二部图分解 Skill 更新的执行成本 | 三基准16技能：成功率+0.1pp，输入token×1.16 | Shanghai AI Laboratory<br>Fudan University |
+| **HarnessPAI**: An Evolving Harness for Physical AI<br>\[[Paper](https://arxiv.org/abs/2609.29166v2)\] \[[Code](https://github.com/Darwin-Agent/HarnessPAI)\] \[[Website](https://darwin-agent.github.io/HarnessPAI/)\] · [笔记](papers/harnesspai.md) | arXiv 2026.09 | Agent跨rollout改写验证程序，按工作流节点存储修复；执行时固定程序调用动作模型。 | LIBERO-PRO60任务：π0.5 34.9%→96.5% | Xiaomi<br>Tsinghua |
 
 <br>
 
@@ -108,6 +114,7 @@
 | **RAX**: Scaling Online Exploration for Robot Agents<br>\[[Paper](https://arxiv.org/abs/2610.22496v1)\] \[[Code](https://github.com/robot-agent-exploration/rax)\] \[[Website](https://robot-agent-exploration.com/)\] | arXiv 2026.10 | Coding Agent 自主探索，合成感知、规划与控制程序，保存经验并复用已验证技能 | RoboDojo 7任务：Score 24.9%→78.3% | Harvard<br>NVIDIA |
 | **OmniBrain-0**: A Unified Agentic Model for Embodied Intelligence<br>\[[Paper](https://arxiv.org/abs/2610.36013v1)\] \[[Code](https://github.com/luo-yc17/OmniBrain-0)\] \[[Website](https://public-bots.github.io/OmniBrain-0/)\] · [笔记](papers/omnibrain0.md) | arXiv 2026.10 | 训练操作与导航专家，再蒸馏统一Planner；迭代提醒、回收成功轨迹并重新训练。 | LIBERO-Pro：9B65.5%→RSI69.3% | Xiaomi<br>Tsinghua |
 | **GO-3 Preview**: Genie Master and WRAM<br>\[[Report](https://www.agibot.com/article/231/detail/133.html)\] \[[Website](https://www.agibot.com/article/231/detail/133.html)\] · [笔记](papers/go-3-preview.md) | Preview 2026.10 | Genie Master组织任务与反馈，经验写入记忆或用于策略训练；WRAM预测未来并生成动作。 | - | AGIBOT |
+| **SEES**: A Self-Evolving Embodied System via Failure-Guided VLA Policy Adaptation<br>\[[Paper](https://arxiv.org/abs/2609.32698v1)\] · [笔记](papers/sees.md) | arXiv 2026.09 | 统计失败原子技能，恢复仿真状态并生成成功检测函数，用PPO训练技能类别共享LoRA。 | GR00T三轮：未见组合任务3.5%→6.1% | MBZUAI<br>Univ. of Sydney |
 
 
 <a id="perception"></a>
@@ -150,3 +157,15 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **CausGround**: Causal Interaction Grounding for Adaptive Embodied Planning<br>\[[Paper](https://arxiv.org/abs/2610.29702v1)\] \[[Code](https://github.com/Intelligent-Interaction/CausGround)\] \[[Website](https://causground.github.io/)\] · [笔记](papers/causground.md) | arXiv 2026.10 | 从交互提取动作前置条件与效果，检索因果依赖并结合视觉状态，辅助冻结Planner选动作。 | VirtualHome：平均成功率24.9%→53.3% | ECNU<br>BAAI |
+
+<br>
+
+<a id="perception-execution"></a>
+
+## 12. Perception and Execution
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **Astranomy**: An Empirical Study of GPT-6 Astra as a Native Robot Policy<br>\[[Report](https://research.nvidia.com/labs/srl/projects/astranomy/)\] \[[Website](https://research.nvidia.com/labs/srl/projects/astranomy/)\] · [笔记](papers/astranomy.md) | 技术报告 2026.10 | 固定Astra，对比直接控制、Agent执行和监督下游策略，消融几何、历史与动作接口。 | RoboLab-120：Direct66.3%，Agentic74.8% | NVIDIA |
+| **π0.7**: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities<br>\[[Paper](https://www.pi.website/download/pi07.pdf)\] \[[Website](https://www.pi.website/blog/pi07)\] · [笔记](papers/pi07.md) | 技术论文 2026.04 | coaching训练上层子任务策略，世界模型生成目标图；VLA训练隔离梯度，部署据目标输出动作。 | 图16：5任务比较自主执行与人工coaching | Physical Intelligence |
+| **SpatialHarness**: Test-Time Spatial Scaffolding for Fine Robotic Manipulation<br>\[[Paper](https://arxiv.org/abs/2610.12457v1)\] \[[Website](https://emilia113.github.io/SpatialHarness/)\] · [笔记](papers/spatialharness.md) | arXiv 2026.10 | 维护与真实执行同步的仿真场景，渲染互补视角并提供物体位姿，辅助冻结Astra控制。 | Franka4任务各15次：18.33%→83.33% | Fudan Univ.<br>SMU |

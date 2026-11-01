@@ -2,6 +2,13 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+## 2026-11-01 · 知识库分类补齐
+
+- 新增Astranomy、FCGraft、HarnessPAI、π0.7、PLD、RECENT、RLT、SEES、SpatialHarness九篇知识卡；同步分类首页、审阅表与来源记录。
+- 新增Perception and Execution类别；PLD与RLT归入Real-Robot Self-Improvement，HarnessPAI归入Harness Evolution。
+- 本地知识库合并PyRUA-Lean重复入口，保留源材料并修复引用；网页源码快照归入素材。42个条目中，40篇论文／项目均有GitHub知识卡，另2项为综合调研。
+- Codex对照原论文、官方网页及已有笔记补充并自审；已有人工审核条目的方法与结果未改动。
+
 ## 2026-11-01 · GO-3 Preview、CausGround
 
 - GO-3 Preview归入RSI Projects；CausGround新增Planner External Augmentation分类。
