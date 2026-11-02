@@ -238,5 +238,11 @@
     "source": "https://arxiv.org/abs/2610.12457v1",
     "location": "原论文v1 §3–5、图2/4–6；官方项目页；本地实验与涨点笔记。",
     "result": "仿真场景用于在线同步与渲染，主评测是真机操作，不能将渲染场景视为独立仿真benchmark。 Franka Research 3，4任务×每方法15次，共120次。基线11/60、SpatialHarness50/60；插头26.67%→66.67%，孔套柱0%→100%。"
+  },
+  "flora": {
+    "date": "2026-11-02",
+    "source": "https://research.nvidia.com/labs/gear/flora/assets/paper/flora.pdf",
+    "location": "官方技术报告2026-10-20：§2、§4.1–4.3，表1/2/4/5；官方GitHub README，2026-11-02核对。",
+    "result": "WGO-Bench共100条视频，分段F1@0.75为50.3（Astra46.0），联合语义F1为34.5（Astra39.0）。RoboRewardBench共2,831条episode，MAE×100为40.0（Astra55.4）。DenseRewardBench共40条episode、4,861个时间步，失败召回率53.3%；约11%的正常步骤被误判为失败。 评价人类与机器人操作视频的标注质量，不是机器人闭环任务成功率；过程标签使用后续画面，属于离线标注。"
   }
 }

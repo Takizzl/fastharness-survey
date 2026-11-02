@@ -21,6 +21,7 @@
 | [10. Sim2Real](#sim2real) | Simulation practice and physical deployment | 1 |
 | [11. Planner External Augmentation](#planner-augmentation) | State, knowledge and action feasibility | 1 |
 | [12. Perception and Execution](#perception-execution) | Observation, action interfaces and policy conditioning | 3 |
+| [13. Data Annotation](#data-annotation) | Video segmentation, action captions and reward labels | 1 |
 
 <br>
 
@@ -169,3 +170,13 @@
 | **Astranomy**: An Empirical Study of GPT-6 Astra as a Native Robot Policy<br>\[[Report](https://research.nvidia.com/labs/srl/projects/astranomy/)\] \[[Website](https://research.nvidia.com/labs/srl/projects/astranomy/)\] · [笔记](papers/astranomy.md) | 技术报告 2026.10 | 固定Astra，对比直接控制、Agent执行和监督下游策略，消融几何、历史与动作接口。 | RoboLab-120：Direct66.3%，Agentic74.8% | NVIDIA |
 | **π0.7**: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities<br>\[[Paper](https://www.pi.website/download/pi07.pdf)\] \[[Website](https://www.pi.website/blog/pi07)\] · [笔记](papers/pi07.md) | 技术论文 2026.04 | coaching训练上层子任务策略，世界模型生成目标图；VLA训练隔离梯度，部署据目标输出动作。 | 图16：5任务比较自主执行与人工coaching | Physical Intelligence |
 | **SpatialHarness**: Test-Time Spatial Scaffolding for Fine Robotic Manipulation<br>\[[Paper](https://arxiv.org/abs/2610.12457v1)\] \[[Website](https://emilia113.github.io/SpatialHarness/)\] · [笔记](papers/spatialharness.md) | arXiv 2026.10 | 维护与真实执行同步的仿真场景，渲染互补视角并提供物体位姿，辅助冻结Astra控制。 | Franka4任务各15次：18.33%→83.33% | Fudan Univ.<br>SMU |
+
+<br>
+
+<a id="data-annotation"></a>
+
+## 13. Data Annotation
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
+|:---:|:---:|:---:|:---:|:---:|
+| **Flora**: An Open Model Suite for Scaling Robotics Data Engines<br>\[[Paper](https://research.nvidia.com/labs/gear/flora/assets/paper/flora.pdf)\] \[[Code](https://github.com/NVIDIA/Flora)\] \[[Website](https://research.nvidia.com/labs/gear/flora/)\] · [笔记](papers/flora.md) | 技术报告 2026.10 | 三个模型分别定位动作时段、描述动作、评价执行结果与过程，输出时间戳、语言标签及奖励。 | WGO百条视频分段F1：Flora50.3，Astra46.0 | NVIDIA GEAR |
