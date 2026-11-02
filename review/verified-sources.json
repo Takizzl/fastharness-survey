@@ -244,5 +244,11 @@
     "source": "https://research.nvidia.com/labs/gear/flora/assets/paper/flora.pdf",
     "location": "官方技术报告2026-10-20：§2、§4.1–4.3，表1/2/4/5；官方GitHub README，2026-11-02核对。",
     "result": "WGO-Bench共100条视频，分段F1@0.75为50.3（Astra46.0），联合语义F1为34.5（Astra39.0）。RoboRewardBench共2,831条episode，MAE×100为40.0（Astra55.4）。DenseRewardBench共40条episode、4,861个时间步，失败召回率53.3%；约11%的正常步骤被误判为失败。 评价人类与机器人操作视频的标注质量，不是机器人闭环任务成功率；过程标签使用后续画面，属于离线标注。"
+  },
+  "rapid": {
+    "date": "2026-11-02",
+    "source": "https://arxiv.org/abs/2609.30249v1",
+    "location": "原论文v1 §III–VI、表I–III、图2–5；官方代码07a7a1e的原语构建/策略组合SKILL及workspace/src/strategies/explanation.md；论文首版2026-09-24。",
+    "result": "MuJoCo/FR3八任务，每任务50个新场景，重复3次：CaP-Agent0均值14.6%±2.5%，RAPID无场景变体53.2%±7.1%，完整方法75.9%±2.4%。CaP-Agent0获得真值反馈及测试时修订权限，非等预算比较。LIBERO-Pro单调试场景、无演示：Object/Goal/Spatial的位置扰动100%/67%/83%，指令扰动95%/53%/81%；该组种子划分及尝试预算未完整报告。 FR3、平行夹爪、RealSense L515；八任务各10个场景，图5标注T1–T8为90%、80%、70%、60%、70%、40%、70%、60%。每任务程序开发数十分钟，新场景语义绑定数秒，后者不包含全部重建及轨迹优化。"
   }
 }

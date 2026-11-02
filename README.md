@@ -18,7 +18,7 @@
 | [7. RSI Projects](#rsi-projects) | Integrated robot systems and self-improvement | 6 |
 | [8. Perception Foundation Models](#perception) | Spatial grounding for action models | 1 |
 | [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 4 |
-| [10. Sim2Real](#sim2real) | Simulation practice and physical deployment | 1 |
+| [10. Sim2Real](#sim2real) | Simulation practice and physical deployment | 2 |
 | [11. Planner External Augmentation](#planner-augmentation) | State, knowledge and action feasibility | 1 |
 | [12. Perception and Execution](#perception-execution) | Observation, action interfaces and policy conditioning | 3 |
 | [13. Data Annotation](#data-annotation) | Video segmentation, action captions and reward labels | 1 |
@@ -148,6 +148,7 @@
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Paper&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Team&nbsp;&nbsp;&nbsp; |
 |:---:|:---:|:---:|:---:|:---:|
 | **RPG**: Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents<br>\[[Paper](https://arxiv.org/abs/2610.02204v1)\] \[[Website](https://rpg-robot.github.io/)\] | arXiv 2026.10 | 从离线数据构造仿真练习，用执行与视频诊断迭代技能和提示词，验证后部署真机 | MuJoCo/YAM 22任务：28.6%→95.0% | UC Berkeley<br>Amazon FAR |
+| **RAPID**: Robot Agentic Programming from Demonstrations<br>\[[Paper](https://arxiv.org/abs/2609.30249v1)\] \[[Code](https://github.com/nature21/RAPID)\] \[[Website](https://yuyaoliu.me/projects/rapid/)\] · [笔记](papers/rapid.md) | arXiv 2026.09 | 从演示重建仿真并验证原语，按场景关系计算阶段目标、优化轨迹后迁移真机 | MuJoCo八任务：CaP-Agent0 14.6%→75.9% | MIT<br>NUS |
 
 <br>
 
