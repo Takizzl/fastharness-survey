@@ -2,6 +2,14 @@
 
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
+
+## 2026-11-03 · REA与EBench-Astra
+
+- 收录[REA](papers/rea.md)与[EBench-Astra](papers/ebench-astra.md)及离线阅读页，更新分类首页、审阅表和来源记录。
+- REA保留Router变体、Route Memory统计、DeepSeek Judge的准确率与精确率、程序对齐条件及真机异步边界。
+- EBench-Astra记录单条示范ICL、直接控制、任务等权指标与VLA/WAM对照；混合控制仅列为未来方向。
+- Codex依据论文、官方实现及用户阅读问答整理并自审；未运行机器人实验，既有人工审核条目未改动。
+
 ## 2026-11-02 · RAPID：Sim2Real
 
 - 收录[RAPID](papers/rapid.md)及[原图阅读HTML](reports/rapid.html)，同步Sim2Real分类、审阅表和来源记录。

@@ -10,7 +10,7 @@
 | Category | Focus | Papers |
 |:---:|:---:|:---:|
 | [1. VLM1 + VLM2](#vlm) | Plugging in VLMs, failure reflection | 1 |
-| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 8 |
+| [2. Code + Policy](#code-policy) | Code / orchestration driving policies | 9 |
 | [3. Memory](#memory) | Memory mechanisms | 5 |
 | [4. Skill Growth](#skill) | Accumulating a skill library | 2 |
 | [5. Real-Robot Self-Improvement](#real-robot) | Iterating policies on real robots | 3 |
@@ -20,7 +20,7 @@
 | [9. RL 后训练优化](#rl-post-training) | Planner, tool use and code generation | 4 |
 | [10. Sim2Real](#sim2real) | Simulation practice and physical deployment | 2 |
 | [11. Planner External Augmentation](#planner-augmentation) | State, knowledge and action feasibility | 1 |
-| [12. Perception and Execution](#perception-execution) | Observation, action interfaces and policy conditioning | 3 |
+| [12. Perception and Execution](#perception-execution) | Observation, action interfaces and policy conditioning | 4 |
 | [13. Data Annotation](#data-annotation) | Video segmentation, action captions and reward labels | 1 |
 
 <br>
@@ -49,6 +49,7 @@
 | **COAP**: Embodied Turing Machines<br>\[[Paper](https://arxiv.org/abs/2610.12369)\] \[[Website](https://etmcode-bit.github.io/)\] | arXiv 2026.10 | Agent 根据反馈改程序；测试冻结代码，用显式状态与重试执行。 | RoboDojo 42任务：成功率70.24%，均为仿真 | NTU<br>Ropedia |
 | **RoboAuto**: Autonomous Robot Program Search through Multi-Level Physical Understanding<br>\[[Paper](https://arxiv.org/abs/2610.36533v1)\] \[[Website](https://roboauto-ai.github.io/)\] · [笔记](papers/roboauto.md) | arXiv 2026.10 | Agent检索物体知识、测量场景，分阶段写代码并验证，失败后修改或做诊断实验。 | RoboTwin 4任务各50次：24.5%→91.5% | Washington Univ. in St. Louis |
 | **FCGraft**: Robust and Rapid Code-Policy Synthesis for Embodied Agents<br>\[[Paper](https://arxiv.org/abs/2606.13097v2)\] · [笔记](papers/fcgraft.md) | ICML 2026 | 检索已验证函数及KV缓存，拼接代码并局部修补，成功后更新函数缓存库。 | 真机办公桌27次：RAGCache44.44%→77.78% | Sungkyunkwan Univ. |
+| **REA**: A Routed Embodied Agent Runtime for Asynchronous Brain-Cerebellum Control<br>\[[Paper](https://arxiv.org/abs/2610.42053v1)\] \[[Code](https://github.com/InfRec-Cardinal/REA)\] \[[Website](https://mikeeeeeeeeeeeeee.github.io/REA/)\] | arXiv 2026.10 | 统一策略接口，按统计或Agent选程序，按异常或视觉判断触发恢复 | LIBERO-Pro 3000次：95.9%，SDK 94.7% | NUS<br>InfRec |
 
 <br>
 
@@ -171,6 +172,7 @@
 | **Astranomy**: An Empirical Study of GPT-6 Astra as a Native Robot Policy<br>\[[Report](https://research.nvidia.com/labs/srl/projects/astranomy/)\] \[[Website](https://research.nvidia.com/labs/srl/projects/astranomy/)\] · [笔记](papers/astranomy.md) | 技术报告 2026.10 | 固定Astra，对比直接控制、Agent执行和监督下游策略，消融几何、历史与动作接口。 | RoboLab-120：Direct66.3%，Agentic74.8% | NVIDIA |
 | **π0.7**: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities<br>\[[Paper](https://www.pi.website/download/pi07.pdf)\] \[[Website](https://www.pi.website/blog/pi07)\] · [笔记](papers/pi07.md) | 技术论文 2026.04 | coaching训练上层子任务策略，世界模型生成目标图；VLA训练隔离梯度，部署据目标输出动作。 | 图16：5任务比较自主执行与人工coaching | Physical Intelligence |
 | **SpatialHarness**: Test-Time Spatial Scaffolding for Fine Robotic Manipulation<br>\[[Paper](https://arxiv.org/abs/2610.12457v1)\] \[[Website](https://emilia113.github.io/SpatialHarness/)\] · [笔记](papers/spatialharness.md) | arXiv 2026.10 | 维护与真实执行同步的仿真场景，渲染互补视角并提供物体位姿，辅助冻结Astra控制。 | Franka4任务各15次：18.33%→83.33% | Fudan Univ.<br>SMU |
+| **EBench-Astra**: How Far Does a Frontier Agent Get as an Embodied Policy?<br>\[[Paper](https://internrobotics.github.io/EBench-Astra-Tech-Report/)\] \[[Website](https://internrobotics.github.io/EBench-Astra-Tech-Report/)\] | Technical Report 2026 | Astra读取单条加工示范，根据图像和状态直接输出动作块，与VLA和WAM独立对比 | EBench 26任务510次：46.7%，OpenWAM 55.3% | Shanghai AI Lab<br>SJTU |
 
 <br>
 

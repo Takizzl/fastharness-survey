@@ -1,0 +1,207 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EBench-Astra：直接控制、示范输入与 VLA／WAM 对照</title><style>
+:root{
+  --bg:#F3F6F8;--surface:#FFFFFF;--sidebar:#FAFBFC;--soft:#F8FAFC;
+  --ink:#213344;--muted:#536578;--subtle:#697A89;--border:#DDE5EB;
+  --teal:#187F79;--indigo:#4766A6;--gold:#9C742B;--purple:#7D5D91;
+  --font:"Times New Roman","SimSun",serif;--section:var(--teal)
+}
+*{box-sizing:border-box}html{scroll-padding-top:20px}body{margin:0;background:var(--bg);color:var(--ink);font:21px/1.55 var(--font)}
+a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}a:focus-visible,input:focus-visible,summary:focus-visible,.table-wrap:focus-visible,.figure-viewport:focus-visible{outline:3px solid var(--teal);outline-offset:4px}
+.left-nav{position:fixed;inset:0 auto 0 0;width:236px;padding:27px 16px;background:var(--sidebar);border-right:1px solid var(--border);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;font-size:14px}
+.nav-heading{font-size:19px;padding:0 9px;margin-bottom:18px}.nav-group{margin-bottom:18px}.nav-group h2{font-size:13px;line-height:1.4;letter-spacing:.025em;color:var(--section);padding:0 10px;margin:0 0 5px}
+.section-link{display:flex;align-items:baseline;gap:9px;min-height:44px;padding:10px;border-radius:6px;color:var(--muted);line-height:1.45}.section-link span{font-size:12px;min-width:19px;color:var(--subtle)}
+.section-link:hover{background:#EEF3F6;text-decoration:none}.section-link[aria-current="location"]{background:#E8F3F0;color:#176D66;font-weight:700;box-shadow:inset 3px 0 #288B7E}
+.nav-back{display:block;padding:14px 10px 0;border-top:1px solid var(--border);color:var(--muted)}
+.layout{margin-left:236px;padding:0 22px}.report{max-width:1500px;margin:auto}
+.report-section{scroll-margin-top:20px;margin:24px 0;padding:34px 42px;background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--section);border-radius:14px;box-shadow:0 6px 24px #20334807;min-width:0}
+.hero{background:linear-gradient(125deg,#FFFFFF 40%,#EDF4F8);padding-top:44px;padding-bottom:44px}.label{font-size:19px;line-height:1.4;color:var(--section);margin:0 0 9px}
+h1{font-size:64px;line-height:1.2;margin:0 0 12px}h1 small{display:block;font-size:27px;font-weight:400;line-height:1.4;margin-top:12px}h2{font-size:34px;line-height:1.35;margin:0}h3{font-size:23px;line-height:1.3;margin:0 0 10px}
+.team{font-size:15px;color:var(--muted);margin:10px 0}.paper-links{font-size:16px;margin:12px 0 0}.content{display:flex;flex-direction:column;gap:22px;margin-top:24px}p{margin:0 0 14px}p:last-child{margin-bottom:0}strong,b{font-weight:700}
+.grid{display:grid;gap:22px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.split{display:grid;grid-template-columns:minmax(0,1.57fr) minmax(0,1fr);gap:28px;align-items:start}.stack{display:flex;flex-direction:column;gap:16px}.split>*{min-width:0}
+.panel{background:var(--soft);border:1px solid var(--border);border-radius:10px;padding:20px 24px;min-width:0}.panel.accent{border-top:3px solid var(--section)}.panel.accent h3{color:var(--section)}.panel p{font-size:21px;line-height:1.55}
+.method-summary .panel{background:transparent;padding:0 0 15px;border:0;border-bottom:1px solid var(--border);border-radius:0}.method-summary .panel:last-child{border-bottom:0;padding-bottom:0}
+.flow{display:flex;gap:12px;align-items:stretch}.flow-node{flex:1;min-width:0;border:1px solid #DCE6ED;border-radius:9px;padding:14px 18px;background:#F7FAFC;text-align:center}.flow-node b{display:block;font-size:24px;color:var(--section)}.flow-node small{font-size:16px;color:var(--muted)}
+.callout{padding:15px 22px;border-left:4px solid var(--section);border-radius:0 8px 8px 0;background:color-mix(in srgb,var(--section) 6%,white);font-size:21px;line-height:1.5}.micro,.caption{font-size:16px;color:var(--muted);line-height:1.6}.caption{margin-top:9px}
+.table-wrap{width:100%;max-width:100%;overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:white}table{border-collapse:collapse;width:100%;font-size:21px;line-height:1.5;font-variant-numeric:tabular-nums}caption{text-align:left;padding:12px 17px;font-size:16px;color:var(--muted)}th,td{padding:13px 17px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}th{background:color-mix(in srgb,var(--section) 10%,white);color:var(--section);font-size:19px;font-weight:600}tbody tr:nth-child(even){background:var(--soft)}tbody tr:last-child td{border-bottom:0}.number{text-align:right;white-space:nowrap}.core-table td{font-weight:700}
+.original-figure{margin:0;min-width:0}.figure-tool{display:inline-block;min-height:44px;padding:10px 6px;font-size:15px;color:var(--teal);cursor:pointer}.zoom-toggle{accent-color:var(--teal);width:18px;height:18px;vertical-align:middle}.figure-viewport{overflow:auto;max-width:100%;background:white;border:1px solid var(--border);border-radius:10px;padding:8px}.figure-viewport img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}.zoom-toggle:checked~.figure-viewport img{width:1800px;max-width:none}
+.related-issues{padding-top:18px;border-top:1px solid var(--border)}.related-issues h3{font-size:19px;color:var(--muted)}.related-issues ul{margin:0;padding-left:1.3em;font-size:18px}.related-issues li+li{margin-top:9px}
+.source{margin-top:26px;padding-top:12px;border-top:1px solid var(--border);font-size:14px;color:var(--muted)}.source p{margin-bottom:8px}details{font-size:16px}summary{cursor:pointer;min-height:44px;padding:10px 0}details li{margin:7px 0}p,li,td,th{overflow-wrap:anywhere}code{font-family:var(--font);font-size:.95em;background:#EFF3F6;padding:1px 4px;border-radius:3px}pre{overflow:auto;padding:18px;background:var(--soft);font:15px/1.7 Consolas,monospace}.formula{overflow:auto;padding:16px;text-align:center}
+@media(max-width:1100px){.left-nav{position:static;width:auto;border-right:0;border-bottom:1px solid var(--border);padding:18px}.nav-heading{margin-bottom:10px}.nav-group{margin-bottom:6px}.nav-group nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.layout{margin-left:0;padding:0 14px}.report-section{padding:28px 30px}}
+@media(max-width:760px){body{font-size:18px}.report-section{margin:14px 0;padding:24px 18px;border-radius:10px}.hero{padding-top:30px;padding-bottom:30px}h1{font-size:44px}h1 small{font-size:22px}h2{font-size:28px}h3{font-size:21px}.label{font-size:17px}.grid,.split{grid-template-columns:1fr}.panel{padding:17px 18px}.panel p,.callout{font-size:18px}.flow{flex-wrap:wrap}.flow-node{min-width:140px}.flow-node b{font-size:21px}table{min-width:620px;font-size:17px}th{font-size:16px}th,td{padding:10px 13px}.micro,.caption{font-size:15px}}
+@media print{body{background:white}.left-nav,.zoom-toggle,.figure-tool{display:none}.layout{margin:0;padding:0}.report-section{margin:0 0 22px;border:0;border-radius:0;box-shadow:none;padding:18px 0;background:white;break-inside:auto}h2,h3{break-after:avoid}table{min-width:0}.table-wrap{overflow:visible}.figure-viewport{overflow:visible;border:0}.zoom-toggle:checked~.figure-viewport img{width:100%;max-width:100%}}
+.content>h3{margin-top:12px}.content ul,.content ol{margin:0;padding-left:1.4em}.content li+li{margin-top:9px}.hero h1{font-size:48px}a{overflow-wrap:anywhere}@media(max-width:760px){.hero h1{font-size:34px}}</style></head><body>
+<aside class="left-nav" aria-label="阅读目录"><div class="nav-heading"><b>EBENCH-ASTRA</b></div><nav><a class="section-link" href="#s01"><span>01</span>报告与关注问题</a><a class="section-link" href="#s02"><span>02</span>输入、示范与执行过程</a><a class="section-link" href="#s03"><span>03</span>VLA／WAM 核心对照结果</a><a class="section-link" href="#s04"><span>04</span>恢复与上下游协作</a><a class="section-link" href="#s05"><span>05</span>与 REA 的区别及相关问题</a></nav><a class="nav-back" href="../papers/ebench-astra.md">← 本篇资料</a><a class="nav-back" href="../README.md">← 知识库</a></aside>
+<div class="layout"><main class="report"><header class="report-section hero"><p class="label">阅读收获 · 2026-11-03</p><h1>EBench-Astra：直接控制、示范输入与 VLA／WAM 对照</h1><div class="micro"><p>更新日期：2026-11-03。依据官方技术报告与本轮问答整理。</p>
+</div></header><section class="report-section" id="s01"><h2>报告与关注问题</h2><div class="content"><p>How Far Does a Frontier Agent Get as an Embodied Policy? 团队为上海人工智能实验室，与上海交大、复旦、浙江大学作者。官方页面仍标 arXiv Coming soon，当前以在线报告为原文。</p>
+<p><a href="https://internrobotics.github.io/EBench-Astra-Tech-Report/">Report／Website</a> · <a href="rea.html">REA 笔记</a></p>
+<p><strong>主评测由 Astra 直接控制机器人，与后训练 VLA／WAM 独立比较，没有下游 VLA 接管或修正 Astra 动作。</strong></p>
+</div></section><section class="report-section" id="s02"><h2>输入、示范与执行过程</h2><div class="content"><div class="table-wrap" tabindex="0" role="region" aria-label="数据与条件"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>输入与处理</th>
+<th>后续动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>示范加工</td>
+<td>另一个 high-effort Astra 读取每任务一条训练视频，选择 10–18 关键帧并注释，配状态和动作</td>
+<td>得到该任务的 ICL 包，同任务跨 seed 复用，不更新参数</td>
+</tr>
+<tr>
+<td>开局</td>
+<td>任务、接口、总览／左腕／右腕 RGB，EEF、夹爪、底座与当前仿真步数</td>
+<td>high-effort Astra 生成动作调用</td>
+</tr>
+<tr>
+<td>执行</td>
+<td>EEF 路点、夹爪／底座目标、执行时长</td>
+<td>固定接口插值执行，动作块内开环，无新观测</td>
+</tr>
+<tr>
+<td>下一决策</td>
+<td>返回请求的相机画面和状态</td>
+<td>Astra 调整动作或重规划，直至结束或预算耗尽</td>
+</tr>
+</tbody>
+</table></div>
+<p>不提供深度、物体真值、标定、分割、中间评分或子目标完成信号。没有统一固定的 25 步 Judge 间隔，也没有独立 Router；最大物理步数预算不向模型显示。</p>
+<p>物理步数上限与各任务基线一致；没有额外累计 token、工具调用或推理时间上限，因此不是等推理成本对照。来源：报告 §02。</p>
+</div></section><section class="report-section" id="s03"><h2>VLA／WAM 核心对照结果</h2><div class="content"><p>26 任务、510 个 episode。SR 与部分完成 Score 先在任务内平均，再对任务等权平均，不等于合并所有 episode 算成功比例。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="数据与条件"><table>
+<thead>
+<tr>
+<th>模型</th>
+<th style="text-align:right">任务等权 SR</th>
+<th style="text-align:right">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenWAM-α</td>
+<td style="text-align:right">55.3%</td>
+<td style="text-align:right">0.701</td>
+</tr>
+<tr>
+<td>AMapbot</td>
+<td style="text-align:right">48.9%</td>
+<td style="text-align:right">0.639</td>
+</tr>
+<tr>
+<td>GPT-6-Astra</td>
+<td style="text-align:right">46.7%</td>
+<td style="text-align:right">0.654</td>
+</tr>
+<tr>
+<td>Qwen-RobotManip</td>
+<td style="text-align:right">45.6%</td>
+<td style="text-align:right">0.608</td>
+</tr>
+<tr>
+<td>π0.5</td>
+<td style="text-align:right">41.4%</td>
+<td style="text-align:right">0.544</td>
+</tr>
+<tr>
+<td>InternVLA-A1.5</td>
+<td style="text-align:right">34.2%</td>
+<td style="text-align:right">0.468</td>
+</tr>
+<tr>
+<td>π0</td>
+<td style="text-align:right">33.7%</td>
+<td style="text-align:right">0.475</td>
+</tr>
+<tr>
+<td>GigaBrain-0.7</td>
+<td style="text-align:right">33.3%</td>
+<td style="text-align:right">0.460</td>
+</tr>
+<tr>
+<td>Fast-WAM</td>
+<td style="text-align:right">25.6%</td>
+<td style="text-align:right">0.371</td>
+</tr>
+</tbody>
+</table></div>
+<p>AMapbot 纳入总榜，但因缺少公开报告和代码，不在后续详细分析内。Astra 总榜第 3，排除 AMapbot 的八模型分析第 2；低于 OpenWAM-α 8.6 个百分点，高于 π0.5 5.3 个百分点。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="数据与条件"><table>
+<thead>
+<tr>
+<th>任务组</th>
+<th style="text-align:right">Astra SR</th>
+<th>参考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11 个短任务</td>
+<td style="text-align:right">73.2%</td>
+<td>OpenWAM-α 65.9%；其中 8 个任务为低精度要求</td>
+</tr>
+<tr>
+<td>15 个长任务</td>
+<td style="text-align:right">27.3%</td>
+<td>OpenWAM-α 47.6%</td>
+</tr>
+<tr>
+<td>7 个桌面灵巧精细任务</td>
+<td style="text-align:right">20.0%</td>
+<td>Qwen-RobotManip 50.0%</td>
+</tr>
+</tbody>
+</table></div>
+<p>七个后训练 VLA／WAM 使用其 EBench 榜单报告值，训练数据为 26 任务、6,600 条 episode；Astra 每任务读一条加工示范，无参数更新，适配方式不同。来源：§01–§04。</p>
+</div></section><section class="report-section" id="s04"><h2>恢复与上下游协作</h2><div class="content"><p>苹果运输案例中，Astra 根据图像与夹爪间隙推断滑落，重新观察和抓取，改用固定底座、机械臂运输。这是同会话重规划，没有 VLA 接管或外部记忆参数更新。</p>
+<p>“Agent 做探索和目标修订、局部控制器做高频精细接触”属于未来方向；报告讨论滑落／阻力中断和交接协议，但主评测没有验证这套混合 Router。</p>
+<p>没有独立 Router 的调用次数，也未给出统一逐模块 token 消耗表，不能从案例补造总量。来源：§04–§05、§07。</p>
+</div></section><section class="report-section" id="s05"><h2>与 REA 的区别及相关问题</h2><div class="content"><div class="table-wrap" tabindex="0" role="region" aria-label="数据与条件"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>EBench-Astra</th>
+<th>REA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大模型参与方式</td>
+<td>每次决策直接产生动作目标</td>
+<td>依实验生成程序、选择候选、视觉检查或后台建议</td>
+</tr>
+<tr>
+<td>下游执行器</td>
+<td>固定 EEF／夹爪／底座接口</td>
+<td>固定程序、VLA、原生技能或在线 Code</td>
+</tr>
+<tr>
+<td>VLA 中途接管</td>
+<td>主评测没有</td>
+<td>Aloha 异步有；RoboTwin 86% 只在开局选择</td>
+</tr>
+<tr>
+<td>示范与记忆</td>
+<td>单条加工示范同任务复用，无参数更新</td>
+<td>路由记忆为开发统计；学习式选择器另有训练</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>已确认：灵活恢复不等于精细接触控制；报告分别呈现短流程优势和长任务、精细对齐不足。</li>
+<li>尚未由主评测回答：如何触发交接和中断，以及混合系统在等端到端预算下能否同时提高成功率与效率。</li>
+</ul>
+</div></section></main></div><script>
+const chapterLinks = [...document.querySelectorAll('.section-link')];
+const reportSections = [...document.querySelectorAll('.report-section')];
+function markChapter(id) {
+  for (const link of chapterLinks) {
+    if (link.hash === '#' + id) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  }
+}
+const chapterObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) if (entry.isIntersecting) markChapter(entry.target.id);
+}, {rootMargin: '-10% 0px -65% 0px'});
+for (const section of reportSections) chapterObserver.observe(section);
+</script></body></html>

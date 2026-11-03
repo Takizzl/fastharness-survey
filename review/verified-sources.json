@@ -250,5 +250,19 @@
     "source": "https://arxiv.org/abs/2609.30249v1",
     "location": "原论文v1 §III–VI、表I–III、图2–5；官方代码07a7a1e的原语构建/策略组合SKILL及workspace/src/strategies/explanation.md；论文首版2026-09-24。",
     "result": "MuJoCo/FR3八任务，每任务50个新场景，重复3次：CaP-Agent0均值14.6%±2.5%，RAPID无场景变体53.2%±7.1%，完整方法75.9%±2.4%。CaP-Agent0获得真值反馈及测试时修订权限，非等预算比较。LIBERO-Pro单调试场景、无演示：Object/Goal/Spatial的位置扰动100%/67%/83%，指令扰动95%/53%/81%；该组种子划分及尝试预算未完整报告。 FR3、平行夹爪、RealSense L515；八任务各10个场景，图5标注T1–T8为90%、80%、70%、60%、70%、40%、70%、60%。每任务程序开发数十分钟，新场景语义绑定数秒，后者不包含全部重建及轨迹优化。"
+  },
+  "rea": {
+    "date": "2026-11-03",
+    "source": "https://arxiv.org/abs/2610.42053v1",
+    "location": "§3–4；表1–2；附录A.2、B.5–B.6、C.1、D.1–D.4；官方Aloha Router与异步运行代码",
+    "result": "LIBERO-Pro 60配置×50种子：REA-M／A 95.9%，SDK 94.7%；37个程序对齐任务为95.3%对93.7%。RoboTwin固定100场景：VLA路由84%，VLA＋Code 86%，MEDex 80%；仅开局选择，历史对照与开发隔离限制见阅读页。",
+    "整理": "Codex对照原文、官方代码与本轮问答整理并自审"
+  },
+  "ebench-astra": {
+    "date": "2026-11-03",
+    "source": "https://internrobotics.github.io/EBench-Astra-Tech-Report/",
+    "location": "在线报告§01–04、§07；任务等权指标与物理步数／模型预算条件",
+    "result": "EBench 26任务510次：任务等权SR 46.7%，OpenWAM-α 55.3%，π0.5 41.4%；短任务73.2%，长任务27.3%，桌面灵巧精细任务20.0%。物理步数对齐，但不限制累计模型推理成本。",
+    "整理": "Codex对照原文、官方代码与本轮问答整理并自审"
   }
 }
