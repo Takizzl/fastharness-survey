@@ -3,6 +3,12 @@
 最新的放最上面。每次合入都写清楚：新增了哪些论文、改了哪些字段、谁审核的。
 
 
+## 2026-11-03 · 论文图收集
+
+- 新增[论文图收集](reports/paper-figures.html)，收录Mem2Evolve完整标题与架构图。
+- 保留图片原始PNG，提供放大、原图查看和下载；不将此图集条目视为全文论文调研。
+- Codex完成图文对应、原图哈希、导航与页面检查。
+
 ## 2026-11-03 · REA与EBench-Astra
 
 - 收录[REA](papers/rea.md)与[EBench-Astra](papers/ebench-astra.md)及离线阅读页，更新分类首页、审阅表和来源记录。

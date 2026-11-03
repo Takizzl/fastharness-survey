@@ -23,6 +23,8 @@
 | [12. Perception and Execution](#perception-execution) | Observation, action interfaces and policy conditioning | 4 |
 | [13. Data Annotation](#data-annotation) | Video segmentation, action captions and reward labels | 1 |
 
+[论文图收集](reports/paper-figures.html)：Mem2Evolve 架构图。
+
 <br>
 
 <a id="vlm"></a>
