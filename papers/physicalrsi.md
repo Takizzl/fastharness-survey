@@ -33,7 +33,7 @@ MMLab 项目页与 PhysicalRSI 代码仓库双向对应，仓库 README 和 CITA
 - [项目页面](https://mmlab.hk/research/PhysicalRSI)
 - [代码与发布说明](https://github.com/PhysicalRSI/PhysicalRSI)
 - [RoboDojo 官方榜单](https://robodojo-benchmark.com/leaderboard)
-- [基线集成](https://github.com/XPolicyLab/XPolicyLab/tree/main/policy/physicalRSI)
+- [基线集成](https://github.com/XPolicyLab/XPolicyLab/tree/main/policy/PhysicalRSI)
 - [Preview 声明](https://github.com/PhysicalRSI/PhysicalRSI#physicalrsi)
 
 ## 开发、评测与经验复用

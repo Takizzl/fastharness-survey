@@ -4,6 +4,11 @@
 
 
 
+## 2026-11-05 · 修复提交后的链接检查
+
+- 更正PhysicalRSI基线集成链接的目录大小写：`policy/PhysicalRSI`。
+- Codex对照XPolicyLab实际目录及README核实；保留既有方法、实验数字与团队信息。
+
 ## 2026-11-05 · LIFE：主动经验采集与可塑性记忆
 
 - 新增[LIFE知识卡](papers/life.md)和[离线图文阅读页](reports/life.html)，同步Memory分类、审阅表和来源记录。
