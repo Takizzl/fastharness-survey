@@ -21,6 +21,7 @@ p{margin:0}
 .note{font-size:12px;color:#646a73;margin:0 0 8px}
 </style></head><body>
 <h3>FastHarness 论文审阅表</h3>
+<p class="note">2026-11-05：新增LIFE，Codex依据用户笔记、论文v2与官方代码说明整理并自审；区分新增实验、ReSight复用结果和在线更新边界。</p>
 <p class="note">2026-11-03：新增REA与EBench-Astra；Codex依据原文、官方实现与阅读问答整理并自审，区分路由变体、Judge指标与评测条件。</p>
 <p class="note">2026-10-29：按用户分类新增RAX（RSI系统）、RPG（Sim2Real）；方法与结果由Codex对照原论文整理并自审。</p>
 <p class="note">2026-10-28：BiPA按用户理解与原论文v1由Codex整理，归入Harness进化的收益与成本诊断；其余条目保留已有内容。</p>
@@ -126,7 +127,7 @@ p{margin:0}
 <tr><td class="p"><b>REA</b><br>REA: A Routed Embodied Agent Runtime for Asynchronous Brain-Cerebellum Control<br><a href="https://arxiv.org/abs/2610.42053v1">paper</a> <a href="https://github.com/InfRec-Cardinal/REA">code</a> <a href="https://mikeeeeeeeeeeeeee.github.io/REA/">website</a><br><a href="../papers/rea.md">知识卡</a> · <a href="../reports/rea.html">阅读页</a></td><td>大模型延迟会阻塞快策略；只凭异常不能发现任务未完成的静默失败。</td><td>统一策略接口，按统计或Agent选程序，按异常或视觉判断触发恢复。按开发排序、视觉检查、共享预算恢复；学习式开局选择与真机异步另列。</td><td>LIBERO-Pro 60配置×50种子：REA-M／A 95.9%，SDK 94.7%；37个程序对齐任务为95.3%对93.7%。RoboTwin固定100场景：VLA路由84%，VLA＋Code 86%，MEDex 80%；仅开局选择，历史对照与开发隔离限制见阅读页。</td><td>G1推椅子8/10，SDK 5/10；Aloha四Agent比较REA 10/10、ASPIRE 8/10；另一次异步π0.5＋Code 8/10、π0.5 3/10，两组日期与配置不同。</td><td class="c">NUS<br>InfRec</td></tr>
 
 <tr>
-<td class="m" rowspan="5">3. Memory</td>
+<td class="m" rowspan="6">3. Memory</td>
 <td class="p"><a href="https://arxiv.org/abs/2601.18510">JitRL</a><br><br>ICML 2026 Spotlight</td>
 <td>模型参数冻结后容易重复错误，直接提供历史经验不保证能正确利用。</td>
 <td>问题：冻结模型容易重复错误，直接将经验放进提示词不能保证有效利用。方法：完成轨迹后，由 LLM 评价步骤奖励，累计回报并存储状态—动作—回报；遇到相似状态时检索经验、估计动作价值，修正候选动作概率，不更新模型参数。</td>
@@ -171,6 +172,7 @@ p{margin:0}
 <td>SO-101，5任务，每条件每任务30次，SmolVLA总体46.0%→71.3%。SmolVLA此前用每任务50条人工示范微调20,000步、4张H200，试验时冻结。zero-shot指仿真演化的Harness迁移，非整个系统未经真机数据训练。</td>
 <td>Columbia University、Princeton University</td>
 </tr>
+<tr><td class="p"><b>LIFE</b><br>Learning to Live: A Step Toward Lifelong Embodied Intelligence<br><a href="https://arxiv.org/abs/2611.00180v2">paper</a> <a href="https://github.com/AgibotTech/LIFE">code</a><br><a href="../papers/life.md">知识卡</a> · <a href="../reports/life.html">阅读页</a></td><td>持续观察产生大量冗余信息，未来问题未知，既有工具也可能缺少利用历史证据的方法。</td><td>轻量模型筛选事件，文件记忆保留证据，Coding Agent提炼并注册查询工具与技能。RoboBeats另经LoRA训练；EDM更新外部程序、工具、技能和builder，留出测试能力冻结；24小时系统案例不证明在线操作策略自进化。</td><td>RoboBeats-2B：Charades-STA在线R@0.5 57.3%，base 7.4%；SSS-Bench 171视频618问，仅文本记忆均匀采样46.5%→60.5%。沿用ReSight的FindingDory留出81–90集597问：冻结能力37.5%→65.8%，128.8K→39.4K在线tokens/问，不含构建成本。</td><td>A3 Ultra连续24小时录像先采集再离线构建：256窗口、1296关键帧。6问各3次，同GPT-6.1-sol：LIFE 29.5/30（98.3%），Codex B 28.5/30（95%）；回答80.6秒、172.8K输入tokens/记录，不含构建成本，非物理操作成功率。</td><td class="c">Agibot Human Intelligence Project</td></tr>
 
 <tr>
 <td class="m">4. 技能增长</td>
